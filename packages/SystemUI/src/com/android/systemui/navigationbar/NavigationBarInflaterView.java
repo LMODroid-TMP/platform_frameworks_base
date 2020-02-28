@@ -169,6 +169,9 @@ public class NavigationBarInflaterView extends FrameLayout {
                         setNavigationBarLayout(Settings.Secure.getString(mContext.getContentResolver(),
                                 NAV_BAR_VIEWS));
                     });
+                } else if (QuickStepContract.isGesturalMode(mNavBarMode)) {
+                    setNavigationBarLayout(Settings.Secure.getString(mContext.getContentResolver(),
+                            NAV_BAR_VIEWS));
                 }
             }
         };
