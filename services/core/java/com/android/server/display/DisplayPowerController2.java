@@ -85,6 +85,10 @@ import com.android.server.display.whitebalance.DisplayWhiteBalanceFactory;
 import com.android.server.display.whitebalance.DisplayWhiteBalanceSettings;
 import com.android.server.policy.WindowManagerPolicy;
 
+import com.libremobileos.providers.LMOSettings;
+
+import android.provider.Settings;
+
 import java.io.PrintWriter;
 import java.util.Objects;
 
@@ -944,6 +948,9 @@ final class DisplayPowerController2 implements AutomaticBrightnessController.Cal
                 false /*notifyForDescendants*/, mSettingsObserver, UserHandle.USER_ALL);
         mContext.getContentResolver().registerContentObserver(
                 Settings.System.getUriFor(Settings.System.SCREEN_BRIGHTNESS_MODE),
+                false /*notifyForDescendants*/, mSettingsObserver, UserHandle.USER_ALL);
+        mContext.getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(LMOSettings.System.AUTO_BRIGHTNESS_ONE_SHOT),
                 false /*notifyForDescendants*/, mSettingsObserver, UserHandle.USER_ALL);
         handleBrightnessModeChange();
     }
@@ -2207,6 +2214,8 @@ final class DisplayPowerController2 implements AutomaticBrightnessController.Cal
                 .setPendingScreenBrightness(mDisplayBrightnessController
                         .getScreenBrightnessSetting());
         mAutomaticBrightnessStrategy.updatePendingAutoBrightnessAdjustments(userSwitch);
+        mAutomaticBrightnessStrategy.setAutoBrightnessOneShotEnabled(
+                getAutoBrightnessOneShotSetting());
         if (userSwitch) {
             // Don't treat user switches as user initiated change.
             mDisplayBrightnessController
@@ -2231,6 +2240,11 @@ final class DisplayPowerController2 implements AutomaticBrightnessController.Cal
         }, mClock.uptimeMillis());
     }
 
+    private boolean getAutoBrightnessOneShotSetting() {
+        return Settings.System.getIntForUser(
+                mContext.getContentResolver(), LMOSettings.System.AUTO_BRIGHTNESS_ONE_SHOT,
+                0, UserHandle.USER_CURRENT) == 1;
+    }
 
     @Override
     public float getScreenBrightnessSetting() {
