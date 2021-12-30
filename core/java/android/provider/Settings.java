@@ -17662,6 +17662,12 @@ public final class Settings {
         public static final String TRUST_RESTRICT_USB = "trust_restrict_usb";
 
         /**
+         * The amount of time in milliseconds before the device automatically reboots
+         * @hide
+         */
+        public static final String DEVICE_REBOOT_TIMEOUT = "device_reboot_timeout";
+
+        /**
          * Package designated as global VPN provider.
          * @hide
          */
