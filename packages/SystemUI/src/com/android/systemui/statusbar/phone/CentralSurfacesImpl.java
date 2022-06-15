@@ -291,6 +291,9 @@ import javax.inject.Provider;
 public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces,
         TunerService.Tunable {
 
+    private static final String QS_TRANSPARENCY =
+            "customsystem:" + Settings.System.QS_TRANSPARENCY;
+
     private static final String BANNER_ACTION_CANCEL =
             "com.android.systemui.statusbar.banner_action_cancel";
     private static final String BANNER_ACTION_SETUP =
@@ -978,6 +981,7 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces,
         }
 
         mTunerService.addTunable(this, FORCE_SHOW_NAVBAR);
+        mTunerService.addTunable(this, QS_TRANSPARENCY);
 
         mWindowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
 
@@ -3472,7 +3476,10 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces,
                     mNavigationBarController.onDisplayRemoved(mDisplayId);
                 }
             }
-        }
+        } else if (QS_TRANSPARENCY.equals(key)) {
+            mScrimController.setCustomScrimAlpha(
+                    TunerService.parseInteger(newValue, 100));
+	}
     }
 
     // End Extra BaseStatusBarMethods.
