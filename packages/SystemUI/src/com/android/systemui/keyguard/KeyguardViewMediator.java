@@ -1694,10 +1694,8 @@ public class KeyguardViewMediator implements CoreStartable, Dumpable,
 
             maybeHandlePendingLock();
 
-            // We do not have timeout and power button instant lock setting for profile lock.
-            // So we use the personal setting if there is any. But if there is no device
-            // we need to make sure we lock it immediately when the screen is off.
-            if (!mLockLater && !cameraGestureTriggered) {
+            // Immediately lock any profiles whose power button instant lock setting is enabled.
+            if (!cameraGestureTriggered) {
                 doKeyguardForChildProfilesLocked();
             }
 
@@ -1773,9 +1771,19 @@ public class KeyguardViewMediator implements CoreStartable, Dumpable,
         // to turn the screen back on within a certain window without
         // having to unlock the screen)
 
+        // If calling about self, use hard-coded default timeout as fallback value.
+        // If calling about another user (child profile), use device timeout as fallback value.
+        // If all else fails, use hard-coded default timeout as fallback value.
+        final ContentResolver cr = mContext.getContentResolver();
+        final int lockAfterTimeoutFallback = cr.getUserId() == userId ?
+                KEYGUARD_LOCK_AFTER_DELAY_DEFAULT :
+                Settings.Secure.getInt(cr,
+                        Settings.Secure.LOCK_SCREEN_LOCK_AFTER_TIMEOUT,
+                        KEYGUARD_LOCK_AFTER_DELAY_DEFAULT);
+
         // From SecuritySettings
         final long lockAfterTimeout = mSecureSettings.getIntForUser(LOCK_SCREEN_LOCK_AFTER_TIMEOUT,
-                KEYGUARD_LOCK_AFTER_DELAY_DEFAULT,
+                lockAfterTimeoutFallback,
                 userId);
 
         // From DevicePolicyAdmin
@@ -1824,26 +1832,30 @@ public class KeyguardViewMediator implements CoreStartable, Dumpable,
         doKeyguardLaterForChildProfilesLocked();
     }
 
+    private void doKeyguardLaterForChildProfileLocked(int profileId, long timeout) {
+        long userWhen = mSystemClock.elapsedRealtime() + timeout;
+        Intent lockIntent = new Intent(DELAYED_LOCK_PROFILE_ACTION);
+        lockIntent.setPackage(mContext.getPackageName());
+        lockIntent.putExtra("seq", mDelayedProfileShowingSequence);
+        lockIntent.putExtra(Intent.EXTRA_USER_ID, profileId);
+        lockIntent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
+        PendingIntent lockSender = PendingIntent.getBroadcast(
+                mContext, profileId, lockIntent,
+                PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        mAlarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                userWhen, lockSender);
+    }
+
     private void doKeyguardLaterForChildProfilesLocked() {
         for (UserInfo profile : mUserTracker.getUserProfiles()) {
             if (!profile.isEnabled()) continue;
             final int profileId = profile.id;
             if (mLockPatternUtils.isSeparateProfileChallengeEnabled(profileId)) {
-                long userTimeout = getLockTimeout(profileId);
+                final long userTimeout = getLockTimeout(profileId);
                 if (userTimeout == 0) {
-                    doKeyguardForChildProfilesLocked();
+                    lockProfile(profileId);
                 } else {
-                    long userWhen = mSystemClock.elapsedRealtime() + userTimeout;
-                    Intent lockIntent = new Intent(DELAYED_LOCK_PROFILE_ACTION);
-                    lockIntent.setPackage(mContext.getPackageName());
-                    lockIntent.putExtra("seq", mDelayedProfileShowingSequence);
-                    lockIntent.putExtra(Intent.EXTRA_USER_ID, profileId);
-                    lockIntent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
-                    PendingIntent lockSender = PendingIntent.getBroadcast(
-                            mContext, 0, lockIntent,
-                            PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-                    mAlarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                            userWhen, lockSender);
+                    doKeyguardLaterForChildProfileLocked(profileId, userTimeout);
                 }
             }
         }
@@ -1854,7 +1866,16 @@ public class KeyguardViewMediator implements CoreStartable, Dumpable,
             if (!profile.isEnabled()) continue;
             final int profileId = profile.id;
             if (mLockPatternUtils.isSeparateProfileChallengeEnabled(profileId)) {
-                lockProfile(profileId);
+                final boolean lockImmediately =
+                        mLockPatternUtils.getPowerButtonInstantlyLocks(profileId)
+                                || !mLockPatternUtils.isSecure(profileId);
+
+                if (lockImmediately) {
+                    lockProfile(profileId);
+                } else {
+                    final long userTimeout = getLockTimeout(profileId);
+                    doKeyguardLaterForChildProfileLocked(profileId, userTimeout);
+                }
             }
         }
     }
