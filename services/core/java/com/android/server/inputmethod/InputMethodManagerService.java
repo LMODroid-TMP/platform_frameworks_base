@@ -183,6 +183,7 @@ import com.android.server.input.InputManagerInternal;
 import com.android.server.inputmethod.InputMethodManagerInternal.InputMethodListListener;
 import com.android.server.inputmethod.InputMethodSubtypeSwitchingController.ImeSubtypeListItem;
 import com.android.server.inputmethod.InputMethodUtils.InputMethodSettings;
+import com.android.server.libremobileos.ParallelSpaceManagerServiceInternal;
 import com.android.server.pm.UserManagerInternal;
 import com.android.server.statusbar.StatusBarManagerInternal;
 import com.android.server.utils.PriorityDump;
@@ -3757,6 +3758,11 @@ public final class InputMethodManagerService extends IInputMethodManager.Stub
             }
         }
 
+        ParallelSpaceManagerServiceInternal parallelSpaceManager =
+                LocalServices.getService(ParallelSpaceManagerServiceInternal.class);
+        int uid = parallelSpaceManager
+                .convertToParallelOwnerIfPossible(userId);
+
         if (windowToken == null) {
             Slog.e(TAG, "windowToken cannot be null.");
             return InputBindResult.NULL;
@@ -3773,7 +3779,7 @@ public final class InputMethodManagerService extends IInputMethodManager.Stub
                     result = startInputOrWindowGainedFocusInternalLocked(startInputReason,
                             client, windowToken, startInputFlags, softInputMode, windowFlags,
                             editorInfo, inputConnection, remoteAccessibilityInputConnection,
-                            unverifiedTargetSdkVersion, userId, imeDispatcher);
+                            unverifiedTargetSdkVersion, uid, imeDispatcher);
                 } finally {
                     Binder.restoreCallingIdentity(ident);
                 }
