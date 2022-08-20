@@ -187,6 +187,7 @@ import com.android.server.pm.UserManagerInternal;
 import com.android.server.statusbar.StatusBarManagerInternal;
 import com.android.server.utils.PriorityDump;
 import com.android.server.wm.WindowManagerInternal;
+import com.android.server.libremobileos.ParallelSpaceManagerService;
 
 import com.android.internal.libremobileos.hardware.LineageHardwareManager;
 
@@ -3745,6 +3746,7 @@ public final class InputMethodManagerService extends IInputMethodManager.Stub
             IRemoteAccessibilityInputConnection remoteAccessibilityInputConnection,
             int unverifiedTargetSdkVersion, @UserIdInt int userId,
             @NonNull ImeOnBackInvokedDispatcher imeDispatcher) {
+        int uid = userId;
         if (UserHandle.getCallingUserId() != userId) {
             mContext.enforceCallingOrSelfPermission(
                     Manifest.permission.INTERACT_ACROSS_USERS_FULL, null);
@@ -3754,6 +3756,9 @@ public final class InputMethodManagerService extends IInputMethodManager.Stub
                 throw new InvalidParameterException("EditorInfo#targetInputMethodUser must also be "
                         + "specified for cross-user startInputOrWindowGainedFocus()");
             }
+        } else {
+            uid = ParallelSpaceManagerService
+                    .convertToParallelOwnerIfPossible(userId);
         }
 
         if (windowToken == null) {
@@ -3772,7 +3777,7 @@ public final class InputMethodManagerService extends IInputMethodManager.Stub
                     result = startInputOrWindowGainedFocusInternalLocked(startInputReason,
                             client, windowToken, startInputFlags, softInputMode, windowFlags,
                             editorInfo, inputConnection, remoteAccessibilityInputConnection,
-                            unverifiedTargetSdkVersion, userId, imeDispatcher);
+                            unverifiedTargetSdkVersion, uid, imeDispatcher);
                 } finally {
                     Binder.restoreCallingIdentity(ident);
                 }
