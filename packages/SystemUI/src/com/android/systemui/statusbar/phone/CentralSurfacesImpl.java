@@ -3833,7 +3833,7 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces,
             }
         } else if (QS_TRANSPARENCY.equals(key)) {
             mScrimController.setCustomScrimAlpha(
-                    TunerService.parseInteger(newValue, 100));
+                    TunerService.parseInteger(newValue, 85));
         }
     }
 
