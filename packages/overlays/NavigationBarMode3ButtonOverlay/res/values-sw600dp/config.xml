@@ -22,5 +22,9 @@
          is relatively small in large screen and its appearance is similar to gestural mode
          even if it jumps to another side for display orientation change. -->
     <bool name="config_allowSeamlessRotationDespiteNavBarMoving">true</bool>
+
+    <!-- Default for Settings.System.QS_TRANSPARENCY -->
+    <integer name="def_qs_transparency">85</integer>
+
 </resources>
 
