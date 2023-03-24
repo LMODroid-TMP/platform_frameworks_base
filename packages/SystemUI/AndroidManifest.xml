@@ -193,13 +193,11 @@
     <permission android:name="com.android.systemui.permission.FLAGS"
                 android:protectionLevel="signature" />
 
-<<<<<<< HEAD
-    <permission android:name="com.android.systemui.permission.SCREEN_RECORDING"
-            android:protectionLevel="signature" />
-=======
     <permission android:name="android.permission.CUSTOMIZE_SYSTEM_UI"
         android:protectionLevel="signature|privileged" />
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+
+    <permission android:name="com.android.systemui.permission.SCREEN_RECORDING"
+            android:protectionLevel="signature" />
 
     <!-- Adding Quick Settings tiles -->
     <uses-permission android:name="android.permission.BIND_QUICK_SETTINGS_TILE" />

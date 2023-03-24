@@ -341,16 +341,12 @@ public class Camera {
      *    low-level failure).
      */
     public static void getCameraInfo(int cameraId, CameraInfo cameraInfo) {
-<<<<<<< HEAD
         if (cameraId >= getNumberOfCameras()) {
             throw new RuntimeException("Unknown camera ID");
         }
-        _getCameraInfo(cameraId, cameraInfo);
-=======
         boolean overrideToPortrait = shouldOverrideToPortrait();
 
         _getCameraInfo(cameraId, overrideToPortrait, cameraInfo);
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         IBinder b = ServiceManager.getService(Context.AUDIO_SERVICE);
         IAudioService audioService = IAudioService.Stub.asInterface(b);
         try {
