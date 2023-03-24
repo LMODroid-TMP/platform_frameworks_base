@@ -230,11 +230,7 @@ public class StatusBarManager {
     /** @hide */
     public static final int CAMERA_LAUNCH_SOURCE_LIFT_TRIGGER = 2;
     /** @hide */
-<<<<<<< HEAD
-    public static final int CAMERA_LAUNCH_SOURCE_SCREEN_GESTURE = 3;
-=======
     public static final int CAMERA_LAUNCH_SOURCE_QUICK_AFFORDANCE = 3;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 
     /**
      * Session flag for {@link #registerSessionListener} indicating the listener

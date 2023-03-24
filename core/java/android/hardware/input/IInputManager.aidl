@@ -158,11 +158,6 @@ interface IInputManager {
 
     void cancelCurrentTouch();
 
-<<<<<<< HEAD
-    void registerCursorCallback(ICursorCallback callbacks);
-    void unregisterCursorCallback(ICursorCallback callbacks);
-    void setForceNullCursor(boolean forceNullCursor);
-=======
     void registerBatteryListener(int deviceId, IInputDeviceBatteryListener listener);
 
     void unregisterBatteryListener(int deviceId, IInputDeviceBatteryListener listener);
@@ -171,5 +166,4 @@ interface IInputManager {
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(value = "
             + "android.Manifest.permission.MONITOR_INPUT)")
     void pilferPointers(IBinder inputChannelToken);
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 }
