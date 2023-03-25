@@ -1000,9 +1000,6 @@
     <string name="bt_le_audio_broadcast_dialog_unknown_name" msgid="3791472237793443044">"Непознато"</string>
     <string name="dream_time_complication_12_hr_time_format" msgid="4691197486690291529">"с:мин"</string>
     <string name="dream_time_complication_24_hr_time_format" msgid="6248280719733640813">"ч:мин"</string>
-<<<<<<< HEAD
-    <string name="quick_controls_subtitle" msgid="1667408093326318053">"Додајте контроле за повезане уређаје"</string>
-=======
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8164857863036314664">"Отворите: <xliff:g id="APPNAME">%1$s</xliff:g>"</string>
     <string name="keyguard_affordance_enablement_dialog_wallet_instruction_1" msgid="8439655049139819278">"• да је апликација подешена"</string>
     <string name="keyguard_affordance_enablement_dialog_wallet_instruction_2" msgid="4321089250629477835">"• да је у Новчаник додата барем једна картица"</string>
@@ -1019,5 +1016,5 @@
     <string name="rear_display_accessibility_folded_animation" msgid="1538121649587978179">"Уређај на преклоп се отвара"</string>
     <string name="rear_display_accessibility_unfolded_animation" msgid="1946153682258289040">"Уређај на преклоп се обрће"</string>
     <string name="stylus_battery_low" msgid="7134370101603167096">"Низак ниво батерије писаљке"</string>
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+    <string name="quick_controls_subtitle" msgid="1667408093326318053">"Додајте контроле за повезане уређаје"</string>
 </resources>

@@ -2702,9 +2702,6 @@
 
     <!-- Time format for the Dream Time Complication for 24-hour time format [CHAR LIMIT=NONE] -->
     <string name="dream_time_complication_24_hr_time_format">kk:mm</string>
-<<<<<<< HEAD
-    <string name="quick_controls_subtitle">Add controls for your connected devices</string>
-=======
 
     <!--
     Template for an action that opens a specific app. [CHAR LIMIT=16]
@@ -2771,5 +2768,5 @@
 
     <!-- Title for notification of low stylus battery. [CHAR_LIMIT=NONE] -->
     <string name="stylus_battery_low">Stylus battery low</string>
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+    <string name="quick_controls_subtitle">Add controls for your connected devices</string>
 </resources>

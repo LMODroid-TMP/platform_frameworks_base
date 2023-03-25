@@ -1000,9 +1000,6 @@
     <string name="bt_le_audio_broadcast_dialog_unknown_name" msgid="3791472237793443044">"Ismeretlen"</string>
     <string name="dream_time_complication_12_hr_time_format" msgid="4691197486690291529">"ó:pp"</string>
     <string name="dream_time_complication_24_hr_time_format" msgid="6248280719733640813">"óó:pp"</string>
-<<<<<<< HEAD
-    <string name="quick_controls_subtitle" msgid="1667408093326318053">"Vezérlők hozzáadása a csatlakoztatott eszközökhöz"</string>
-=======
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8164857863036314664">"A(z) <xliff:g id="APPNAME">%1$s</xliff:g> megnyitása"</string>
     <string name="keyguard_affordance_enablement_dialog_wallet_instruction_1" msgid="8439655049139819278">"• Az alkalmazás be van állítva"</string>
     <string name="keyguard_affordance_enablement_dialog_wallet_instruction_2" msgid="4321089250629477835">"• Legalább egy kártya hozzá lett adva a Wallethez"</string>
@@ -1019,5 +1016,5 @@
     <string name="rear_display_accessibility_folded_animation" msgid="1538121649587978179">"Összehajtható eszköz kihajtása"</string>
     <string name="rear_display_accessibility_unfolded_animation" msgid="1946153682258289040">"Összehajtható eszköz körbeforgatása"</string>
     <string name="stylus_battery_low" msgid="7134370101603167096">"Az érintőceruza töltöttsége alacsony"</string>
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+    <string name="quick_controls_subtitle" msgid="1667408093326318053">"Vezérlők hozzáadása a csatlakoztatott eszközökhöz"</string>
 </resources>
