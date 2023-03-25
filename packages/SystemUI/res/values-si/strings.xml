@@ -1000,9 +1000,6 @@
     <string name="bt_le_audio_broadcast_dialog_unknown_name" msgid="3791472237793443044">"නොදනී"</string>
     <string name="dream_time_complication_12_hr_time_format" msgid="4691197486690291529">"h:mm"</string>
     <string name="dream_time_complication_24_hr_time_format" msgid="6248280719733640813">"kk:mm"</string>
-<<<<<<< HEAD
-    <string name="quick_controls_subtitle" msgid="1667408093326318053">"ඔබේ සම්බන්ධිත උපාංග සඳහා පාලන එක් කරන්න"</string>
-=======
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8164857863036314664">"<xliff:g id="APPNAME">%1$s</xliff:g> විවෘත කරන්න"</string>
     <string name="keyguard_affordance_enablement_dialog_wallet_instruction_1" msgid="8439655049139819278">"• යෙදුම සකසා ඇත"</string>
     <string name="keyguard_affordance_enablement_dialog_wallet_instruction_2" msgid="4321089250629477835">"• Wallet වෙත අවම වශයෙන් එක කාඩ්පතක් එක් කර ඇත"</string>
@@ -1019,5 +1016,5 @@
     <string name="rear_display_accessibility_folded_animation" msgid="1538121649587978179">"දිග හැරෙමින් පවතින නැමිය හැකි උපාංගය"</string>
     <string name="rear_display_accessibility_unfolded_animation" msgid="1946153682258289040">"වටා පෙරළෙමින් තිබෙන නැමිය හැකි උපාංගය"</string>
     <string name="stylus_battery_low" msgid="7134370101603167096">"පන්හිඳ බැටරිය අඩුයි"</string>
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+    <string name="quick_controls_subtitle" msgid="1667408093326318053">"ඔබේ සම්බන්ධිත උපාංග සඳහා පාලන එක් කරන්න"</string>
 </resources>

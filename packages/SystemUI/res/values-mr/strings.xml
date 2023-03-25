@@ -1000,9 +1000,6 @@
     <string name="bt_le_audio_broadcast_dialog_unknown_name" msgid="3791472237793443044">"अज्ञात"</string>
     <string name="dream_time_complication_12_hr_time_format" msgid="4691197486690291529">"h:mm"</string>
     <string name="dream_time_complication_24_hr_time_format" msgid="6248280719733640813">"kk:mm"</string>
-<<<<<<< HEAD
-    <string name="quick_controls_subtitle" msgid="1667408093326318053">"तुमच्या कनेक्ट केलेल्या डिव्हाइससाठी नियंत्रणे जोडा"</string>
-=======
     <string name="keyguard_affordance_enablement_dialog_action_template" msgid="8164857863036314664">"<xliff:g id="APPNAME">%1$s</xliff:g> उघडा"</string>
     <string name="keyguard_affordance_enablement_dialog_wallet_instruction_1" msgid="8439655049139819278">"• अ‍ॅप सेट करणे"</string>
     <string name="keyguard_affordance_enablement_dialog_wallet_instruction_2" msgid="4321089250629477835">"• Wallet मध्ये किमान एक कार्ड जोडणे"</string>
@@ -1019,5 +1016,5 @@
     <string name="rear_display_accessibility_folded_animation" msgid="1538121649587978179">"फोल्ड करता येण्यासारखे डिव्हाइस अनफोल्ड केले जात आहे"</string>
     <string name="rear_display_accessibility_unfolded_animation" msgid="1946153682258289040">"फोल्ड करता येण्यासारखे डिव्हाइस आजूबाजूला फ्लिप केले जात आहे"</string>
     <string name="stylus_battery_low" msgid="7134370101603167096">"स्टायलस बॅटरी कमी आहे"</string>
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+    <string name="quick_controls_subtitle" msgid="1667408093326318053">"तुमच्या कनेक्ट केलेल्या डिव्हाइससाठी नियंत्रणे जोडा"</string>
 </resources>
