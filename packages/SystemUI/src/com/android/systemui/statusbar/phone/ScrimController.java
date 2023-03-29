@@ -807,14 +807,9 @@ public class ScrimController implements ViewTreeObserver.OnPreDrawListener, Dump
                 float behindFraction = getInterpolatedFraction();
                 behindFraction = (float) Math.pow(behindFraction, 0.8f);
                 if (mClipsQsScrim) {
-<<<<<<< HEAD
-                    mBehindAlpha = mCustomScrimAlpha;
-                    mNotificationsAlpha = behindFraction * mCustomScrimAlpha;
-=======
-                    mBehindAlpha = mTransparentScrimBackground ? 0 : 1;
+                    mBehindAlpha = mTransparentScrimBackground ? 0 : mCustomScrimAlpha;
                     mNotificationsAlpha =
-                            mTransparentScrimBackground ? 0 : behindFraction * mDefaultScrimAlpha;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+                            mTransparentScrimBackground ? 0 : behindFraction * mCustomScrimAlpha;
                 } else {
                     mBehindAlpha =
                             mTransparentScrimBackground ? 0 : behindFraction * mDefaultScrimAlpha;
@@ -840,19 +835,7 @@ public class ScrimController implements ViewTreeObserver.OnPreDrawListener, Dump
                         interpolatedFraction);
             }
         } else if (mState == ScrimState.AUTH_SCRIMMED_SHADE) {
-<<<<<<< HEAD
-            float behindFraction = getInterpolatedFraction();
-            behindFraction = (float) Math.pow(behindFraction, 0.8f);
-
-            mBehindAlpha = behindFraction * mDefaultScrimAlpha;
-            mNotificationsAlpha = mBehindAlpha;
-            if (mClipsQsScrim) {
-                mBehindAlpha = mCustomScrimAlpha;
-                mBehindTint = Color.TRANSPARENT;
-            }
-=======
             mNotificationsAlpha = (float) Math.pow(getInterpolatedFraction(), 0.8f);
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         } else if (mState == ScrimState.KEYGUARD || mState == ScrimState.SHADE_LOCKED
                 || mState == ScrimState.PULSING) {
             Pair<Integer, Float> result = calculateBackStateForState(mState);
