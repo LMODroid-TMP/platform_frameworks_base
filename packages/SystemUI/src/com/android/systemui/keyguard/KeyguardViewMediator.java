@@ -25,6 +25,7 @@ import static com.android.internal.config.sysui.SystemUiDeviceConfigFlags.NAV_BA
 import static com.android.internal.jank.InteractionJankMonitor.CUJ_LOCKSCREEN_OCCLUSION;
 import static com.android.internal.jank.InteractionJankMonitor.CUJ_LOCKSCREEN_TRANSITION_FROM_AOD;
 import static com.android.internal.jank.InteractionJankMonitor.CUJ_LOCKSCREEN_UNLOCK_ANIMATION;
+import static com.android.internal.widget.LockPatternUtils.StrongAuthTracker.SOME_AUTH_REQUIRED_AFTER_TRUSTAGENT_EXPIRED;
 import static com.android.internal.widget.LockPatternUtils.StrongAuthTracker.SOME_AUTH_REQUIRED_AFTER_USER_REQUEST;
 import static com.android.internal.widget.LockPatternUtils.StrongAuthTracker.STRONG_AUTH_REQUIRED_AFTER_DPM_LOCK_NOW;
 import static com.android.internal.widget.LockPatternUtils.StrongAuthTracker.STRONG_AUTH_REQUIRED_AFTER_LOCKOUT;
@@ -355,20 +356,11 @@ public class KeyguardViewMediator implements CoreStartable, Dumpable,
      */
     private int mDelayedProfileShowingSequence;
 
-<<<<<<< HEAD
     /**
      * Simiar to {@link #mDelayedProfileShowingSequence}, but it is for automatic reboot.
      */
     private int mDelayedRebootSequence;
 
-    /**
-     * If the user has disabled the keyguard, then requests to exit, this is
-     * how we'll ultimately let them know whether it was successful.  We use this
-     * var being non-null as an indicator that there is an in progress request.
-     */
-    private IKeyguardExitCallback mExitSecureCallback;
-=======
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
     private final DismissCallbackRegistry mDismissCallbackRegistry;
 
     // the properties of the keyguard
@@ -844,6 +836,9 @@ public class KeyguardViewMediator implements CoreStartable, Dumpable,
             } else if (trustAgentsEnabled
                     && (strongAuth & SOME_AUTH_REQUIRED_AFTER_USER_REQUEST) != 0) {
                 return KeyguardSecurityView.PROMPT_REASON_USER_REQUEST;
+            } else if (trustAgentsEnabled
+                    && (strongAuth & SOME_AUTH_REQUIRED_AFTER_TRUSTAGENT_EXPIRED) != 0) {
+                return KeyguardSecurityView.PROMPT_REASON_TRUSTAGENT_EXPIRED;
             } else if (any && ((strongAuth & STRONG_AUTH_REQUIRED_AFTER_LOCKOUT) != 0
                     || mUpdateMonitor.isFingerprintLockedOut())) {
                 return KeyguardSecurityView.PROMPT_REASON_AFTER_LOCKOUT;
@@ -2371,25 +2366,9 @@ public class KeyguardViewMediator implements CoreStartable, Dumpable,
             return;
         }
         setPendingLock(false); // user may have authenticated during the screen off animation
-<<<<<<< HEAD
-        if (mExitSecureCallback != null) {
-            try {
-                mExitSecureCallback.onKeyguardExitResult(true /* authenciated */);
-            } catch (RemoteException e) {
-                Slog.w(TAG, "Failed to call onKeyguardExitResult()", e);
-            }
-
-            mExitSecureCallback = null;
+        synchronized (this) {
             cancelDoRebootLaterLocked();
-
-            // after successfully exiting securely, no need to reshow
-            // the keyguard when they've released the lock
-            mExternallyEnabled = true;
-            mNeedToReshowWhenReenabled = false;
-            updateInputRestricted();
         }
-=======
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 
         handleHide();
         mUpdateMonitor.clearBiometricRecognizedWhenKeyguardDone(currentUser);
