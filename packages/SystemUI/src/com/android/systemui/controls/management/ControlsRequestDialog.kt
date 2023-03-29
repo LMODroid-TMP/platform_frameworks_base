@@ -74,16 +74,11 @@ open class ControlsRequestDialog @Inject constructor(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-<<<<<<< HEAD
         if (!controller.available) {
             Log.w(TAG, "Quick Controls not available for this user ")
             finish()
         }
-        currentUserTracker.startTracking()
-=======
-
         userTracker.addCallback(userTrackerCallback, mainExecutor)
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         controlsListingController.addCallback(callback)
 
         val requestUser = intent.getIntExtra(Intent.EXTRA_USER_ID, UserHandle.USER_NULL)

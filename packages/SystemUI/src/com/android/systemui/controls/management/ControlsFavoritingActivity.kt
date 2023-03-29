@@ -47,12 +47,8 @@ import com.android.systemui.controls.controller.StructureInfo
 import com.android.systemui.controls.ui.ControlsActivity
 import com.android.systemui.controls.ui.ControlsUiController
 import com.android.systemui.dagger.qualifiers.Main
-<<<<<<< HEAD
 import com.android.systemui.globalactions.GlobalActionsComponent
-import com.android.systemui.settings.CurrentUserTracker
-=======
 import com.android.systemui.settings.UserTracker
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import java.text.Collator
 import java.util.concurrent.Executor
 import java.util.function.Consumer
@@ -62,12 +58,8 @@ open class ControlsFavoritingActivity @Inject constructor(
     @Main private val executor: Executor,
     private val controller: ControlsControllerImpl,
     private val listingController: ControlsListingController,
-<<<<<<< HEAD
-    private val broadcastDispatcher: BroadcastDispatcher,
     private val globalActionsComponent: GlobalActionsComponent,
-=======
     private val userTracker: UserTracker,
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
     private val uiController: ControlsUiController
 ) : ComponentActivity() {
 

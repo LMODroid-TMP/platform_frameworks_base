@@ -29,11 +29,8 @@ interface ControlsUiController {
     companion object {
         public const val TAG = "ControlsUiController"
         public const val EXTRA_ANIMATE = "extra_animate"
-<<<<<<< HEAD
-	public const val BACK_TO_GLOBAL_ACTIONS = "back_to_global_actions"
-=======
         public const val EXIT_TO_DREAM = "extra_exit_to_dream"
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+	    public const val BACK_TO_GLOBAL_ACTIONS = "back_to_global_actions"
     }
 
     fun show(parent: ViewGroup, onDismiss: Runnable, activityContext: Context?)

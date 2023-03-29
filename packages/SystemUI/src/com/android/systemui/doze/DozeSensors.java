@@ -901,13 +901,8 @@ public class DozeSensors {
                     mDozeLog.traceSensorEventDropped(mPulseReason, "debounce");
                     return;
                 }
-<<<<<<< HEAD
-                if (DEBUG) Log.d(TAG, "onSensorEvent: " + triggerEventToString(event));
                 mSensorCallback.onSensorPulse(mPulseReason, true /* sensorPerformsProxCheck */,
                         -1, -1, event.getValues());
-=======
-                mSensorCallback.onSensorPulse(mPulseReason, -1, -1, event.getValues());
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
             }));
         }
     }

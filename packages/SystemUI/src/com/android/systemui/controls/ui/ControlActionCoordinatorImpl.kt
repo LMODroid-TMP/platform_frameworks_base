@@ -38,12 +38,9 @@ import com.android.systemui.controls.settings.ControlsSettingsDialogManager
 import com.android.systemui.controls.settings.ControlsSettingsRepository
 import com.android.systemui.dagger.SysUISingleton
 import com.android.systemui.dagger.qualifiers.Main
-<<<<<<< HEAD
 import com.android.systemui.globalactions.GlobalActionsComponent
-=======
 import com.android.systemui.flags.FeatureFlags
 import com.android.systemui.flags.Flags
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import com.android.systemui.plugins.ActivityStarter
 import com.android.systemui.statusbar.VibratorHelper
 import com.android.systemui.statusbar.policy.KeyguardStateController
@@ -54,21 +51,6 @@ import javax.inject.Inject
 
 @SysUISingleton
 class ControlActionCoordinatorImpl @Inject constructor(
-<<<<<<< HEAD
-    private val context: Context,
-    private val bgExecutor: DelayableExecutor,
-    @Main private val uiExecutor: DelayableExecutor,
-    private val activityStarter: ActivityStarter,
-    private val broadcastSender: BroadcastSender,
-    private val keyguardStateController: KeyguardStateController,
-    private val taskViewFactory: Optional<TaskViewFactory>,
-    private val controlsMetricsLogger: ControlsMetricsLogger,
-    private val vibrator: VibratorHelper,
-    private val secureSettings: SecureSettings,
-    private val userContextProvider: UserContextProvider,
-    private val globalActionsComponent: GlobalActionsComponent,
-    @Main mainHandler: Handler
-=======
         private val context: Context,
         private val bgExecutor: DelayableExecutor,
         @Main private val uiExecutor: DelayableExecutor,
@@ -81,24 +63,15 @@ class ControlActionCoordinatorImpl @Inject constructor(
         private val controlsSettingsRepository: ControlsSettingsRepository,
         private val controlsSettingsDialogManager: ControlsSettingsDialogManager,
         private val featureFlags: FeatureFlags,
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+        private val globalActionsComponent: GlobalActionsComponent,
 ) : ControlActionCoordinator {
     private var dialog: Dialog? = null
-    private var pendingAction: Action? = null
     private var actionsInProgress = mutableSetOf<String>()
     private val isLocked: Boolean
         get() = !keyguardStateController.isUnlocked()
-<<<<<<< HEAD
-    private var mAllowTrivialControls: Boolean = secureSettings.getIntForUser(
-            Secure.LOCKSCREEN_ALLOW_TRIVIAL_CONTROLS, 0, UserHandle.USER_CURRENT) != 0
-    private var mShowDeviceControlsInLockscreen: Boolean = secureSettings.getIntForUser(
-            Secure.LOCKSCREEN_SHOW_CONTROLS, 0, UserHandle.USER_CURRENT) != 0
-    override var activityContext: Context? = null
-=======
     private val allowTrivialControls: Boolean
         get() = controlsSettingsRepository.allowActionOnTrivialControlsInLockscreen.value
-    override lateinit var activityContext: Context
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+    override var activityContext: Context? = null
 
     companion object {
         private const val RESPONSE_TIMEOUT_IN_MILLIS = 3000L
