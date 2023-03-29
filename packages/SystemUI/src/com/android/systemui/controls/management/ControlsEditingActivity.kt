@@ -39,14 +39,10 @@ import com.android.systemui.controls.controller.ControlsControllerImpl
 import com.android.systemui.controls.controller.StructureInfo
 import com.android.systemui.controls.ui.ControlsActivity
 import com.android.systemui.controls.ui.ControlsUiController
-<<<<<<< HEAD
 import com.android.systemui.globalactions.GlobalActionsComponent
-import com.android.systemui.settings.CurrentUserTracker
-=======
 import com.android.systemui.dagger.qualifiers.Main
 import com.android.systemui.settings.UserTracker
 import java.util.concurrent.Executor
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import javax.inject.Inject
 
 /**
@@ -55,12 +51,8 @@ import javax.inject.Inject
 open class ControlsEditingActivity @Inject constructor(
     @Main private val mainExecutor: Executor,
     private val controller: ControlsControllerImpl,
-<<<<<<< HEAD
-    private val broadcastDispatcher: BroadcastDispatcher,
     private val globalActionsComponent: GlobalActionsComponent,
-=======
     private val userTracker: UserTracker,
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
     private val customIconCache: CustomIconCache,
     private val uiController: ControlsUiController
 ) : ComponentActivity() {

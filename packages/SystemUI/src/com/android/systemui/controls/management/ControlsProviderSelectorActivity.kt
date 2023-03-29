@@ -39,12 +39,8 @@ import com.android.systemui.controls.ui.ControlsActivity
 import com.android.systemui.controls.ui.ControlsUiController
 import com.android.systemui.dagger.qualifiers.Background
 import com.android.systemui.dagger.qualifiers.Main
-<<<<<<< HEAD
 import com.android.systemui.globalactions.GlobalActionsComponent
-import com.android.systemui.settings.CurrentUserTracker
-=======
 import com.android.systemui.settings.UserTracker
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import java.util.concurrent.Executor
 import javax.inject.Inject
 
@@ -56,12 +52,8 @@ open class ControlsProviderSelectorActivity @Inject constructor(
     @Background private val backExecutor: Executor,
     private val listingController: ControlsListingController,
     private val controlsController: ControlsController,
-<<<<<<< HEAD
     private val globalActionsComponent: GlobalActionsComponent,
-    private val broadcastDispatcher: BroadcastDispatcher,
-=======
     private val userTracker: UserTracker,
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
     private val uiController: ControlsUiController
 ) : ComponentActivity() {
 
