@@ -148,13 +148,8 @@ class ControlsComponentTest : SysuiTestCase() {
 
     @Test
     fun testFeatureEnabledAndCanShowWhileUnlockedVisibility() {
-<<<<<<< HEAD
-        `when`(secureSettings.getInt(eq(Settings.Secure.LOCKSCREEN_SHOW_CONTROLS), anyInt()))
-            .thenReturn(0)
         `when`(controller.available).thenReturn(true)
-=======
         controlsSettingsRepository.setCanShowControlsInLockscreen(false)
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         `when`(lockPatternUtils.getStrongAuthForUser(anyInt()))
             .thenReturn(STRONG_AUTH_NOT_REQUIRED)
         `when`(keyguardStateController.isUnlocked()).thenReturn(true)

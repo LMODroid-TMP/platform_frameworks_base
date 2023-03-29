@@ -10,13 +10,8 @@ import com.android.systemui.R
 import com.android.systemui.SysuiTestCase
 import com.android.systemui.dump.DumpManager
 import com.android.systemui.flags.FeatureFlags
-<<<<<<< HEAD
-import com.android.systemui.media.MediaHost
-import com.android.systemui.media.MediaHostState
-=======
 import com.android.systemui.media.controls.ui.MediaHost
 import com.android.systemui.media.controls.ui.MediaHostState
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import com.android.systemui.plugins.FalsingManager
 import com.android.systemui.plugins.qs.QSTile
 import com.android.systemui.qs.customize.QSCustomizerController
@@ -63,11 +58,8 @@ class QSPanelControllerTest : SysuiTestCase() {
     @Mock private lateinit var otherTile: QSTile
     @Mock private lateinit var statusBarKeyguardViewManager: StatusBarKeyguardViewManager
     @Mock private lateinit var featureFlags: FeatureFlags
-<<<<<<< HEAD
-=======
     @Mock private lateinit var configuration: Configuration
     @Mock private lateinit var pagedTileLayout: PagedTileLayout
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 
     private lateinit var controller: QSPanelController
     private val testableResources: TestableResources = mContext.orCreateTestableResources
