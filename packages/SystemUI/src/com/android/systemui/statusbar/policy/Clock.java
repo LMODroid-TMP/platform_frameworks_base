@@ -16,11 +16,8 @@
 
 package com.android.systemui.statusbar.policy;
 
-<<<<<<< HEAD
-import android.app.ActivityManager;
-=======
 import android.annotation.NonNull;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+import android.app.ActivityManager;
 import android.app.StatusBarManager;
 import android.app.WindowConfiguration;
 import android.content.BroadcastReceiver;
@@ -53,14 +50,10 @@ import com.android.systemui.broadcast.BroadcastDispatcher;
 import com.android.systemui.demomode.DemoModeCommandReceiver;
 import com.android.systemui.plugins.DarkIconDispatcher;
 import com.android.systemui.plugins.DarkIconDispatcher.DarkReceiver;
-<<<<<<< HEAD
-import com.android.systemui.settings.CurrentUserTracker;
+import com.android.systemui.settings.UserTracker;
 import com.android.systemui.shared.system.ActivityManagerWrapper;
 import com.android.systemui.shared.system.TaskStackChangeListener;
 import com.android.systemui.shared.system.TaskStackChangeListeners;
-=======
-import com.android.systemui.settings.UserTracker;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.policy.ConfigurationController.ConfigurationListener;
 import com.android.systemui.tuner.TunerService;
@@ -251,8 +244,7 @@ public class Clock extends TextView implements
             mAttached = false;
             Dependency.get(TunerService.class).removeTunable(this);
             mCommandQueue.removeCallback(this);
-<<<<<<< HEAD
-            mCurrentUserTracker.stopTracking();
+            mUserTracker.removeCallback(mUserChangedCallback);
             handleTaskStackListener(false);
         }
     }
@@ -268,9 +260,6 @@ public class Clock extends TextView implements
         } else if (!register && mTaskStackListenerRegistered) {
             TaskStackChangeListeners.getInstance().unregisterTaskStackListener(mTaskStackListener);
             mTaskStackListenerRegistered = false;
-=======
-            mUserTracker.removeCallback(mUserChangedCallback);
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         }
     }
 

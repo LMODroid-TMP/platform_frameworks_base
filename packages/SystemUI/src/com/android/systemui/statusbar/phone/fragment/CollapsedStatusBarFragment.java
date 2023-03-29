@@ -561,14 +561,9 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
      * don't set the clock GONE otherwise it'll mess up the animation.
      */
     private int clockHiddenMode() {
-<<<<<<< HEAD
-        if (!mPanelExpansionStateManager.isClosed() && !mKeyguardStateController.isShowing()
+        if (!mShadeExpansionStateManager.isClosed() && !mKeyguardStateController.isShowing()
                 && !mStatusBarStateController.isDozing()
                 && mClockController.getClock().shouldBeVisible()) {
-=======
-        if (!mShadeExpansionStateManager.isClosed() && !mKeyguardStateController.isShowing()
-                && !mStatusBarStateController.isDozing()) {
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
             return View.INVISIBLE;
         }
         return View.GONE;

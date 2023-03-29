@@ -16,11 +16,7 @@
 package com.android.systemui.statusbar.policy;
 
 import android.annotation.Nullable;
-<<<<<<< HEAD
-import android.app.ActivityManager;
 import android.app.AppOpsManager;
-=======
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import android.app.admin.DeviceAdminInfo;
 import android.app.admin.DevicePolicyManager;
 import android.app.admin.DevicePolicyManager.DeviceOwnerType;
@@ -93,11 +89,8 @@ public class SecurityControllerImpl implements SecurityController {
     private static final int CA_CERT_LOADING_RETRY_TIME_IN_MS = 30_000;
 
     private final Context mContext;
-<<<<<<< HEAD
-    private final AppOpsManager mAppOpsManager;
-=======
     private final UserTracker mUserTracker;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+    private final AppOpsManager mAppOpsManager;
     private final ConnectivityManager mConnectivityManager;
     private final VpnManager mVpnManager;
     private final DevicePolicyManager mDevicePolicyManager;
@@ -138,12 +131,9 @@ public class SecurityControllerImpl implements SecurityController {
             DumpManager dumpManager
     ) {
         mContext = context;
-<<<<<<< HEAD
+        mUserTracker = userTracker;
         mAppOpsManager = (AppOpsManager)
                 context.getSystemService(Context.APP_OPS_SERVICE);
-=======
-        mUserTracker = userTracker;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         mDevicePolicyManager = (DevicePolicyManager)
                 context.getSystemService(Context.DEVICE_POLICY_SERVICE);
         mConnectivityManager = (ConnectivityManager)
