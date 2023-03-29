@@ -24,7 +24,6 @@
         <item name="android:windowIsFloating">true</item>
     </style>
 
-<<<<<<< HEAD
     <style name="Theme.SystemUI.QuickSettings" parent="@*android:style/Theme.DeviceDefault.SystemUI">
         <item name="lightIconTheme">@style/QSIconTheme</item>
         <item name="darkIconTheme">@style/QSIconTheme</item>
@@ -37,13 +36,6 @@
         <item name="android:itemTextAppearance">@style/Control.MenuItem</item>
     </style>
 
-    <style name="TextAppearance.QS.Status" parent="TextAppearance.QS.TileLabel.Secondary">
-        <item name="android:fontFamily">@*android:string/config_bodyFontFamily</item>
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
-    </style>
-
-=======
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
     <!-- Screenshots -->
     <style name="LongScreenshotActivity" parent="@android:style/Theme.DeviceDefault.DayNight">
         <item name="android:windowNoTitle">true</item>
