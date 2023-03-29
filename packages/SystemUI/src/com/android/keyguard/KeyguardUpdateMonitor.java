@@ -440,6 +440,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
         return mPocketManager.isPocketLockVisible();
     }
 
+    private final IBiometricEnabledOnKeyguardCallback mBiometricEnabledCallback =
             new IBiometricEnabledOnKeyguardCallback.Stub() {
                 @Override
                 public void onChanged(boolean enabled, int userId) {
