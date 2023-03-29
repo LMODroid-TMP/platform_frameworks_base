@@ -227,8 +227,13 @@ interface IStatusBarService
     /** Unregisters a nearby media devices provider. */
     void unregisterNearbyMediaDevicesProvider(in INearbyMediaDevicesProvider provider);
 
+<<<<<<< HEAD
     /**
      * Starts the default assistant app.
      */
     void startAssist(in Bundle args);
+=======
+    /** Shows rear display educational dialog */
+    void showRearDisplayDialog(int currentBaseState);
+>>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 }

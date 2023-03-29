@@ -936,8 +936,12 @@ public class MediaSessionRecord implements IBinder.DeathRecipient, MediaSessionR
         }
 
         @Override
+<<<<<<< HEAD
         public void setMediaButtonReceiver(PendingIntent pi, String sessionPackageName)
                 throws RemoteException {
+=======
+        public void setMediaButtonReceiver(PendingIntent pi) throws RemoteException {
+>>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
             final long token = Binder.clearCallingIdentity();
             try {
                 if ((mPolicies & MediaSessionPolicyProvider.SESSION_POLICY_IGNORE_BUTTON_RECEIVER)
@@ -945,7 +949,7 @@ public class MediaSessionRecord implements IBinder.DeathRecipient, MediaSessionR
                     return;
                 }
                 mMediaButtonReceiverHolder =
-                        MediaButtonReceiverHolder.create(mContext, mUserId, pi, sessionPackageName);
+                        MediaButtonReceiverHolder.create(mUserId, pi, mPackageName);
                 mService.onMediaButtonReceiverChanged(MediaSessionRecord.this);
             } finally {
                 Binder.restoreCallingIdentity(token);
@@ -956,6 +960,17 @@ public class MediaSessionRecord implements IBinder.DeathRecipient, MediaSessionR
         public void setMediaButtonBroadcastReceiver(ComponentName receiver) throws RemoteException {
             final long token = Binder.clearCallingIdentity();
             try {
+<<<<<<< HEAD
+=======
+                //mPackageName has been verified in MediaSessionService.enforcePackageName().
+                if (receiver != null && !TextUtils.equals(
+                        mPackageName, receiver.getPackageName())) {
+                    EventLog.writeEvent(0x534e4554, "238177121", -1, ""); // SafetyNet logging.
+                    throw new IllegalArgumentException("receiver does not belong to "
+                            + "package name provided to MediaSessionRecord. Pkg = " + mPackageName
+                            + ", Receiver Pkg = " + receiver.getPackageName());
+                }
+>>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
                 if ((mPolicies & MediaSessionPolicyProvider.SESSION_POLICY_IGNORE_BUTTON_RECEIVER)
                         != 0) {
                     return;

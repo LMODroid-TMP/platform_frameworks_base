@@ -42,6 +42,7 @@ import com.android.internal.jank.InteractionJankMonitor;
 import com.android.systemui.Prefs;
 import com.android.systemui.R;
 import com.android.systemui.SysuiTestCase;
+import com.android.systemui.dump.DumpManager;
 import com.android.systemui.media.dialog.MediaOutputDialogFactory;
 import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.VolumeDialogController;
@@ -92,6 +93,8 @@ public class VolumeDialogImplTest extends SysuiTestCase {
     @Mock
     TunerService mTunerService;
     InteractionJankMonitor mInteractionJankMonitor;
+    @Mock
+    private DumpManager mDumpManager;
 
     @Before
     public void setup() throws Exception {
@@ -108,8 +111,14 @@ public class VolumeDialogImplTest extends SysuiTestCase {
                 mMediaOutputDialogFactory,
                 mVolumePanelFactory,
                 mActivityStarter,
+<<<<<<< HEAD
                 mTunerService,
                 mInteractionJankMonitor);
+=======
+                mInteractionJankMonitor,
+                mDumpManager
+            );
+>>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         mDialog.init(0, null);
         State state = createShellState();
         mDialog.onStateChangedH(state);

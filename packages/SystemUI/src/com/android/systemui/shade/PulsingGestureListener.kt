@@ -54,7 +54,11 @@ class PulsingGestureListener @Inject constructor(
         private val centralSurfaces: CentralSurfaces,
         private val ambientDisplayConfiguration: AmbientDisplayConfiguration,
         private val statusBarStateController: StatusBarStateController,
+<<<<<<< HEAD
         private val powerManager: PowerManager,
+=======
+        private val shadeLogger: ShadeLogger,
+>>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         tunerService: TunerService,
         dumpManager: DumpManager,
         context: Context
@@ -98,18 +102,24 @@ class PulsingGestureListener @Inject constructor(
     }
 
     override fun onSingleTapUp(e: MotionEvent): Boolean {
-        if (statusBarStateController.isDozing &&
-                singleTapEnabled &&
-                !dockManager.isDocked &&
-                !falsingManager.isProximityNear &&
-                !falsingManager.isFalseTap(LOW_PENALTY)
-        ) {
-            centralSurfaces.wakeUpIfDozing(
+        val isNotDocked = !dockManager.isDocked
+        shadeLogger.logSingleTapUp(statusBarStateController.isDozing, singleTapEnabled, isNotDocked)
+        if (statusBarStateController.isDozing && singleTapEnabled && isNotDocked) {
+            val proximityIsNotNear = !falsingManager.isProximityNear
+            val isNotAFalseTap = !falsingManager.isFalseTap(LOW_PENALTY)
+            shadeLogger.logSingleTapUpFalsingState(proximityIsNotNear, isNotAFalseTap)
+            if (proximityIsNotNear && isNotAFalseTap) {
+                shadeLogger.d("Single tap handled, requesting centralSurfaces.wakeUpIfDozing")
+                centralSurfaces.wakeUpIfDozing(
                     SystemClock.uptimeMillis(),
                     notificationShadeWindowView,
-                    "PULSING_SINGLE_TAP")
+                    "PULSING_SINGLE_TAP",
+                    PowerManager.WAKE_REASON_TAP
+                )
+            }
             return true
         }
+        shadeLogger.d("onSingleTapUp event ignored")
         return false
     }
 
@@ -120,6 +130,7 @@ class PulsingGestureListener @Inject constructor(
     override fun onDoubleTapEvent(e: MotionEvent): Boolean {
         // React to the [MotionEvent.ACTION_UP] event after double tap is detected. Falsing
         // checks MUST be on the ACTION_UP event.
+<<<<<<< HEAD
         if (e.actionMasked == MotionEvent.ACTION_UP && !falsingManager.isFalseDoubleTap) {
             if (statusBarStateController.isDozing &&
                 (doubleTapEnabled || singleTapEnabled || doubleTapEnabledNative) &&
@@ -137,6 +148,21 @@ class PulsingGestureListener @Inject constructor(
                 powerManager.goToSleep(e.getEventTime())
                 return true
             }
+=======
+        if (e.actionMasked == MotionEvent.ACTION_UP &&
+                statusBarStateController.isDozing &&
+                (doubleTapEnabled || singleTapEnabled) &&
+                !falsingManager.isProximityNear &&
+                !falsingManager.isFalseDoubleTap
+        ) {
+            centralSurfaces.wakeUpIfDozing(
+                    SystemClock.uptimeMillis(),
+                    notificationShadeWindowView,
+                    "PULSING_DOUBLE_TAP",
+                    PowerManager.WAKE_REASON_TAP
+            )
+            return true
+>>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         }
         return false
     }
