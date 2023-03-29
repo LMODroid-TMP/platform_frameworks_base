@@ -325,7 +325,6 @@ public class PowerGroup {
         mLastButtonActivityTime = lastButtonActivityTime;
     }
 
-    void setLastUserActivityTimeLocked(long lastUserActivityTime) {
     void setLastUserActivityTimeLocked(long lastUserActivityTime,
             @PowerManager.UserActivityEvent int event) {
         mLastUserActivityTime = lastUserActivityTime;
