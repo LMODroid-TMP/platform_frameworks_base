@@ -147,12 +147,8 @@ class SaveImageInBackgroundTask extends AsyncTask<String, Void, Void> {
 
             // Call synchronously here since already on a background thread.
             ListenableFuture<ImageExporter.Result> future =
-<<<<<<< HEAD
-                    mImageExporter.export(Runnable::run, requestId, image,
+                    mImageExporter.export(Runnable::run, requestId, image, mParams.owner,
                             params != null ? params[0] : null);
-=======
-                    mImageExporter.export(Runnable::run, requestId, image, mParams.owner);
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
             ImageExporter.Result result = future.get();
             Log.d(TAG, "Saved screenshot: " + result);
             final Uri uri = result.uri;
@@ -178,19 +174,14 @@ class SaveImageInBackgroundTask extends AsyncTask<String, Void, Void> {
             mImageData.uri = uri;
             mImageData.owner = user;
             mImageData.smartActions = smartActions;
-<<<<<<< HEAD
-            mImageData.viewTransition = createViewAction(mContext, mContext.getResources(), uri);
-            mImageData.shareTransition = createShareAction(mContext, mContext.getResources(), uri);
-            mImageData.editTransition = createEditAction(mContext, mContext.getResources(), uri);
-            mImageData.deleteAction = createDeleteAction(mContext, mContext.getResources(), uri);
-=======
+            mImageData.viewTransition = createViewAction(mContext, mContext.getResources(), uri,
+                    smartActionsEnabled);
             mImageData.shareTransition = createShareAction(mContext, mContext.getResources(), uri,
                     smartActionsEnabled);
             mImageData.editTransition = createEditAction(mContext, mContext.getResources(), uri,
                     smartActionsEnabled);
             mImageData.deleteAction = createDeleteAction(mContext, mContext.getResources(), uri,
                     smartActionsEnabled);
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
             mImageData.quickShareAction = createQuickShareAction(mContext,
                     mQuickShareData.quickShareAction, uri);
             mImageData.subject = getSubjectString();

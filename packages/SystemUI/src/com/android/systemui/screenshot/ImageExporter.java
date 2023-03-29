@@ -153,13 +153,8 @@ class ImageExporter {
      * @return a listenable future result
      */
     ListenableFuture<Result> export(Executor executor, UUID requestId, Bitmap bitmap,
-<<<<<<< HEAD
-            String foregroundAppName) {
-        return export(executor, requestId, bitmap, ZonedDateTime.now(), foregroundAppName);
-=======
-            UserHandle owner) {
-        return export(executor, requestId, bitmap, ZonedDateTime.now(), owner);
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+            UserHandle owner, String foregroundAppName) {
+        return export(executor, requestId, bitmap, ZonedDateTime.now(), owner, foregroundAppName);
     }
 
     /**
@@ -172,17 +167,10 @@ class ImageExporter {
      * @return a listenable future result
      */
     ListenableFuture<Result> export(Executor executor, UUID requestId, Bitmap bitmap,
-<<<<<<< HEAD
-            ZonedDateTime captureTime, String foregroundAppName) {
+            ZonedDateTime captureTime, UserHandle owner, String foregroundAppName) {
 
         final Task task = new Task(mResolver, requestId, bitmap, captureTime, foregroundAppName,
-                mCompressFormat, mQuality, /* publish */ true);
-=======
-            ZonedDateTime captureTime, UserHandle owner) {
-
-        final Task task = new Task(mResolver, requestId, bitmap, captureTime, mCompressFormat,
-                mQuality, /* publish */ true, owner, mFlags);
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+                mCompressFormat, mQuality, /* publish */ true, owner, mFlags);
 
         return CallbackToFutureAdapter.getFuture(
                 (completer) -> {
@@ -233,24 +221,16 @@ class ImageExporter {
         private final FeatureFlags mFlags;
 
         Task(ContentResolver resolver, UUID requestId, Bitmap bitmap, ZonedDateTime captureTime,
-<<<<<<< HEAD
-                String foregroundAppName, CompressFormat format, int quality, boolean publish) {
-=======
-                CompressFormat format, int quality, boolean publish, UserHandle owner,
-                FeatureFlags flags) {
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+                String foregroundAppName, CompressFormat format, int quality, boolean publish,
+                UserHandle owner, FeatureFlags flags) {
             mResolver = resolver;
             mRequestId = requestId;
             mBitmap = bitmap;
             mCaptureTime = captureTime;
             mFormat = format;
             mQuality = quality;
-<<<<<<< HEAD
-            mFileName = createFilename(mCaptureTime, mFormat, foregroundAppName);
-=======
             mOwner = owner;
-            mFileName = createFilename(mCaptureTime, mFormat);
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+            mFileName = createFilename(mCaptureTime, mFormat, foregroundAppName);
             mPublish = publish;
             mFlags = flags;
         }
