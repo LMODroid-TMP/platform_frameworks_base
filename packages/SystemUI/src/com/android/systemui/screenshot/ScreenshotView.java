@@ -819,21 +819,16 @@ public class ScreenshotView extends FrameLayout implements
         });
         mScreenshotPreview.setOnClickListener(v -> {
             mUiEventLogger.log(ScreenshotEvent.SCREENSHOT_PREVIEW_TAPPED, 0, mPackageName);
-<<<<<<< HEAD
-            startSharedTransition(
-                    imageData.viewTransition.get());
-=======
             if (mFlags.isEnabled(Flags.SCREENSHOT_WORK_PROFILE_POLICY)) {
                 prepareSharedTransition();
                 mActionExecutor.launchIntentAsync(
                         ActionIntentCreator.INSTANCE.createEditIntent(imageData.uri, mContext),
-                        imageData.editTransition.get().bundle,
+                        imageData.viewTransition.get().bundle,
                         imageData.owner.getIdentifier(), true);
             } else {
                 startSharedTransition(
-                        imageData.editTransition.get());
+                        imageData.viewTransition.get());
             }
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         });
         if (mQuickShareChip != null) {
             if (imageData.quickShareAction != null) {
