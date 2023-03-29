@@ -589,12 +589,6 @@ public class StatusBarKeyguardViewManagerTest extends SysuiTestCase {
     }
 
     @Test
-<<<<<<< HEAD
-    public void flag_off_DoesNotCallBouncerInteractor() {
-        when(mFeatureFlags.isEnabled(MODERN_BOUNCER)).thenReturn(false);
-        mStatusBarKeyguardViewManager.hideBouncer(false);
-        verify(mBouncerInteractor, never()).hide();
-=======
     public void hideAlternateBouncer_beforeCentralSurfacesRegistered() {
         mStatusBarKeyguardViewManager =
                 new StatusBarKeyguardViewManager(
@@ -628,6 +622,5 @@ public class StatusBarKeyguardViewManagerTest extends SysuiTestCase {
 
         // the following call before registering centralSurfaces should NOT throw a NPE:
         mStatusBarKeyguardViewManager.hideAlternateBouncer(true);
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
     }
 }
