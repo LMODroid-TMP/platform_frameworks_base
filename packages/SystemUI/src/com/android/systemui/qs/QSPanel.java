@@ -117,10 +117,7 @@ public class QSPanel extends LinearLayout implements Tunable {
     private ViewGroup mMediaHostView;
     private boolean mShouldMoveMediaOnExpansion = true;
     private boolean mUsingCombinedHeaders = false;
-<<<<<<< HEAD
-=======
     private QSLogger mQsLogger;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 
     public QSPanel(Context context, AttributeSet attrs) {
         super(context, attrs);

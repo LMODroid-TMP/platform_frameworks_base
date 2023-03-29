@@ -21,12 +21,8 @@ import static android.provider.Settings.Secure.ACCESSIBILITY_BUTTON_MODE_GESTURE
 import static android.provider.Settings.Secure.ACCESSIBILITY_BUTTON_MODE_NAVIGATION_BAR;
 import static android.view.Display.DEFAULT_DISPLAY;
 
-<<<<<<< HEAD
-=======
 import static com.android.systemui.navigationbar.gestural.EdgeBackGestureHandler.DEBUG_MISSING_GESTURE_TAG;
-import static com.android.systemui.shared.recents.utilities.Utilities.isTablet;
 
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
@@ -144,14 +140,9 @@ public class NavigationBarController implements
 
     @Override
     public void onConfigChanged(Configuration newConfig) {
-<<<<<<< HEAD
         boolean oldShouldShowTaskbar = shouldShowTaskbar();
-        boolean largeScreenChanged = shouldShowTaskbar() != oldShouldShowTaskbar;
-=======
-        boolean isOldConfigTablet = mIsTablet;
-        mIsTablet = isTablet(mContext);
         boolean willApplyConfig = mConfigChanges.applyNewConfig(mContext.getResources());
-        boolean largeScreenChanged = mIsTablet != isOldConfigTablet;
+        boolean largeScreenChanged = shouldShowTaskbar() != oldShouldShowTaskbar;
         // TODO(b/243765256): Disable this logging once b/243765256 is fixed.
         Log.i(DEBUG_MISSING_GESTURE_TAG, "NavbarController: newConfig=" + newConfig
                 + " mTaskbarDelegate initialized=" + mTaskbarDelegate.isInitialized()
@@ -160,7 +151,6 @@ public class NavigationBarController implements
         if (mTaskbarDelegate.isInitialized()) {
             mTaskbarDelegate.onConfigurationChanged(newConfig);
         }
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         // If we folded/unfolded while in 3 button, show navbar in folded state, hide in unfolded
         if (largeScreenChanged && updateNavbarForTaskbar()) {
             return;

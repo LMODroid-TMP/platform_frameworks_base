@@ -31,15 +31,9 @@ import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.UiEventLogger;
 import com.android.systemui.dump.DumpManager;
 import com.android.systemui.flags.FeatureFlags;
-<<<<<<< HEAD
-import com.android.systemui.media.MediaHierarchyManager;
-import com.android.systemui.media.MediaHost;
-import com.android.systemui.media.MediaHostState;
-=======
 import com.android.systemui.media.controls.ui.MediaHierarchyManager;
 import com.android.systemui.media.controls.ui.MediaHost;
 import com.android.systemui.media.controls.ui.MediaHostState;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import com.android.systemui.plugins.FalsingManager;
 import com.android.systemui.qs.customize.QSCustomizerController;
 import com.android.systemui.qs.dagger.QSScope;

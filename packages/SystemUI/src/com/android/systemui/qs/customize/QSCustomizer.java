@@ -78,16 +78,12 @@ public class QSCustomizer extends LinearLayout {
         toolbar.setNavigationIcon(
                 getResources().getDrawable(value.resourceId, mContext.getTheme()));
 
-<<<<<<< HEAD
         SpannableString resetText = new SpannableString(
                 mContext.getString(com.android.internal.R.string.reset));
         resetText.setSpan(new ForegroundColorSpan(isNightMode() ?
                 Color.WHITE : Color.BLACK), 0, resetText.length(), 0);
-        toolbar.getMenu().add(Menu.NONE, MENU_RESET, 0, resetText);
-=======
-        toolbar.getMenu().add(Menu.NONE, MENU_RESET, 0, com.android.internal.R.string.reset)
+        toolbar.getMenu().add(Menu.NONE, MENU_RESET, 0, resetText)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         toolbar.setTitle(R.string.qs_edit);
         mRecyclerView = findViewById(android.R.id.list);
         mTransparentView = findViewById(R.id.customizer_transparent_view);
