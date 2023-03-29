@@ -39,10 +39,6 @@ public class StatusBarIconHolder {
     public static final int TYPE_ICON = 0;
     public static final int TYPE_WIFI = 1;
     public static final int TYPE_MOBILE = 2;
-<<<<<<< HEAD
-    public static final int TYPE_NETWORK_TRAFFIC = 42;
-    public static final int TYPE_IMS = 4;
-=======
     /**
      * TODO (b/249790733): address this once the new pipeline is in place
      * This type exists so that the new pipeline (see {@link MobileIconViewModel}) can be used
@@ -68,27 +64,28 @@ public class StatusBarIconHolder {
     @Deprecated
     public static final int TYPE_WIFI_NEW = 4;
 
+    public static final int TYPE_IMS = 5;
+
+    public static final int TYPE_NETWORK_TRAFFIC = 6;
+
     @IntDef({
             TYPE_ICON,
             TYPE_WIFI,
             TYPE_MOBILE,
             TYPE_MOBILE_NEW,
-            TYPE_WIFI_NEW
+            TYPE_WIFI_NEW,
+            TYPE_IMS,
+            TYPE_NETWORK_TRAFFIC
     })
     @Retention(RetentionPolicy.SOURCE)
     @interface IconType {}
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 
     private StatusBarIcon mIcon;
     private WifiIconState mWifiState;
     private MobileIconState mMobileState;
-<<<<<<< HEAD
     private ImsIconState mImsState;
-
-    private int mType = TYPE_ICON;
-=======
+    private NetworkTrafficState mNetworkTrafficState;
     private @IconType int mType = TYPE_ICON;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
     private int mTag = 0;
 
     private StatusBarIconHolder() {
@@ -143,6 +140,22 @@ public class StatusBarIconHolder {
         return holder;
     }
 
+    /** */
+    public static StatusBarIconHolder fromImsIconState(ImsIconState state) {
+        StatusBarIconHolder holder = new StatusBarIconHolder();
+        holder.mImsState = state;
+        holder.mType = TYPE_IMS;
+        return holder;
+    }
+
+    /** */
+    public static StatusBarIconHolder fromNetworkTrafficState(NetworkTrafficState state) {
+        StatusBarIconHolder holder = new StatusBarIconHolder();
+        holder.mNetworkTrafficState = state;
+        holder.mType = TYPE_NETWORK_TRAFFIC;
+        return holder;
+    }
+
     /**
      * ONLY for use with the new connectivity pipeline, where we only need a subscriptionID to
      * determine icon ordering and building the correct view model
@@ -171,17 +184,7 @@ public class StatusBarIconHolder {
         return holder;
     }
 
-<<<<<<< HEAD
-    public static StatusBarIconHolder fromNetworkTraffic() {
-        StatusBarIconHolder holder = new StatusBarIconHolder();
-        holder.mType = TYPE_NETWORK_TRAFFIC;
-        return holder;
-    }
-
-    public int getType() {
-=======
     public @IconType int getType() {
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         return mType;
     }
 
@@ -228,20 +231,17 @@ public class StatusBarIconHolder {
                 return mWifiState.visible;
             case TYPE_MOBILE:
                 return mMobileState.visible;
-<<<<<<< HEAD
-            case TYPE_IMS:
-                return mImsState.visible;
-
-            default: return true;
-=======
             case TYPE_MOBILE_NEW:
             case TYPE_WIFI_NEW:
                 // The new pipeline controls visibilities via the view model and view binder, so
                 // this is effectively an unused return value.
                 return true;
+            case TYPE_IMS:
+                return mImsState.visible;
+            case TYPE_NETWORK_TRAFFIC:
+                return mNetworkTrafficState.visible;
             default:
                 return true;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         }
     }
 
@@ -263,15 +263,18 @@ public class StatusBarIconHolder {
                 mMobileState.visible = visible;
                 break;
 
-<<<<<<< HEAD
-            case TYPE_IMS:
-                mImsState.visible = visible;
-=======
             case TYPE_MOBILE_NEW:
             case TYPE_WIFI_NEW:
                 // The new pipeline controls visibilities via the view model and view binder, so
                 // ignore setVisible.
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+                break;
+
+            case TYPE_IMS:
+                mImsState.visible = visible;
+                break;
+
+            case TYPE_NETWORK_TRAFFIC:
+                mNetworkTrafficState.visible = visible;
                 break;
         }
     }

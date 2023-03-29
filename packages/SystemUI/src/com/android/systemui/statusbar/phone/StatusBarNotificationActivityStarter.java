@@ -548,45 +548,12 @@ class StatusBarNotificationActivityStarter implements NotificationActivityStarte
     }
 
     @VisibleForTesting
-<<<<<<< HEAD
-    void handleFullScreenIntent(NotificationEntry entry) {
+    void launchFullScreenIntent(NotificationEntry entry) {
         GameSpaceManager gameSpace = mCentralSurfaces.getGameSpaceManager();
         if (gameSpace != null && gameSpace.shouldSuppressFullScreenIntent()) {
             return;
         }
 
-        if (mNotificationInterruptStateProvider.shouldLaunchFullScreenIntentWhenAdded(entry)) {
-            if (shouldSuppressFullScreenIntent(entry)) {
-                mLogger.logFullScreenIntentSuppressedByDnD(entry);
-            } else if (entry.getImportance() < NotificationManager.IMPORTANCE_HIGH) {
-                mLogger.logFullScreenIntentNotImportantEnough(entry);
-            } else {
-                // Stop screensaver if the notification has a fullscreen intent.
-                // (like an incoming phone call)
-                mUiBgExecutor.execute(() -> {
-                    try {
-                        mDreamManager.awaken();
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                    }
-                });
-
-                // not immersive & a fullscreen alert should be shown
-                final PendingIntent fullscreenIntent =
-                        entry.getSbn().getNotification().fullScreenIntent;
-                mLogger.logSendingFullScreenIntent(entry, fullscreenIntent);
-                try {
-                    EventLog.writeEvent(EventLogTags.SYSUI_FULLSCREEN_NOTIFICATION,
-                            entry.getKey());
-                    mCentralSurfaces.wakeUpForFullScreenIntent();
-                    fullscreenIntent.send();
-                    entry.notifyFullScreenIntentLaunched();
-                    mMetricsLogger.count("note_fullscreen", 1);
-                } catch (PendingIntent.CanceledException e) {
-                    // ignore
-                }
-=======
-    void launchFullScreenIntent(NotificationEntry entry) {
         // Skip if device is in VR mode.
         if (mPresenter.isDeviceInVrMode()) {
             mLogger.logFullScreenIntentSuppressedByVR(entry);
@@ -603,7 +570,6 @@ class StatusBarNotificationActivityStarter implements NotificationActivityStarte
                 mDreamManager.awaken();
             } catch (RemoteException e) {
                 e.printStackTrace();
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
             }
         });
 

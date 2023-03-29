@@ -360,7 +360,6 @@ public class StatusBarIconControllerImpl implements Tunable,
         mIconGroups.forEach(l -> l.onIconExternal(viewIndex, height));
     }
 
-<<<<<<< HEAD
     @Override
     public void setImsIcon(String slot, ImsIconState state) {
         if (state == null) {
@@ -378,13 +377,27 @@ public class StatusBarIconControllerImpl implements Tunable,
         }
     }
 
-    //TODO: remove this (used in command queue and for 3rd party tiles?)
-=======
+    @Override
+    public void setNetworkTraffic(String slot, NetworkTrafficState state) {
+        if (state == null) {
+            removeIcon(slot, 0);
+            return;
+        }
+
+        StatusBarIconHolder holder = mStatusBarIconList.getIconHolder(slot, 0);
+        if (holder == null) {
+            holder = StatusBarIconHolder.fromNetworkTrafficState(state);
+            setIcon(slot, holder);
+        } else {
+            holder.setNetworkTrafficState(state);
+            handleSet(slot, holder);
+        }
+    }
+
     // Override for *both* CommandQueue.Callbacks AND StatusBarIconController.
     // TODO(b/265307726): Pull out the CommandQueue callbacks into a member variable to
     //  differentiate between those callback methods and StatusBarIconController methods.
     @Override
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
     public void setIcon(String slot, StatusBarIcon icon) {
         String slotName = createExternalSlotName(slot);
         if (icon == null) {

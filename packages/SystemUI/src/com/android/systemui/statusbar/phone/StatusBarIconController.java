@@ -17,11 +17,8 @@ package com.android.systemui.statusbar.phone;
 import static com.android.systemui.statusbar.phone.StatusBarIconHolder.TYPE_ICON;
 import static com.android.systemui.statusbar.phone.StatusBarIconHolder.TYPE_IMS;
 import static com.android.systemui.statusbar.phone.StatusBarIconHolder.TYPE_MOBILE;
-<<<<<<< HEAD
-import static com.android.systemui.statusbar.phone.StatusBarIconHolder.TYPE_NETWORK_TRAFFIC;
-=======
 import static com.android.systemui.statusbar.phone.StatusBarIconHolder.TYPE_MOBILE_NEW;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+import static com.android.systemui.statusbar.phone.StatusBarIconHolder.TYPE_NETWORK_TRAFFIC;
 import static com.android.systemui.statusbar.phone.StatusBarIconHolder.TYPE_WIFI;
 import static com.android.systemui.statusbar.phone.StatusBarIconHolder.TYPE_WIFI_NEW;
 
@@ -499,16 +496,14 @@ public interface StatusBarIconController {
                 case TYPE_MOBILE:
                     return addMobileIcon(index, slot, holder.getMobileState());
 
-<<<<<<< HEAD
+                case TYPE_MOBILE_NEW:
+                    return addNewMobileIcon(index, slot, holder.getTag());
+
                 case TYPE_NETWORK_TRAFFIC:
                     return addNetworkTraffic(index, slot);
 
                 case TYPE_IMS:
                     return addImsIcon(index, slot, holder.getImsState());
-=======
-                case TYPE_MOBILE_NEW:
-                    return addNewMobileIcon(index, slot, holder.getTag());
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
             }
 
             return null;
@@ -541,19 +536,6 @@ public interface StatusBarIconController {
             return view;
         }
 
-<<<<<<< HEAD
-        protected StatusBarNetworkTraffic addNetworkTraffic(int index, String slot) {
-            StatusBarNetworkTraffic view = onCreateNetworkTraffic(slot);
-            mGroup.addView(view, index, onCreateLayoutParams());
-            return view;
-        }
-
-        @VisibleForTesting
-        protected StatusBarMobileView addMobileIcon(int index, String slot, MobileIconState state) {
-            // Use the `subId` field as a key to query for the correct context
-            StatusBarMobileView view = onCreateStatusBarMobileView(state.subId, slot);
-            view.applyMobileState(state);
-=======
         protected StatusIconDisplayable addNewWifiIcon(int index, String slot) {
             if (!mStatusBarPipelineFlags.useNewWifiIcon()) {
                 throw new IllegalStateException("Attempting to add a wifi icon using the new"
@@ -561,7 +543,6 @@ public interface StatusBarIconController {
             }
 
             ModernStatusBarWifiView view = onCreateModernStatusBarWifiView(slot);
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
             mGroup.addView(view, index, onCreateLayoutParams());
 
             if (mIsInDemoMode) {
@@ -622,6 +603,13 @@ public interface StatusBarIconController {
             return view;
         }
 
+        protected StatusBarNetworkTraffic addNetworkTraffic(int index, String slot, NetworkTrafficState state) {
+            StatusBarNetworkTraffic view = onCreateStatusBarNetworkTraffic(slot);
+            view.applyNetworkTrafficState(state);
+            mGroup.addView(view, index, onCreateLayoutParams());
+            return view;
+        }
+
         private StatusBarIconView onCreateStatusBarIconView(String slot, boolean blocked) {
             return new StatusBarIconView(mContext, slot, null, blocked);
         }
@@ -642,16 +630,6 @@ public interface StatusBarIconController {
             return view;
         }
 
-<<<<<<< HEAD
-        private StatusBarNetworkTraffic onCreateNetworkTraffic(String slot) {
-            StatusBarNetworkTraffic view = new StatusBarNetworkTraffic(mContext);
-            return view;
-        }
-
-        private StatusBarImsView onCreateStatusBarImsView(String slot) {
-            StatusBarImsView view = StatusBarImsView.fromContext(mContext, slot);
-            return view;
-=======
         private ModernStatusBarMobileView onCreateModernStatusBarMobileView(
                 String slot, int subId) {
             Context mobileContext = mMobileContextProvider.getMobileContextForSub(subId, mContext);
@@ -661,7 +639,16 @@ public interface StatusBarIconController {
                             slot,
                             mMobileIconsViewModel.viewModelForSub(subId, mLocation)
                         );
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+        }
+
+        private StatusBarNetworkTraffic onCreateStatusBarNetworkTraffic(String slot) {
+            StatusBarNetworkTraffic view = StatusBarNetworkTraffic.fromContext(mContext, slot);
+            return view;
+        }
+
+        private StatusBarImsView onCreateStatusBarImsView(String slot) {
+            StatusBarImsView view = StatusBarImsView.fromContext(mContext, slot);
+            return view;
         }
 
         protected LinearLayout.LayoutParams onCreateLayoutParams() {
@@ -724,14 +711,15 @@ public interface StatusBarIconController {
                 case TYPE_MOBILE:
                     onSetMobileIcon(viewIndex, holder.getMobileState());
                     return;
-<<<<<<< HEAD
-                case TYPE_IMS:
-                    onSetImsIcon(viewIndex, holder.getImsState());
-=======
                 case TYPE_MOBILE_NEW:
                 case TYPE_WIFI_NEW:
                     // Nothing, the new icons update themselves
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+                    return;
+                case TYPE_NETWORK_TRAFFIC:
+                    onSetNetworkTraffic(viewIndex, holder.getNetworkTrafficState());
+                    return;
+                case TYPE_IMS:
+                    onSetImsIcon(viewIndex, holder.getImsState());
                     return;
                 default:
                     break;
