@@ -25,6 +25,7 @@ import android.content.ComponentName;
 import android.content.res.Configuration;
 import android.content.res.Configuration.Orientation;
 import android.metrics.LogMaker;
+import android.util.Log;
 import android.view.View;
 
 import com.android.internal.annotations.VisibleForTesting;
@@ -95,10 +96,7 @@ public abstract class QSPanelControllerBase<T extends QSPanel> extends ViewContr
                         /* newOrientation= */ newConfig.orientation,
                         /* containerName= */ mView.getDumpableTag());
 
-<<<<<<< HEAD
-=======
                     boolean previousSplitShadeState = mShouldUseSplitNotificationShade;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
                     mShouldUseSplitNotificationShade =
                         LargeScreenUtils.shouldUseSplitNotificationShade(getResources());
                     mLastOrientation = newConfig.orientation;

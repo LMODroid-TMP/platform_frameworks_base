@@ -19,12 +19,9 @@ import static android.view.WindowManager.LayoutParams.PRIVATE_FLAG_EXCLUDE_FROM_
 
 import static com.android.systemui.classifier.Classifier.BACK_GESTURE;
 
-<<<<<<< HEAD
 import static com.android.internal.util.libremobileos.DeviceKeysConstants.Action;
 
-=======
 import android.annotation.NonNull;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -63,11 +60,7 @@ import android.window.BackEvent;
 
 import com.android.internal.config.sysui.SystemUiDeviceConfigFlags;
 import com.android.internal.policy.GestureNavigationSettingsObserver;
-<<<<<<< HEAD
-import com.android.internal.util.LatencyTracker;
 import com.android.systemui.Dependency;
-=======
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import com.android.systemui.R;
 import com.android.systemui.dagger.qualifiers.Background;
 import com.android.systemui.dagger.qualifiers.Main;
@@ -114,14 +107,8 @@ import javax.inject.Provider;
 /**
  * Utility class to handle edge swipes for back gesture
  */
-<<<<<<< HEAD
-public class EdgeBackGestureHandler extends CurrentUserTracker
-        implements PluginListener<NavigationEdgeBackPlugin>, ProtoTraceable<SystemUiTraceProto>,
-        TunerService.Tunable {
-=======
 public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBackPlugin>,
-        ProtoTraceable<SystemUiTraceProto> {
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+        ProtoTraceable<SystemUiTraceProto>, TunerService.Tunable {
 
     private static final String TAG = "EdgeBackGestureHandler";
     private static final int MAX_LONG_PRESS_TIMEOUT = SystemProperties.getInt(
