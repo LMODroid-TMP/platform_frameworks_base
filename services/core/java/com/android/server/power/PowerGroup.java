@@ -313,7 +313,6 @@ public class PowerGroup {
         return mLastUserActivityTime;
     }
 
-<<<<<<< HEAD
     void setButtonOnLocked(boolean on) {
         mButtonOn = on;
     }
@@ -327,10 +326,8 @@ public class PowerGroup {
     }
 
     void setLastUserActivityTimeLocked(long lastUserActivityTime) {
-=======
     void setLastUserActivityTimeLocked(long lastUserActivityTime,
             @PowerManager.UserActivityEvent int event) {
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         mLastUserActivityTime = lastUserActivityTime;
         mLastUserActivityEvent = event;
     }

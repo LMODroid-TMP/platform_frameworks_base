@@ -393,11 +393,8 @@ class AutomaticBrightnessController {
     public void configure(int state, @Nullable BrightnessConfiguration configuration,
             float brightness, boolean userChangedBrightness, float adjustment,
             boolean userChangedAutoBrightnessAdjustment, int displayPolicy,
-<<<<<<< HEAD
-            boolean autoBrightnessOneShot) {
-=======
+            boolean autoBrightnessOneShot,
             boolean shouldResetShortTermModel) {
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         mState = state;
         mHbmController.setAutoBrightnessEnabled(mState);
         // While dozing, the application processor may be suspended which will prevent us from
