@@ -53,11 +53,7 @@ import com.android.systemui.shade.NotificationShadeWindowView;
 import com.android.systemui.shade.NotificationShadeWindowViewController;
 import com.android.systemui.statusbar.LightRevealScrim;
 import com.android.systemui.statusbar.NotificationPresenter;
-<<<<<<< HEAD
-import com.android.systemui.statusbar.notification.row.NotificationGutsManager;
 import com.android.systemui.statusbar.policy.GameSpaceManager;
-=======
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 
 import java.io.PrintWriter;
 

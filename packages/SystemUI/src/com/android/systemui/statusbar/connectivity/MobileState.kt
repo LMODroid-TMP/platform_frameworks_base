@@ -46,12 +46,9 @@ internal class MobileState(
     @JvmField var dataState: Int = TelephonyManager.DATA_DISCONNECTED,
     // Tracks the on/off state of the defaultDataSubscription
     @JvmField var defaultDataOff: Boolean = false,
-<<<<<<< HEAD
     @JvmField var imsRegistered: Boolean = false,
     @JvmField var voiceCapable: Boolean = false,
-    @JvmField var videoCapable: Boolean = false
-=======
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+    @JvmField var videoCapable: Boolean = false,
 ) : ConnectivityState() {
 
     @JvmField var telephonyDisplayInfo = TelephonyDisplayInfo(TelephonyManager.NETWORK_TYPE_UNKNOWN,
@@ -143,10 +140,10 @@ internal class MobileState(
         return serviceState != null && serviceState!!.roaming
     }
 
-<<<<<<< HEAD
     fun getDataNetworkType(): Int {
         return serviceState?.getDataNetworkType() ?: 0
-=======
+    }
+
     /**
      *
      * Load the (potentially customized) icon resource id for the current network type. Note that
@@ -160,7 +157,6 @@ internal class MobileState(
     fun getNetworkTypeIcon(context: Context): Int {
         val icon = (iconGroup as MobileIconGroup)
         return networkTypeResIdCache.get(icon, carrierId, context)
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
     }
 
     fun setFromMobileStatus(mobileStatus: MobileStatus) {

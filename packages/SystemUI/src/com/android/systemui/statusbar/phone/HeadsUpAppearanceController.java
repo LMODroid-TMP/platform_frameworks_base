@@ -27,12 +27,9 @@ import androidx.annotation.NonNull;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.widget.ViewClippingUtil;
 import com.android.systemui.R;
-<<<<<<< HEAD
 import com.android.systemui.dagger.qualifiers.RootView;
-=======
 import com.android.systemui.flags.FeatureFlags;
 import com.android.systemui.flags.Flags;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import com.android.systemui.plugins.DarkIconDispatcher;
 import com.android.systemui.plugins.statusbar.StatusBarStateController;
 import com.android.systemui.shade.NotificationPanelViewController;
