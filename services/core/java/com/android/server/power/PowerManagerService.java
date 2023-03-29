@@ -613,6 +613,11 @@ public final class PowerManagerService extends SystemService
     private boolean mIsFaceDown = false;
     private long mLastFlipTime = 0L;
 
+    // The button brightness setting override from the window manager
+    // to allow the current foreground activity to override the button brightness.
+    private float mButtonBrightnessOverrideFromWindowManager =
+            PowerManager.BRIGHTNESS_INVALID_FLOAT;
+
     // The screen brightness setting override from the window manager
     // to allow the current foreground activity to override the brightness.
     private float mScreenBrightnessOverrideFromWindowManager =
