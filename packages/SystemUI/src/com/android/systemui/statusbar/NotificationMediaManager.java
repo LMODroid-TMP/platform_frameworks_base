@@ -91,20 +91,12 @@ public class NotificationMediaManager implements Dumpable, TunerService.Tunable 
     private static final String TAG = "NotificationMediaManager";
     public static final boolean DEBUG_MEDIA = false;
 
-<<<<<<< HEAD
     private static final String LOCKSCREEN_MEDIA_METADATA =
             "customsecure:" + Settings.Secure.LOCKSCREEN_MEDIA_METADATA;
 
-    private final StatusBarStateController mStatusBarStateController
-            = Dependency.get(StatusBarStateController.class);
-    private final SysuiColorExtractor mColorExtractor = Dependency.get(SysuiColorExtractor.class);
-    private final KeyguardStateController mKeyguardStateController = Dependency.get(
-            KeyguardStateController.class);
-=======
     private final StatusBarStateController mStatusBarStateController;
     private final SysuiColorExtractor mColorExtractor;
     private final KeyguardStateController mKeyguardStateController;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
     private final KeyguardBypassController mKeyguardBypassController;
     private static final HashSet<Integer> PAUSED_MEDIA_STATES = new HashSet<>();
     private static final HashSet<Integer> CONNECTING_MEDIA_STATES = new HashSet<>();

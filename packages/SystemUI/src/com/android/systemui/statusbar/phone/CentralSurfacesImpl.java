@@ -73,11 +73,8 @@ import android.hardware.devicestate.DeviceStateManager;
 import android.hardware.display.DisplayManager;
 import android.metrics.LogMaker;
 import android.net.Uri;
-<<<<<<< HEAD
 import android.os.AsyncTask;
-=======
 import android.os.Binder;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -244,11 +241,8 @@ import com.android.systemui.statusbar.policy.UserInfoControllerImpl;
 import com.android.systemui.statusbar.policy.UserSwitcherController;
 import com.android.systemui.statusbar.window.StatusBarWindowController;
 import com.android.systemui.statusbar.window.StatusBarWindowStateController;
-<<<<<<< HEAD
-import com.android.systemui.tuner.TunerService;
-=======
 import com.android.systemui.surfaceeffects.ripple.RippleShader.RippleShape;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+import com.android.systemui.tuner.TunerService;
 import com.android.systemui.util.DumpUtilsKt;
 import com.android.systemui.util.WallpaperController;
 import com.android.systemui.util.concurrency.DelayableExecutor;
@@ -286,9 +280,7 @@ import dagger.Lazy;
  * </b>
  */
 @SysUISingleton
-<<<<<<< HEAD
-public class CentralSurfacesImpl extends CoreStartable implements
-        CentralSurfaces, TunerService.Tunable {
+public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces, TunerService.Tunable {
 
     private static final String FORCE_SHOW_NAVBAR =
             "customsystem:" + Settings.System.FORCE_SHOW_NAVBAR;
@@ -296,9 +288,6 @@ public class CentralSurfacesImpl extends CoreStartable implements
             "system:" + Settings.System.SCREEN_BRIGHTNESS_MODE;
     private static final String STATUS_BAR_BRIGHTNESS_CONTROL =
             "customsystem:" + Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL;
-=======
-public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces {
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 
     private static final String BANNER_ACTION_CANCEL =
             "com.android.systemui.statusbar.banner_action_cancel";
@@ -526,13 +515,11 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces {
     private final OngoingCallController mOngoingCallController;
     private final StatusBarSignalPolicy mStatusBarSignalPolicy;
     private final StatusBarHideIconsForBouncerManager mStatusBarHideIconsForBouncerManager;
-<<<<<<< HEAD
+    private final Lazy<LightRevealScrimViewModel> mLightRevealScrimViewModelLazy;
+
     private final TunerService mTunerService;
 
     protected GameSpaceManager mGameSpaceManager;
-=======
-    private final Lazy<LightRevealScrimViewModel> mLightRevealScrimViewModelLazy;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 
     /** Controller for the Shade. */
     @VisibleForTesting
@@ -811,14 +798,10 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces {
             DeviceStateManager deviceStateManager,
             WiredChargingRippleController wiredChargingRippleController,
             IDreamManager dreamManager,
-<<<<<<< HEAD
-            TunerService tunerService) {
-        super(context);
-=======
             Lazy<CameraLauncher> cameraLauncherLazy,
-            Lazy<LightRevealScrimViewModel> lightRevealScrimViewModelLazy) {
+            Lazy<LightRevealScrimViewModel> lightRevealScrimViewModelLazy,
+            TunerService tunerService) {
         mContext = context;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         mNotificationsController = notificationsController;
         mFragmentService = fragmentService;
         mLightBarController = lightBarController;
@@ -2122,16 +2105,6 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces {
         } else if (DEBUG) {
             Log.d(TAG, "Not showing bouncer due to activity showing over lockscreen");
         }
-<<<<<<< HEAD
-        mCommandQueue.recomputeDisableFlags(
-                mDisplayId,
-                mNotificationPanelViewController.hideStatusBarIconsWhenExpanded() /* animate */);
-
-        // Trimming will happen later if Keyguard is showing - doing it here might cause a jank in
-        // the bouncer appear animation.
-        if (!mStatusBarKeyguardViewManager.isShowing()) {
-            WindowManagerGlobal.getInstance().trimMemory(ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN);
-        }
     }
 
     private void adjustBrightness(int x) {
@@ -2216,60 +2189,6 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces {
         mStatusBarView.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
         adjustBrightness(mInitialTouchX);
         mLinger = BRIGHTNESS_CONTROL_LINGER_THRESHOLD + 1;
-    }
-
-    /** Called when a touch event occurred on {@link PhoneStatusBarView}. */
-    @Override
-    public void onTouchEvent(MotionEvent event) {
-        // TODO(b/202981994): Move this touch debugging to a central location. (Right now, it's
-        //   split between NotificationPanelViewController and here.)
-        if (DEBUG_GESTURES) {
-            if (event.getActionMasked() != MotionEvent.ACTION_MOVE) {
-                EventLog.writeEvent(EventLogTags.SYSUI_STATUSBAR_TOUCH,
-                        event.getActionMasked(), (int) event.getX(), (int) event.getY(),
-                        mDisabled1, mDisabled2);
-            }
-
-        }
-
-        if (SPEW) {
-            Log.d(TAG, "Touch: rawY=" + event.getRawY() + " event=" + event + " mDisabled1="
-                    + mDisabled1 + " mDisabled2=" + mDisabled2);
-        } else if (CHATTY) {
-            if (event.getAction() != MotionEvent.ACTION_MOVE) {
-                Log.d(TAG, String.format(
-                            "panel: %s at (%f, %f) mDisabled1=0x%08x mDisabled2=0x%08x",
-                            MotionEvent.actionToString(event.getAction()),
-                            event.getRawX(), event.getRawY(), mDisabled1, mDisabled2));
-            }
-        }
-
-        if (DEBUG_GESTURES) {
-            mGestureRec.add(event);
-        }
-
-        if (mBrightnessControl) {
-            brightnessControl(event);
-            if ((mDisabled1 & StatusBarManager.DISABLE_EXPAND) != 0) {
-                return;
-            }
-        }
-
-        final boolean upOrCancel =
-                event.getAction() == MotionEvent.ACTION_UP ||
-                event.getAction() == MotionEvent.ACTION_CANCEL;
-
-        if (mStatusBarWindowState == WINDOW_STATE_SHOWING) {
-            setInteracting(StatusBarManager.WINDOW_STATUS_BAR, !upOrCancel || mExpandedVisible);
-        }
-        if (mBrightnessChanged && upOrCancel) {
-            mBrightnessChanged = false;
-            if (mJustPeeked && mExpandedVisible) {
-                mNotificationPanelViewController.fling(10, false);
-            }
-        }
-=======
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
     }
 
     @Override
@@ -4310,11 +4229,6 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces {
     public boolean isKeyguardSecure() {
         return mStatusBarKeyguardViewManager.isSecure();
     }
-<<<<<<< HEAD
-    @Override
-    public NotificationPanelViewController getPanelController() {
-        return mNotificationPanelViewController;
-    }
 
     @Override
     public void onTuningChanged(String key, String newValue) {
@@ -4340,10 +4254,6 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces {
             mBrightnessControl = TunerService.parseIntegerSwitch(newValue, false);
         }
     }
-
-    // End Extra BaseStatusBarMethods.
-=======
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 
     // End Extra BaseStatusBarMethods.
 
