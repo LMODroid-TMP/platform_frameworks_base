@@ -166,4 +166,8 @@ interface IInputManager {
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(value = "
             + "android.Manifest.permission.MONITOR_INPUT)")
     void pilferPointers(IBinder inputChannelToken);
+
+    void registerCursorCallback(ICursorCallback callbacks);
+    void unregisterCursorCallback(ICursorCallback callbacks);
+    void setForceNullCursor(boolean forceNullCursor);
 }
