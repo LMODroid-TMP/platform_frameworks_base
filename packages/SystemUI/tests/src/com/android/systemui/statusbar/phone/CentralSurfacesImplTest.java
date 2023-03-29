@@ -296,12 +296,9 @@ public class CentralSurfacesImplTest extends SysuiTestCase {
     @Mock private InteractionJankMonitor mJankMonitor;
     @Mock private DeviceStateManager mDeviceStateManager;
     @Mock private WiredChargingRippleController mWiredChargingRippleController;
-<<<<<<< HEAD
-    @Mock private TunerService mTunerService;
-=======
     @Mock private Lazy<CameraLauncher> mCameraLauncherLazy;
     @Mock private CameraLauncher mCameraLauncher;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+    @Mock private TunerService mTunerService;
     /**
      * The process of registering/unregistering a predictive back callback requires a
      * ViewRootImpl, which is present IRL, but may be missing during a Mockito unit test.
@@ -506,15 +503,11 @@ public class CentralSurfacesImplTest extends SysuiTestCase {
                 mActivityLaunchAnimator,
                 mJankMonitor,
                 mDeviceStateManager,
-<<<<<<< HEAD
-                mWiredChargingRippleController, mDreamManager
-                mTunerService) {
-=======
                 mWiredChargingRippleController,
                 mDreamManager,
                 mCameraLauncherLazy,
-                () -> mLightRevealScrimViewModel) {
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+                () -> mLightRevealScrimViewModel,
+                mTunerService) {
             @Override
             protected ViewRootImpl getViewRootImpl() {
                 return mViewRootImpl;

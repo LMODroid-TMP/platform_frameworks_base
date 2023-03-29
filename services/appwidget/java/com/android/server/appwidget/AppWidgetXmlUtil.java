@@ -94,12 +94,8 @@ public class AppWidgetXmlUtil {
         out.attributeInt(null, ATTR_WIDGET_CATEGORY, info.widgetCategory);
         out.attributeInt(null, ATTR_WIDGET_FEATURES, info.widgetFeatures);
         out.attributeInt(null, ATTR_DESCRIPTION_RES, info.descriptionRes);
-<<<<<<< HEAD
-        out.attribute(null, ATTR_OS_FINGERPRINT, Build.VERSION.INCREMENTAL);
-=======
         out.attributeBoolean(null, ATTR_PROVIDER_INHERITANCE, info.isExtendedFromAppWidgetProvider);
-        out.attribute(null, ATTR_OS_FINGERPRINT, Build.FINGERPRINT);
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+        out.attribute(null, ATTR_OS_FINGERPRINT, Build.VERSION.INCREMENTAL);
     }
 
     /**

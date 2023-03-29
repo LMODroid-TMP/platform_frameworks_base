@@ -111,14 +111,10 @@ public class VolumeDialogImplTest extends SysuiTestCase {
                 mMediaOutputDialogFactory,
                 mVolumePanelFactory,
                 mActivityStarter,
-<<<<<<< HEAD
                 mTunerService,
-                mInteractionJankMonitor);
-=======
                 mInteractionJankMonitor,
                 mDumpManager
             );
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         mDialog.init(0, null);
         State state = createShellState();
         mDialog.onStateChangedH(state);

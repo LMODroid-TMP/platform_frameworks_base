@@ -117,12 +117,8 @@ public class ImageExporterTest extends SysuiTestCase {
         Bitmap original = createCheckerBitmap(10, 10, 10);
 
         ListenableFuture<ImageExporter.Result> direct =
-<<<<<<< HEAD
-                exporter.export(DIRECT_EXECUTOR, requestId, original, CAPTURE_TIME, null);
-=======
                 exporter.export(DIRECT_EXECUTOR, requestId, original, CAPTURE_TIME,
-                        Process.myUserHandle());
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+                        Process.myUserHandle(), null);
         assertTrue("future should be done", direct.isDone());
         assertFalse("future should not be canceled", direct.isCancelled());
         ImageExporter.Result result = direct.get();
