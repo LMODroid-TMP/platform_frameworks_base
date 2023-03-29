@@ -1490,12 +1490,8 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
                     mLastUserSetScreenBrightness,
                     userSetBrightnessChanged, autoBrightnessAdjustment,
                     autoBrightnessAdjustmentChanged, mPowerRequest.policy,
-<<<<<<< HEAD
-                    mAutoBrightnessOneShot);
-=======
-                    mShouldResetShortTermModel);
+                    mShouldResetShortTermModel, mAutoBrightnessOneShot);
             mShouldResetShortTermModel = false;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         }
 
         if (mBrightnessTracker != null) {
@@ -2488,12 +2484,6 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
         sendUpdatePowerState();
     }
 
-<<<<<<< HEAD
-    private boolean getAutoBrightnessOneShotSetting() {
-        return Settings.System.getIntForUser(
-                mContext.getContentResolver(), Settings.System.AUTO_BRIGHTNESS_ONE_SHOT,
-                0, UserHandle.USER_CURRENT) == 1;
-=======
     private void handleBrightnessModeChange() {
         final int screenBrightnessModeSetting = Settings.System.getIntForUser(
                 mContext.getContentResolver(),
@@ -2504,7 +2494,12 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
                     == Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
             updatePowerState();
         });
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+    }
+
+    private boolean getAutoBrightnessOneShotSetting() {
+        return Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.AUTO_BRIGHTNESS_ONE_SHOT,
+                0, UserHandle.USER_CURRENT) == 1;
     }
 
     private float getAutoBrightnessAdjustmentSetting() {
