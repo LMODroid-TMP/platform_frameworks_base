@@ -419,7 +419,6 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
 
     private final Handler mHandler;
 
-<<<<<<< HEAD
     private PocketManager mPocketManager;
     private boolean mIsDeviceInPocket;
     private final IPocketCallback mPocketCallback = new IPocketCallback.Stub() {
@@ -441,12 +440,6 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
         return mPocketManager.isPocketLockVisible();
     }
 
-    private SparseBooleanArray mBiometricEnabledForUser = new SparseBooleanArray();
-    private BiometricManager mBiometricManager;
-    private IBiometricEnabledOnKeyguardCallback mBiometricEnabledCallback =
-=======
-    private final IBiometricEnabledOnKeyguardCallback mBiometricEnabledCallback =
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
             new IBiometricEnabledOnKeyguardCallback.Stub() {
                 @Override
                 public void onChanged(boolean enabled, int userId) {
@@ -2287,20 +2280,12 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
 
         setStrongAuthTracker(mStrongAuthTracker);
 
-<<<<<<< HEAD
-        mDreamManager = IDreamManager.Stub.asInterface(
-                ServiceManager.getService(DreamService.DREAM_SERVICE));
-
         mPocketManager = (PocketManager) context.getSystemService(Context.POCKET_SERVICE);
         if (mPocketManager != null) {
             mPocketManager.addCallback(mPocketCallback);
         }
 
-        if (mContext.getPackageManager().hasSystemFeature(PackageManager.FEATURE_FINGERPRINT)) {
-            mFpm = (FingerprintManager) context.getSystemService(Context.FINGERPRINT_SERVICE);
-=======
         if (mFpm != null) {
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
             mFingerprintSensorProperties = mFpm.getSensorPropertiesInternal();
             mFpm.addLockoutResetCallback(mFingerprintLockoutResetCallback);
         }
@@ -2776,21 +2761,17 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
                 && !strongerAuthRequired
                 && userDoesNotHaveTrust);
 
-<<<<<<< HEAD
-        final boolean shouldListen = shouldListenKeyguardState && shouldListenUserState
-                && shouldListenBouncerState && shouldListenUdfpsState && !isFingerprintLockedOut() && !mIsDeviceInPocket;
-=======
         boolean shouldListenSideFpsState = true;
         if (isSideFps) {
             shouldListenSideFpsState =
                     mSfpsRequireScreenOnToAuthPrefEnabled ? isDeviceInteractive() : true;
         }
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 
         boolean shouldListen = shouldListenKeyguardState && shouldListenUserState
                 && shouldListenBouncerState && shouldListenUdfpsState
                 && shouldListenSideFpsState
-                && !isFingerprintLockedOut();
+                && !isFingerprintLockedOut()
+                && !mIsDeviceInPocket;
         logListenerModelData(
                 new KeyguardFingerprintListenModel(
                     System.currentTimeMillis(),

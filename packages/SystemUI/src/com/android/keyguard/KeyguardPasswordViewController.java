@@ -16,12 +16,8 @@
 
 package com.android.keyguard;
 
-<<<<<<< HEAD
 import static com.android.keyguard.KeyguardAbsKeyInputView.MINIMUM_PASSWORD_LENGTH_BEFORE_REPORT;
 
-import android.content.res.ColorStateList;
-=======
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import android.content.res.Resources;
 import android.os.UserHandle;
 import android.provider.Settings;
@@ -327,17 +323,16 @@ public class KeyguardPasswordViewController
                 || imm.getEnabledInputMethodSubtypeList(null, false).size() > 1;
     }
 
-<<<<<<< HEAD
+    @Override
+    protected int getInitialMessageResId() {
+        return R.string.keyguard_enter_your_password;
+    }
+
     private boolean kpvCheckPassword(LockscreenCredential entry) {
         try {
             return mLockPatternUtils.checkCredential(entry, userId, null);
         } catch (RequestThrottledException ex) {
             return false;
         }
-=======
-    @Override
-    protected int getInitialMessageResId() {
-        return R.string.keyguard_enter_your_password;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
     }
 }
