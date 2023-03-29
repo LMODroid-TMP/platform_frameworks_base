@@ -7,11 +7,8 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
-<<<<<<< HEAD
 import android.content.res.Configuration;
-=======
 import android.graphics.Rect;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
