@@ -121,11 +121,8 @@ import com.android.internal.graphics.drawable.BackgroundBlurDrawable;
 import com.android.internal.jank.InteractionJankMonitor;
 import com.android.internal.view.RotationPolicy;
 import com.android.settingslib.Utils;
-<<<<<<< HEAD
 import com.android.systemui.Dependency;
-=======
 import com.android.systemui.Dumpable;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import com.android.systemui.Prefs;
 import com.android.systemui.R;
 import com.android.systemui.animation.Interpolators;
@@ -322,13 +319,9 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
             MediaOutputDialogFactory mediaOutputDialogFactory,
             VolumePanelFactory volumePanelFactory,
             ActivityStarter activityStarter,
-<<<<<<< HEAD
             TunerService tunerService,
-            InteractionJankMonitor interactionJankMonitor) {
-=======
             InteractionJankMonitor interactionJankMonitor,
             DumpManager dumpManager) {
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         mContext =
                 new ContextThemeWrapper(context, R.style.volume_dialog_theme);
         mController = volumeDialogController;

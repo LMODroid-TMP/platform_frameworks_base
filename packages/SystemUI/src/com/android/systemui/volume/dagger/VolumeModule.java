@@ -57,13 +57,9 @@ public interface VolumeModule {
             MediaOutputDialogFactory mediaOutputDialogFactory,
             VolumePanelFactory volumePanelFactory,
             ActivityStarter activityStarter,
-<<<<<<< HEAD
             TunerService tunerService,
-            InteractionJankMonitor interactionJankMonitor) {
-=======
             InteractionJankMonitor interactionJankMonitor,
             DumpManager dumpManager) {
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         VolumeDialogImpl impl = new VolumeDialogImpl(
                 context,
                 volumeDialogController,
@@ -73,13 +69,9 @@ public interface VolumeModule {
                 mediaOutputDialogFactory,
                 volumePanelFactory,
                 activityStarter,
-<<<<<<< HEAD
                 tunerService,
-                interactionJankMonitor);
-=======
                 interactionJankMonitor,
                 dumpManager);
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         impl.setStreamImportant(AudioManager.STREAM_SYSTEM, false);
         impl.setAutomute(true);
         impl.setSilentMode(false);
