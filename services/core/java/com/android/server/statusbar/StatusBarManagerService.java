@@ -2202,15 +2202,6 @@ public class StatusBarManagerService extends IStatusBarService.Stub implements D
         }
     }
 
-<<<<<<< HEAD
-    @Override
-    public void startAssist(Bundle args) {
-        enforceStatusBarService();
-        if (mBar != null) {
-            try {
-                mBar.startAssist(args);
-            } catch (RemoteException ex) {
-=======
     @RequiresPermission(android.Manifest.permission.CONTROL_DEVICE_STATE)
     @Override
     public void showRearDisplayDialog(int currentState) {
@@ -2220,7 +2211,16 @@ public class StatusBarManagerService extends IStatusBarService.Stub implements D
                 mBar.showRearDisplayDialog(currentState);
             } catch (RemoteException e) {
                 Slog.e(TAG, "showRearDisplayDialog", e);
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
+            }
+        }
+    }
+    @Override
+    public void startAssist(Bundle args) {
+        enforceStatusBarService();
+        if (mBar != null) {
+            try {
+                mBar.startAssist(args);
+            } catch (RemoteException ex) {
             }
         }
     }

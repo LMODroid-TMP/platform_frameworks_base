@@ -52,6 +52,8 @@ import android.os.Process;
 import android.os.RemoteException;
 import android.os.ResultReceiver;
 import android.os.SystemClock;
+import android.text.TextUtils;
+import android.util.EventLog;
 import android.util.Log;
 import android.view.KeyEvent;
 
@@ -936,12 +938,7 @@ public class MediaSessionRecord implements IBinder.DeathRecipient, MediaSessionR
         }
 
         @Override
-<<<<<<< HEAD
-        public void setMediaButtonReceiver(PendingIntent pi, String sessionPackageName)
-                throws RemoteException {
-=======
         public void setMediaButtonReceiver(PendingIntent pi) throws RemoteException {
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
             final long token = Binder.clearCallingIdentity();
             try {
                 if ((mPolicies & MediaSessionPolicyProvider.SESSION_POLICY_IGNORE_BUTTON_RECEIVER)
@@ -960,8 +957,6 @@ public class MediaSessionRecord implements IBinder.DeathRecipient, MediaSessionR
         public void setMediaButtonBroadcastReceiver(ComponentName receiver) throws RemoteException {
             final long token = Binder.clearCallingIdentity();
             try {
-<<<<<<< HEAD
-=======
                 //mPackageName has been verified in MediaSessionService.enforcePackageName().
                 if (receiver != null && !TextUtils.equals(
                         mPackageName, receiver.getPackageName())) {
@@ -970,7 +965,6 @@ public class MediaSessionRecord implements IBinder.DeathRecipient, MediaSessionR
                             + "package name provided to MediaSessionRecord. Pkg = " + mPackageName
                             + ", Receiver Pkg = " + receiver.getPackageName());
                 }
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
                 if ((mPolicies & MediaSessionPolicyProvider.SESSION_POLICY_IGNORE_BUTTON_RECEIVER)
                         != 0) {
                     return;

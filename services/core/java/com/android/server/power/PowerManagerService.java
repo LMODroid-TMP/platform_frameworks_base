@@ -613,18 +613,6 @@ public final class PowerManagerService extends SystemService
     private boolean mIsFaceDown = false;
     private long mLastFlipTime = 0L;
 
-<<<<<<< HEAD
-    // The screen brightness mode.
-    // One of the Settings.System.SCREEN_BRIGHTNESS_MODE_* constants.
-    private int mScreenBrightnessModeSetting;
-
-    // The button brightness setting override from the window manager
-    // to allow the current foreground activity to override the button brightness.
-    private float mButtonBrightnessOverrideFromWindowManager =
-            PowerManager.BRIGHTNESS_INVALID_FLOAT;
-
-=======
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
     // The screen brightness setting override from the window manager
     // to allow the current foreground activity to override the brightness.
     private float mScreenBrightnessOverrideFromWindowManager =
@@ -1579,11 +1567,6 @@ public final class PowerManagerService extends SystemService
             mSystemProperties.set(SYSTEM_PROPERTY_RETAIL_DEMO_ENABLED, retailDemoValue);
         }
 
-<<<<<<< HEAD
-        mScreenBrightnessModeSetting = Settings.System.getIntForUser(resolver,
-                Settings.System.SCREEN_BRIGHTNESS_MODE,
-                Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL, UserHandle.USER_CURRENT);
-
         mProximityWakeEnabled = Settings.Secure.getIntForUser(resolver,
                 Settings.System.PROXIMITY_ON_WAKE,
                 mProximityWakeEnabledByDefaultConfig ? 1 : 0,
@@ -1606,8 +1589,6 @@ public final class PowerManagerService extends SystemService
                 Settings.System.FORCE_SHOW_NAVBAR,
                 0, UserHandle.USER_CURRENT) == 1;
 
-=======
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         mDirty |= DIRTY_SETTINGS;
     }
 
@@ -2150,7 +2131,6 @@ public final class PowerManagerService extends SystemService
                 }
             } else {
                 if (eventTime > powerGroup.getLastUserActivityTimeLocked()) {
-<<<<<<< HEAD
                     powerGroup.setButtonPressedLocked(
                             event == PowerManager.USER_ACTIVITY_EVENT_BUTTON);
                     if (eventTime == powerGroup.getLastWakeTimeLocked() ||
@@ -2159,10 +2139,7 @@ public final class PowerManagerService extends SystemService
                         powerGroup.setButtonPressedLocked(true);
                         powerGroup.setLastButtonActivityTimeLocked(eventTime);
                     }
-                    powerGroup.setLastUserActivityTimeLocked(eventTime);
-=======
                     powerGroup.setLastUserActivityTimeLocked(eventTime, event);
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
                     mDirty |= DIRTY_USER_ACTIVITY;
                     if (event == PowerManager.USER_ACTIVITY_EVENT_BUTTON) {
                         mDirty |= DIRTY_QUIESCENT;
@@ -4753,15 +4730,11 @@ public final class PowerManagerService extends SystemService
                     + mMaximumScreenOffTimeoutFromDeviceAdmin + " (enforced="
                     + isMaximumScreenOffTimeoutFromDeviceAdminEnforcedLocked() + ")");
             pw.println("  mStayOnWhilePluggedInSetting=" + mStayOnWhilePluggedInSetting);
-<<<<<<< HEAD
             pw.println("  mButtonTimeout=" + mButtonTimeout);
             pw.println("  mButtonBrightness=" + mButtonBrightness);
             pw.println("  mKeyboardBrightness=" + mKeyboardBrightness);
-            pw.println("  mScreenBrightnessModeSetting=" + mScreenBrightnessModeSetting);
             pw.println("  mButtonBrightnessOverrideFromWindowManager="
                     + mButtonBrightnessOverrideFromWindowManager);
-=======
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
             pw.println("  mScreenBrightnessOverrideFromWindowManager="
                     + mScreenBrightnessOverrideFromWindowManager);
             pw.println("  mUserActivityTimeoutOverrideFromWindowManager="

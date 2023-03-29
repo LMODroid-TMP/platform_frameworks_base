@@ -49,11 +49,8 @@ import android.hardware.SensorPrivacyManager.Sensors;
 import android.hardware.SensorPrivacyManagerInternal;
 import android.hardware.display.DisplayManager;
 import android.hardware.display.DisplayViewport;
-<<<<<<< HEAD
 import android.hardware.input.ICursorCallback;
-=======
 import android.hardware.input.IInputDeviceBatteryListener;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import android.hardware.input.IInputDevicesChangedListener;
 import android.hardware.input.IInputManager;
 import android.hardware.input.IInputSensorEventListener;

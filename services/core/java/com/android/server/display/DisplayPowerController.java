@@ -969,14 +969,12 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
                 Settings.System.getUriFor(Settings.System.SCREEN_AUTO_BRIGHTNESS_ADJ),
                 false /*notifyForDescendants*/, mSettingsObserver, UserHandle.USER_ALL);
         mContext.getContentResolver().registerContentObserver(
-<<<<<<< HEAD
-                Settings.System.getUriFor(Settings.System.AUTO_BRIGHTNESS_ONE_SHOT),
-                false /*notifyForDescendants*/, mSettingsObserver, UserHandle.USER_ALL);
-=======
                 Settings.System.getUriFor(Settings.System.SCREEN_BRIGHTNESS_MODE),
                 false /*notifyForDescendants*/, mSettingsObserver, UserHandle.USER_ALL);
+        mContext.getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(Settings.System.AUTO_BRIGHTNESS_ONE_SHOT),
+                false /*notifyForDescendants*/, mSettingsObserver, UserHandle.USER_ALL);
         handleBrightnessModeChange();
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
     }
 
     private void setUpAutoBrightness(Resources resources, Handler handler) {
