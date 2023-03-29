@@ -56,11 +56,8 @@ import android.annotation.Nullable;
 import android.app.Fragment;
 import android.app.StatusBarManager;
 import android.content.ContentResolver;
-<<<<<<< HEAD
 import android.content.Context;
-=======
 import android.content.res.Resources;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import android.database.ContentObserver;
 import android.graphics.Color;
 import android.graphics.Insets;
@@ -84,11 +81,8 @@ import android.transition.TransitionValues;
 import android.util.IndentingPrintWriter;
 import android.util.Log;
 import android.util.MathUtils;
-<<<<<<< HEAD
 import android.view.GestureDetector;
-=======
 import android.view.InputDevice;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -294,6 +288,10 @@ public final class NotificationPanelViewController implements Dumpable {
     private static final String COUNTER_PANEL_OPEN = "panel_open";
     private static final String COUNTER_PANEL_OPEN_QS = "panel_open_qs";
     private static final String COUNTER_PANEL_OPEN_PEEK = "panel_open_peek";
+    private static final String STATUS_BAR_QUICK_QS_PULLDOWN =
+            "customsystem:" + Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN;
+    private static final String DOUBLE_TAP_SLEEP_GESTURE =
+            "customsystem:" + Settings.System.DOUBLE_TAP_SLEEP_GESTURE;
     private static final Rect M_DUMMY_DIRTY_RECT = new Rect(0, 0, 1, 1);
     private static final Rect EMPTY_RECT = new Rect();
     /**
@@ -328,31 +326,6 @@ public final class NotificationPanelViewController implements Dumpable {
     private final ConfigurationController mConfigurationController;
     private final Provider<FlingAnimationUtils.Builder> mFlingAnimationUtilsBuilder;
     private final NotificationStackScrollLayoutController mNotificationStackScrollLayoutController;
-<<<<<<< HEAD
-    private final NotificationIconAreaController mNotificationIconAreaController;
-
-    /**
-     * Maximum time before which we will expand the panel even for slow motions when getting a
-     * touch passed over from launcher.
-     */
-    private static final int MAX_TIME_TO_OPEN_WHEN_FLINGING_FROM_LAUNCHER = 300;
-
-    private static final int MAX_DOWN_EVENT_BUFFER_SIZE = 50;
-
-    private static final String COUNTER_PANEL_OPEN = "panel_open";
-    private static final String COUNTER_PANEL_OPEN_QS = "panel_open_qs";
-    private static final String COUNTER_PANEL_OPEN_PEEK = "panel_open_peek";
-
-    private static final String STATUS_BAR_QUICK_QS_PULLDOWN =
-            "customsystem:" + Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN;
-    private static final String DOUBLE_TAP_SLEEP_GESTURE =
-            "customsystem:" + Settings.System.DOUBLE_TAP_SLEEP_GESTURE;
-
-    private static final Rect M_DUMMY_DIRTY_RECT = new Rect(0, 0, 1, 1);
-    private static final Rect EMPTY_RECT = new Rect();
-
-=======
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
     private final InteractionJankMonitor mInteractionJankMonitor;
     private final LayoutInflater mLayoutInflater;
     private final FeatureFlags mFeatureFlags;
@@ -394,6 +367,7 @@ public final class NotificationPanelViewController implements Dumpable {
     private final FragmentListener mQsFragmentListener = new QsFragmentListener();
     private final AccessibilityDelegate mAccessibilityDelegate = new ShadeAccessibilityDelegate();
     private final NotificationGutsManager mGutsManager;
+    private final TunerService mTunerService;
 
     private long mDownTime;
     private boolean mTouchSlopExceededBeforeDown;
@@ -416,12 +390,6 @@ public final class NotificationPanelViewController implements Dumpable {
     private float mKeyguardNotificationTopPadding;
     /** Current max allowed keyguard notifications determined by measuring the panel. */
     private int mMaxAllowedKeyguardNotifications;
-<<<<<<< HEAD
-
-    private final TunerService mTunerService;
-
-=======
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
     private KeyguardQsUserSwitchController mKeyguardQsUserSwitchController;
     private KeyguardUserSwitcherController mKeyguardUserSwitcherController;
     private KeyguardStatusBarView mKeyguardStatusBar;
@@ -833,32 +801,13 @@ public final class NotificationPanelViewController implements Dumpable {
             SystemClock systemClock,
             KeyguardBottomAreaViewModel keyguardBottomAreaViewModel,
             KeyguardBottomAreaInteractor keyguardBottomAreaInteractor,
-<<<<<<< HEAD
-            TunerService tunerService,
-            Context context) {
-        super(view,
-                falsingManager,
-                dozeLog,
-                keyguardStateController,
-                (SysuiStatusBarStateController) statusBarStateController,
-                notificationShadeWindowController,
-                vibratorHelper,
-                statusBarKeyguardViewManager,
-                latencyTracker,
-                flingAnimationUtilsBuilder.get(),
-                statusBarTouchableRegionManager,
-                lockscreenGestureLogger,
-                panelExpansionStateManager,
-                ambientState,
-                interactionJankMonitor,
-                shadeLogger,
-                systemClock);
-=======
             DreamingToLockscreenTransitionViewModel dreamingToLockscreenTransitionViewModel,
             OccludedToLockscreenTransitionViewModel occludedToLockscreenTransitionViewModel,
             @Main CoroutineDispatcher mainDispatcher,
             KeyguardTransitionInteractor keyguardTransitionInteractor,
-            DumpManager dumpManager) {
+            DumpManager dumpManager,
+            TunerService tunerService,
+            Context context) {
         keyguardStateController.addCallback(new KeyguardStateController.Callback() {
             @Override
             public void onKeyguardFadingAwayChanged() {
@@ -866,7 +815,6 @@ public final class NotificationPanelViewController implements Dumpable {
             }
         });
         mAmbientState = ambientState;
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         mView = view;
         mStatusBarKeyguardViewManager = statusBarKeyguardViewManager;
         mLockscreenGestureLogger = lockscreenGestureLogger;
@@ -4771,191 +4719,9 @@ public final class NotificationPanelViewController implements Dumpable {
         mConfigurationListener.onThemeChanged();
     }
 
-<<<<<<< HEAD
-    @Override
-    protected OnLayoutChangeListener createLayoutChangeListener() {
-        return new OnLayoutChangeListenerImpl();
-    }
-
-    @Override
-    protected TouchHandler createTouchHandler() {
-        return new TouchHandler() {
-
-            private long mLastTouchDownTime = -1L;
-
-            @Override
-            public boolean onInterceptTouchEvent(MotionEvent event) {
-                if (SPEW_LOGCAT) {
-                    Log.v(TAG,
-                            "NPVC onInterceptTouchEvent (" + event.getId() + "): (" + event.getX()
-                                    + "," + event.getY() + ")");
-                }
-                if (mBlockTouches || mQs.disallowPanelTouches()) {
-                    return false;
-                }
-                initDownStates(event);
-                // Do not let touches go to shade or QS if the bouncer is visible,
-                // but still let user swipe down to expand the panel, dismissing the bouncer.
-                if (mCentralSurfaces.isBouncerShowing()) {
-                    return true;
-                }
-                if (mCommandQueue.panelsEnabled()
-                        && !mNotificationStackScrollLayoutController.isLongPressInProgress()
-                        && mHeadsUpTouchHelper.onInterceptTouchEvent(event)) {
-                    mMetricsLogger.count(COUNTER_PANEL_OPEN, 1);
-                    mMetricsLogger.count(COUNTER_PANEL_OPEN_PEEK, 1);
-                    return true;
-                }
-                if (!shouldQuickSettingsIntercept(mDownX, mDownY, 0)
-                        && mPulseExpansionHandler.onInterceptTouchEvent(event)) {
-                    return true;
-                }
-
-                if (!isFullyCollapsed() && onQsIntercept(event)) {
-                    if (DEBUG_LOGCAT) Log.d(TAG, "onQsIntercept true");
-                    return true;
-                }
-                return super.onInterceptTouchEvent(event);
-            }
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    if (event.getDownTime() == mLastTouchDownTime) {
-                        // An issue can occur when swiping down after unlock, where multiple down
-                        // events are received in this handler with identical downTimes. Until the
-                        // source of the issue can be located, detect this case and ignore.
-                        // see b/193350347
-                        Log.w(TAG, "Duplicate down event detected... ignoring");
-                        return true;
-                    }
-                    mLastTouchDownTime = event.getDownTime();
-                }
-
-
-                if (mBlockTouches || (mQsFullyExpanded && mQs != null
-                        && mQs.disallowPanelTouches())) {
-                    return false;
-                }
-
-                // Do not allow panel expansion if bouncer is scrimmed or showing over a dream,
-                // otherwise user would be able to pull down QS or expand the shade.
-                if (mCentralSurfaces.isBouncerShowingScrimmed()
-                        || mCentralSurfaces.isBouncerShowingOverDream()) {
-                    return false;
-                }
-
-                if (mDoubleTapToSleepEnabled && !mPulsing && !mDozing) {
-                    mDoubleTapGesture.onTouchEvent(event);
-                }
-
-                // Make sure the next touch won't the blocked after the current ends.
-                if (event.getAction() == MotionEvent.ACTION_UP
-                        || event.getAction() == MotionEvent.ACTION_CANCEL) {
-                    mBlockingExpansionForCurrentTouch = false;
-                }
-                // When touch focus transfer happens, ACTION_DOWN->ACTION_UP may happen immediately
-                // without any ACTION_MOVE event.
-                // In such case, simply expand the panel instead of being stuck at the bottom bar.
-                if (mLastEventSynthesizedDown && event.getAction() == MotionEvent.ACTION_UP) {
-                    expand(true /* animate */);
-                }
-                initDownStates(event);
-
-                // If pulse is expanding already, let's give it the touch. There are situations
-                // where the panel starts expanding even though we're also pulsing
-                boolean pulseShouldGetTouch = (!mIsExpanding
-                        && !shouldQuickSettingsIntercept(mDownX, mDownY, 0))
-                        || mPulseExpansionHandler.isExpanding();
-                if (pulseShouldGetTouch && mPulseExpansionHandler.onTouchEvent(event)) {
-                    // We're expanding all the other ones shouldn't get this anymore
-                    mShadeLog.logMotionEvent(event, "onTouch: PulseExpansionHandler handled event");
-                    return true;
-                }
-                if (mListenForHeadsUp && !mHeadsUpTouchHelper.isTrackingHeadsUp()
-                        && !mNotificationStackScrollLayoutController.isLongPressInProgress()
-                        && mHeadsUpTouchHelper.onInterceptTouchEvent(event)) {
-                    mMetricsLogger.count(COUNTER_PANEL_OPEN_PEEK, 1);
-                }
-                boolean handled = mHeadsUpTouchHelper.onTouchEvent(event);
-
-                if (!mHeadsUpTouchHelper.isTrackingHeadsUp() && handleQsTouch(event)) {
-                    mShadeLog.logMotionEvent(event, "onTouch: handleQsTouch handled event");
-                    return true;
-                }
-                if (event.getActionMasked() == MotionEvent.ACTION_DOWN && isFullyCollapsed()) {
-                    mMetricsLogger.count(COUNTER_PANEL_OPEN, 1);
-                    handled = true;
-                }
-
-                if (event.getActionMasked() == MotionEvent.ACTION_DOWN && isFullyExpanded()
-                        && mStatusBarKeyguardViewManager.isShowing()) {
-                    mStatusBarKeyguardViewManager.updateKeyguardPosition(event.getX());
-                }
-
-                handled |= super.onTouch(v, event);
-                return !mDozing || mPulsing || handled;
-            }
-        };
-    }
-
-    private final PhoneStatusBarView.TouchEventHandler mStatusBarViewTouchEventHandler =
-            new PhoneStatusBarView.TouchEventHandler() {
-                @Override
-                public void onInterceptTouchEvent(MotionEvent event) {
-                    mCentralSurfaces.onTouchEvent(event);
-                }
-
-                @Override
-                public boolean handleTouchEvent(MotionEvent event) {
-                    mCentralSurfaces.onTouchEvent(event);
-
-                    // TODO(b/202981994): Move the touch debugging in this method to a central
-                    //  location. (Right now, it's split between CentralSurfaces and here.)
-
-                    // If panels aren't enabled, ignore the gesture and don't pass it down to the
-                    // panel view.
-                    if (!mCommandQueue.panelsEnabled()) {
-                        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                            Log.v(
-                                    TAG,
-                                    String.format(
-                                            "onTouchForwardedFromStatusBar: "
-                                                    + "panel disabled, ignoring touch at (%d,%d)",
-                                            (int) event.getX(),
-                                            (int) event.getY()
-                                    )
-                            );
-                        }
-                        return false;
-                    }
-
-                    // If the view that would receive the touch is disabled, just have status bar
-                    // eat the gesture.
-                    if (event.getAction() == MotionEvent.ACTION_DOWN && !mView.isEnabled()) {
-                        Log.v(TAG,
-                                String.format(
-                                        "onTouchForwardedFromStatusBar: "
-                                                + "panel view disabled, eating touch at (%d,%d)",
-                                        (int) event.getX(),
-                                        (int) event.getY()
-                                )
-                        );
-                        return true;
-                    }
-
-                    return mView.dispatchTouchEvent(event);
-                }
-            };
-
-    @Override
-    protected OnConfigurationChangedListener createOnConfigurationChangedListener() {
-        return new OnConfigurationChangedListener();
-=======
     @VisibleForTesting
     TouchHandler createTouchHandler() {
         return new TouchHandler();
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
     }
 
     public NotificationStackScrollLayoutController getNotificationStackScrollLayoutController() {
@@ -6016,12 +5782,8 @@ public final class NotificationPanelViewController implements Dumpable {
         positionClockAndNotifications(true /* forceUpdate */);
     }
 
-<<<<<<< HEAD
-    private class OnAttachStateChangeListener implements View.OnAttachStateChangeListener,
+    private final class ShadeAttachStateChangeListener implements View.OnAttachStateChangeListener,
             TunerService.Tunable {
-=======
-    private final class ShadeAttachStateChangeListener implements View.OnAttachStateChangeListener {
->>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         @Override
         public void onViewAttachedToWindow(View v) {
             mFragmentService.getFragmentHostManager(mView)
@@ -6398,6 +6160,10 @@ public final class NotificationPanelViewController implements Dumpable {
                 mShadeLog.logMotionEvent(event,
                         "onTouch: ignore touch, bouncer scrimmed or showing over dream");
                 return false;
+            }
+
+            if (mDoubleTapToSleepEnabled && !mPulsing && !mDozing) {
+                mDoubleTapGesture.onTouchEvent(event);
             }
 
             // Make sure the next touch won't the blocked after the current ends.
