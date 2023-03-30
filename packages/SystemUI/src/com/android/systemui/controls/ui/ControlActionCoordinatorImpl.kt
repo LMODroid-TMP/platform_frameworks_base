@@ -66,6 +66,7 @@ class ControlActionCoordinatorImpl @Inject constructor(
         private val globalActionsComponent: GlobalActionsComponent,
 ) : ControlActionCoordinator {
     private var dialog: Dialog? = null
+    private var pendingAction: Action? = null
     private var actionsInProgress = mutableSetOf<String>()
     private val isLocked: Boolean
         get() = !keyguardStateController.isUnlocked()
