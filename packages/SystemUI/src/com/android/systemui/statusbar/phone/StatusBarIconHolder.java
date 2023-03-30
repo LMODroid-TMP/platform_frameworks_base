@@ -196,10 +196,6 @@ public class StatusBarIconHolder {
                 // The new pipeline controls visibilities via the view model and view binder, so
                 // this is effectively an unused return value.
                 return true;
-            case TYPE_IMS:
-                return mImsState.visible;
-            case TYPE_NETWORK_TRAFFIC:
-                return mNetworkTrafficState.visible;
             default:
                 return true;
         }
