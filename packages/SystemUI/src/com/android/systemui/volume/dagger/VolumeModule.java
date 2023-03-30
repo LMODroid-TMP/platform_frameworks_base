@@ -20,6 +20,7 @@ import android.content.Context;
 import android.media.AudioManager;
 
 import com.android.internal.jank.InteractionJankMonitor;
+import com.android.systemui.dump.DumpManager;
 import com.android.systemui.media.dialog.MediaOutputDialogFactory;
 import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.VolumeDialog;
@@ -56,8 +57,13 @@ public interface VolumeModule {
             MediaOutputDialogFactory mediaOutputDialogFactory,
             VolumePanelFactory volumePanelFactory,
             ActivityStarter activityStarter,
+<<<<<<< HEAD
             TunerService tunerService,
             InteractionJankMonitor interactionJankMonitor) {
+=======
+            InteractionJankMonitor interactionJankMonitor,
+            DumpManager dumpManager) {
+>>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         VolumeDialogImpl impl = new VolumeDialogImpl(
                 context,
                 volumeDialogController,
@@ -67,8 +73,13 @@ public interface VolumeModule {
                 mediaOutputDialogFactory,
                 volumePanelFactory,
                 activityStarter,
+<<<<<<< HEAD
                 tunerService,
                 interactionJankMonitor);
+=======
+                interactionJankMonitor,
+                dumpManager);
+>>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
         impl.setStreamImportant(AudioManager.STREAM_SYSTEM, false);
         impl.setAutomute(true);
         impl.setSilentMode(false);

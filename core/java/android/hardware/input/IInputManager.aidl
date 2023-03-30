@@ -20,6 +20,7 @@ import android.graphics.Rect;
 import android.hardware.input.InputDeviceIdentifier;
 import android.hardware.input.KeyboardLayout;
 import android.hardware.input.IInputDevicesChangedListener;
+import android.hardware.input.IInputDeviceBatteryListener;
 import android.hardware.input.ITabletModeChangedListener;
 import android.hardware.input.TouchCalibration;
 import android.os.CombinedVibration;
@@ -157,7 +158,18 @@ interface IInputManager {
 
     void cancelCurrentTouch();
 
+<<<<<<< HEAD
     void registerCursorCallback(ICursorCallback callbacks);
     void unregisterCursorCallback(ICursorCallback callbacks);
     void setForceNullCursor(boolean forceNullCursor);
+=======
+    void registerBatteryListener(int deviceId, IInputDeviceBatteryListener listener);
+
+    void unregisterBatteryListener(int deviceId, IInputDeviceBatteryListener listener);
+
+    @EnforcePermission("MONITOR_INPUT")
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(value = "
+            + "android.Manifest.permission.MONITOR_INPUT)")
+    void pilferPointers(IBinder inputChannelToken);
+>>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 }

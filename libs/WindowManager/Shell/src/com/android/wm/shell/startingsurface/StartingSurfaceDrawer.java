@@ -638,10 +638,23 @@ public class StartingSurfaceDrawer {
                 ProtoLog.v(ShellProtoLogGroup.WM_SHELL_STARTING_WINDOW,
                         "Removing splash screen window for task: %d", taskId);
                 if (record.mContentView != null) {
+<<<<<<< HEAD
                     if (record.clearSystemBarColor()) {
                         if (immediately
                                 || record.mSuggestType == STARTING_WINDOW_TYPE_LEGACY_SPLASH_SCREEN) {
                             removeWindowInner(record.mDecorView, false);
+=======
+                    record.clearSystemBarColor();
+                    if (immediately
+                            || record.mSuggestType == STARTING_WINDOW_TYPE_LEGACY_SPLASH_SCREEN) {
+                        removeWindowInner(record.mDecorView, false);
+                    } else {
+                        if (removalInfo.playRevealAnimation) {
+                            mSplashscreenContentDrawer.applyExitAnimation(record.mContentView,
+                                    removalInfo.windowAnimationLeash, removalInfo.mainFrame,
+                                    () -> removeWindowInner(record.mDecorView, true),
+                                    record.mCreateTime, removalInfo.roundedCornerRadius);
+>>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
                         } else {
                             if (removalInfo.playRevealAnimation) {
                                 mSplashscreenContentDrawer.applyExitAnimation(record.mContentView,

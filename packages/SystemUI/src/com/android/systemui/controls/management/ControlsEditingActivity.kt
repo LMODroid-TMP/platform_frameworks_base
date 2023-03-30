@@ -18,42 +18,57 @@ package com.android.systemui.controls.management
 
 import android.app.ActivityOptions
 import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewStub
 import android.widget.Button
 import android.widget.TextView
+import android.window.OnBackInvokedCallback
+import android.window.OnBackInvokedDispatcher
 import androidx.activity.ComponentActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.android.systemui.R
-import com.android.systemui.broadcast.BroadcastDispatcher
 import com.android.systemui.controls.CustomIconCache
 import com.android.systemui.controls.controller.ControlsControllerImpl
 import com.android.systemui.controls.controller.StructureInfo
 import com.android.systemui.controls.ui.ControlsActivity
 import com.android.systemui.controls.ui.ControlsUiController
+<<<<<<< HEAD
 import com.android.systemui.globalactions.GlobalActionsComponent
 import com.android.systemui.settings.CurrentUserTracker
+=======
+import com.android.systemui.dagger.qualifiers.Main
+import com.android.systemui.settings.UserTracker
+import java.util.concurrent.Executor
+>>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
 import javax.inject.Inject
 
 /**
  * Activity for rearranging and removing controls for a given structure
  */
-class ControlsEditingActivity @Inject constructor(
+open class ControlsEditingActivity @Inject constructor(
+    @Main private val mainExecutor: Executor,
     private val controller: ControlsControllerImpl,
+<<<<<<< HEAD
     private val broadcastDispatcher: BroadcastDispatcher,
     private val globalActionsComponent: GlobalActionsComponent,
+=======
+    private val userTracker: UserTracker,
+>>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
     private val customIconCache: CustomIconCache,
     private val uiController: ControlsUiController
 ) : ComponentActivity() {
 
     companion object {
+        private const val DEBUG = false
         private const val TAG = "ControlsEditingActivity"
-        private const val EXTRA_STRUCTURE = ControlsFavoritingActivity.EXTRA_STRUCTURE
+        const val EXTRA_STRUCTURE = ControlsFavoritingActivity.EXTRA_STRUCTURE
         private val SUBTITLE_ID = R.string.controls_favorite_rearrange
         private val EMPTY_TEXT_ID = R.string.controls_favorite_removed
     }
@@ -65,15 +80,22 @@ class ControlsEditingActivity @Inject constructor(
     private lateinit var saveButton: View
     private var backToGlobalActions = false
 
-    private val currentUserTracker = object : CurrentUserTracker(broadcastDispatcher) {
+    private val userTrackerCallback: UserTracker.Callback = object : UserTracker.Callback {
         private val startingUser = controller.currentUserId
 
-        override fun onUserSwitched(newUserId: Int) {
-            if (newUserId != startingUser) {
-                stopTracking()
+        override fun onUserChanged(newUser: Int, userContext: Context) {
+            if (newUser != startingUser) {
+                userTracker.removeCallback(this)
                 finish()
             }
         }
+    }
+
+    private val mOnBackInvokedCallback = OnBackInvokedCallback {
+        if (DEBUG) {
+            Log.d(TAG, "Predictive Back dispatcher called mOnBackInvokedCallback")
+        }
+        onBackPressed()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -101,12 +123,23 @@ class ControlsEditingActivity @Inject constructor(
         super.onStart()
         setUpList()
 
-        currentUserTracker.startTracking()
+        userTracker.addCallback(userTrackerCallback, mainExecutor)
+
+        if (DEBUG) {
+            Log.d(TAG, "Registered onBackInvokedCallback")
+        }
+        onBackInvokedDispatcher.registerOnBackInvokedCallback(
+                OnBackInvokedDispatcher.PRIORITY_DEFAULT, mOnBackInvokedCallback)
     }
 
     override fun onStop() {
         super.onStop()
-        currentUserTracker.stopTracking()
+        userTracker.removeCallback(userTrackerCallback)
+
+        if (DEBUG) {
+            Log.d(TAG, "Unregistered onBackInvokedCallback")
+        }
+        onBackInvokedDispatcher.unregisterOnBackInvokedCallback(mOnBackInvokedCallback)
     }
 
     override fun onBackPressed() {
@@ -238,7 +271,7 @@ class ControlsEditingActivity @Inject constructor(
     }
 
     override fun onDestroy() {
-        currentUserTracker.stopTracking()
+        userTracker.removeCallback(userTrackerCallback)
         super.onDestroy()
     }
 }

@@ -43,15 +43,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.android.systemui.Dependency;
 import com.android.systemui.Dumpable;
 import com.android.systemui.animation.Interpolators;
 import com.android.systemui.colorextraction.SysuiColorExtractor;
 import com.android.systemui.dagger.qualifiers.Main;
 import com.android.systemui.dump.DumpManager;
-import com.android.systemui.media.MediaData;
-import com.android.systemui.media.MediaDataManager;
-import com.android.systemui.media.SmartspaceMediaData;
+import com.android.systemui.media.controls.models.player.MediaData;
+import com.android.systemui.media.controls.models.recommendation.SmartspaceMediaData;
+import com.android.systemui.media.controls.pipeline.MediaDataManager;
 import com.android.systemui.plugins.statusbar.StatusBarStateController;
 import com.android.systemui.statusbar.dagger.CentralSurfacesModule;
 import com.android.systemui.statusbar.notification.collection.NotifCollection;
@@ -92,6 +91,7 @@ public class NotificationMediaManager implements Dumpable, TunerService.Tunable 
     private static final String TAG = "NotificationMediaManager";
     public static final boolean DEBUG_MEDIA = false;
 
+<<<<<<< HEAD
     private static final String LOCKSCREEN_MEDIA_METADATA =
             "customsecure:" + Settings.Secure.LOCKSCREEN_MEDIA_METADATA;
 
@@ -100,6 +100,11 @@ public class NotificationMediaManager implements Dumpable, TunerService.Tunable 
     private final SysuiColorExtractor mColorExtractor = Dependency.get(SysuiColorExtractor.class);
     private final KeyguardStateController mKeyguardStateController = Dependency.get(
             KeyguardStateController.class);
+=======
+    private final StatusBarStateController mStatusBarStateController;
+    private final SysuiColorExtractor mColorExtractor;
+    private final KeyguardStateController mKeyguardStateController;
+>>>>>>> e85c64c6acda0c00d6b231804a3429ff090664a1
     private final KeyguardBypassController mKeyguardBypassController;
     private static final HashSet<Integer> PAUSED_MEDIA_STATES = new HashSet<>();
     private static final HashSet<Integer> CONNECTING_MEDIA_STATES = new HashSet<>();
@@ -187,6 +192,9 @@ public class NotificationMediaManager implements Dumpable, TunerService.Tunable 
             NotifCollection notifCollection,
             @Main DelayableExecutor mainExecutor,
             MediaDataManager mediaDataManager,
+            StatusBarStateController statusBarStateController,
+            SysuiColorExtractor colorExtractor,
+            KeyguardStateController keyguardStateController,
             DumpManager dumpManager) {
         mContext = context;
         mMediaArtworkProcessor = mediaArtworkProcessor;
@@ -200,6 +208,9 @@ public class NotificationMediaManager implements Dumpable, TunerService.Tunable 
         mMediaDataManager = mediaDataManager;
         mNotifPipeline = notifPipeline;
         mNotifCollection = notifCollection;
+        mStatusBarStateController = statusBarStateController;
+        mColorExtractor = colorExtractor;
+        mKeyguardStateController = keyguardStateController;
 
         setupNotifPipeline();
 
