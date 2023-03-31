@@ -54,6 +54,8 @@ import com.android.systemui.statusbar.policy.VariableDateView;
 import com.android.systemui.util.LargeScreenUtils;
 import com.android.systemui.tuner.TunerService;
 
+import android.provider.Settings;
+
 import java.util.List;
 
 /**
@@ -184,8 +186,8 @@ public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tu
                 .build();
 
         Dependency.get(TunerService.class).addTunable(this,
-                StatusBarIconController.ICON_HIDE_LIST,
-                NETWORK_TRAFFIC_LOCATION);
+                NETWORK_TRAFFIC_LOCATION,
+                StatusBarIconController.ICON_HIDE_LIST);
     }
 
     void onAttach(TintedIconManager iconManager,
