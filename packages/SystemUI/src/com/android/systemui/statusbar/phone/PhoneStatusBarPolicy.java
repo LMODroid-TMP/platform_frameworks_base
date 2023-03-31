@@ -175,7 +175,7 @@ public class PhoneStatusBarPolicy
     private boolean mShowNetworkTraffic;
 
     @Inject
-    public PhoneStatusBarPolicy(StatusBarIconController iconController,
+    public PhoneStatusBarPolicy(Context context, StatusBarIconController iconController,
             CommandQueue commandQueue, BroadcastDispatcher broadcastDispatcher,
             @UiBackground Executor uiBgExecutor, @Main Looper looper, @Main Resources resources,
             CastController castController, HotspotController hotspotController,
