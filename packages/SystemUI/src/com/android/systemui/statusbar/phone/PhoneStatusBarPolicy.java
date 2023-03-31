@@ -103,8 +103,7 @@ public class PhoneStatusBarPolicy
                 KeyguardStateController.Callback,
                 PrivacyItemController.Callback,
                 LocationController.LocationChangeCallback,
-                RecordingController.RecordingStateChangeCallback,
-                TunerService.Tunable {
+               RecordingController.RecordingStateChangeCallback {
     private static final String TAG = "PhoneStatusBarPolicy";
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
 
@@ -247,8 +246,6 @@ public class PhoneStatusBarPolicy
         mSharedPreferences = sharedPreferences;
         mDateFormatUtil = dateFormatUtil;
 
-        Dependency.get(TunerService.class).addTunable(this,
-                NETWORK_TRAFFIC_LOCATION);
     }
 
     /** Initialize the object after construction. */
@@ -386,19 +383,6 @@ public class PhoneStatusBarPolicy
     @Override
     public void onConfigChanged(ZenModeConfig config) {
         updateVolumeZen();
-    }
-
-    @Override
-    public void onTuningChanged(String key, String newValue) {
-        switch (key) {
-            case NETWORK_TRAFFIC_LOCATION:
-                mShowNetworkTraffic =
-                        TunerService.parseInteger(newValue, 0) == 1;
-                updateNetworkTraffic();
-                break;
-            default:
-                break;
-        }
     }
 
     private void updateAlarm() {
