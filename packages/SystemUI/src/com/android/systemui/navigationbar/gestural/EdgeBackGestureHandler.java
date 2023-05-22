@@ -222,7 +222,7 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
     private final Region mExcludeRegion = new Region();
     private final Region mDesktopModeExcludeRegion = new Region();
     private final Region mUnrestrictedExcludeRegion = new Region();
-    private final Provider<NavigationBarEdgePanel> mNavBarEdgePanelProvider;
+    private final NavigationBarEdgePanel.Factory mNavBarEdgePanelFactory;
     private final Provider<BackGestureTfClassifierProvider>
             mBackGestureTfClassifierProviderProvider;
     private final FeatureFlags mFeatureFlags;
@@ -379,7 +379,7 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
             Optional<Pip> pipOptional,
             Optional<DesktopMode> desktopModeOptional,
             FalsingManager falsingManager,
-            Provider<NavigationBarEdgePanel> navigationBarEdgePanelProvider,
+            NavigationBarEdgePanel.Factory navigationBarEdgePanelFactory,
             Provider<BackGestureTfClassifierProvider> backGestureTfClassifierProviderProvider,
             FeatureFlags featureFlags,
             Provider<LightBarController> lightBarControllerProvider) {
@@ -400,7 +400,7 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
         mPipOptional = pipOptional;
         mDesktopModeOptional = desktopModeOptional;
         mFalsingManager = falsingManager;
-        mNavBarEdgePanelProvider = navigationBarEdgePanelProvider;
+        mNavBarEdgePanelFactory = navigationBarEdgePanelFactory;
         mBackGestureTfClassifierProviderProvider = backGestureTfClassifierProviderProvider;
         mFeatureFlags = featureFlags;
         mLightBarControllerProvider = lightBarControllerProvider;
@@ -662,7 +662,7 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
             setEdgeBackPlugin(
                     mBackPanelControllerFactory.create(mContext));
         } else {
-            setEdgeBackPlugin(mNavBarEdgePanelProvider.get());
+            setEdgeBackPlugin(mNavBarEdgePanelFactory.create(mContext));
         }
     }
 
@@ -1277,7 +1277,7 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
         private final Optional<Pip> mPipOptional;
         private final Optional<DesktopMode> mDesktopModeOptional;
         private final FalsingManager mFalsingManager;
-        private final Provider<NavigationBarEdgePanel> mNavBarEdgePanelProvider;
+        private final NavigationBarEdgePanel.Factory mNavBarEdgePanelFactory;
         private final Provider<BackGestureTfClassifierProvider>
                 mBackGestureTfClassifierProviderProvider;
         private final FeatureFlags mFeatureFlags;
@@ -1299,7 +1299,7 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
                        Optional<Pip> pipOptional,
                        Optional<DesktopMode> desktopModeOptional,
                        FalsingManager falsingManager,
-                       Provider<NavigationBarEdgePanel> navBarEdgePanelProvider,
+                       NavigationBarEdgePanel.Factory navBarEdgePanelFactory,
                        Provider<BackGestureTfClassifierProvider>
                                backGestureTfClassifierProviderProvider,
                        FeatureFlags featureFlags,
@@ -1319,7 +1319,7 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
             mPipOptional = pipOptional;
             mDesktopModeOptional = desktopModeOptional;
             mFalsingManager = falsingManager;
-            mNavBarEdgePanelProvider = navBarEdgePanelProvider;
+            mNavBarEdgePanelFactory = navBarEdgePanelFactory;
             mBackGestureTfClassifierProviderProvider = backGestureTfClassifierProviderProvider;
             mFeatureFlags = featureFlags;
             mLightBarControllerProvider = lightBarControllerProvider;
@@ -1344,7 +1344,7 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
                     mPipOptional,
                     mDesktopModeOptional,
                     mFalsingManager,
-                    mNavBarEdgePanelProvider,
+                    mNavBarEdgePanelFactory,
                     mBackGestureTfClassifierProviderProvider,
                     mFeatureFlags,
                     mLightBarControllerProvider);
