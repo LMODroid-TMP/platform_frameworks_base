@@ -222,11 +222,8 @@ public class SecureSettings {
         Settings.Secure.BLUETOOTH_LE_BROADCAST_PROGRAM_INFO,
         Settings.Secure.BLUETOOTH_LE_BROADCAST_CODE,
         Settings.Secure.BLUETOOTH_LE_BROADCAST_APP_SOURCE_NAME,
-<<<<<<< HEAD
-        Settings.Secure.TETHERING_ALLOW_VPN_UPSTREAMS
-=======
         Settings.Secure.LOCK_SCREEN_WEATHER_ENABLED,
-        Settings.Secure.ACCESSIBILITY_FONT_SCALING_HAS_BEEN_CHANGED
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
+        Settings.Secure.ACCESSIBILITY_FONT_SCALING_HAS_BEEN_CHANGED,
+        Settings.Secure.TETHERING_ALLOW_VPN_UPSTREAMS
     };
 }

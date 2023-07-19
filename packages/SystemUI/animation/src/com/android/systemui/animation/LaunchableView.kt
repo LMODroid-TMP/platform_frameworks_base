@@ -32,11 +32,6 @@ interface LaunchableView {
      * be restored to its expected value, i.e. it should have the visibility of the last call to
      * `View.setVisibility()` that was made after `setShouldBlockVisibilityChanges(true)`, if any,
      * or the original view visibility otherwise.
-<<<<<<< HEAD
-     *
-     * Note that calls to [View.setTransitionVisibility] shouldn't be blocked.
-=======
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
      *
      * Note that calls to [View.setTransitionVisibility] shouldn't be blocked.
      *

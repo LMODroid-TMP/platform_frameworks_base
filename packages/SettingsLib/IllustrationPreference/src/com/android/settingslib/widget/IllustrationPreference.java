@@ -134,12 +134,8 @@ public class IllustrationPreference extends Preference {
         lp.width = screenWidth < screenHeight ? screenWidth : screenHeight;
         illustrationFrame.setLayoutParams(lp);
 
-<<<<<<< HEAD
-        handleImageWithAnimation(illustrationFrame, illustrationView);
-=======
         illustrationView.setCacheComposition(mCacheComposition);
-        handleImageWithAnimation(illustrationView);
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
+        handleImageWithAnimation(illustrationFrame, illustrationView);
         handleImageFrameMaxHeight(backgroundView, illustrationView);
 
         if (mIsAutoScale) {

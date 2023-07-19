@@ -312,11 +312,8 @@ android_library {
         "LowLightDreamLib",
         "motion_tool_lib",
         "androidx.core_core-animation-testing-nodeps",
-<<<<<<< HEAD
-        "vendor.lineage.powershare-V1.0-java",
-=======
         "androidx.compose.ui_ui",
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
+        "vendor.lineage.powershare-V1.0-java",
     ],
 }
 

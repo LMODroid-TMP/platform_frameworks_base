@@ -738,15 +738,9 @@ public class StartingSurfaceDrawer {
         }
 
         // Reset the system bar color which set by splash screen, make it align to the app.
-<<<<<<< HEAD
         private boolean clearSystemBarColor() {
-            if (mDecorView == null) {
-                return false;
-=======
-        private void clearSystemBarColor() {
             if (mDecorView == null || !mDecorView.isAttachedToWindow()) {
-                return;
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
+                return false;
             }
             if (mDecorView.getLayoutParams() instanceof WindowManager.LayoutParams) {
                 final WindowManager.LayoutParams lp =

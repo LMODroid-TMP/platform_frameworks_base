@@ -327,15 +327,11 @@ public class Camera {
      *    low-level failure).
      */
     public static void getCameraInfo(int cameraId, CameraInfo cameraInfo) {
-<<<<<<< HEAD
         if (cameraId >= getNumberOfCameras()) {
             throw new RuntimeException("Unknown camera ID");
         }
-        boolean overrideToPortrait = shouldOverrideToPortrait();
-=======
         boolean overrideToPortrait = CameraManager.shouldOverrideToPortrait(
                 ActivityThread.currentApplication().getApplicationContext());
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 
         _getCameraInfo(cameraId, overrideToPortrait, cameraInfo);
         IBinder b = ServiceManager.getService(Context.AUDIO_SERVICE);

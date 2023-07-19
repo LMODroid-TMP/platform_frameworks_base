@@ -11933,7 +11933,13 @@ public final class Settings {
                 "extra_automatic_power_save_mode";
 
         /**
-<<<<<<< HEAD
+         * Whether lockscreen weather is enabled.
+         *
+         * @hide
+         */
+        public static final String LOCK_SCREEN_WEATHER_ENABLED = "lockscreen_weather_enabled";
+
+        /**
          * Whether touch hovering is enabled on supported hardware
          * @hide
          */
@@ -11984,13 +11990,6 @@ public final class Settings {
          * @hide
          */
         public static final String LOCK_PASS_TO_SECURITY_VIEW = "lock_screen_pass_to_security_view";
-=======
-         * Whether lockscreen weather is enabled.
-         *
-         * @hide
-         */
-        public static final String LOCK_SCREEN_WEATHER_ENABLED = "lockscreen_weather_enabled";
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 
         /**
          * These entries are considered common between the personal and the managed profile,
