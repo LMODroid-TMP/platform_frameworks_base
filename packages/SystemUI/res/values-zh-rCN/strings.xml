@@ -1039,9 +1039,7 @@
     <string name="stylus_battery_low_percentage" msgid="1620068112350141558">"电池还剩 <xliff:g id="PERCENTAGE">%s</xliff:g> 的电量"</string>
     <string name="stylus_battery_low_subtitle" msgid="3583843128908823273">"请将触控笔连接充电器"</string>
     <string name="stylus_battery_low" msgid="7134370101603167096">"触控笔电池电量低"</string>
-<<<<<<< HEAD
     <string name="quick_controls_subtitle" msgid="1667408093326318053">"为您所连接的设备添加控件"</string>
-=======
     <string name="video_camera" msgid="7654002575156149298">"摄像机"</string>
     <string name="call_from_work_profile_title" msgid="6991157106804289643">"无法通过这份资料拨打电话"</string>
     <string name="call_from_work_profile_text" msgid="3458704745640229638">"根据您的工作政策，您只能通过工作资料拨打电话"</string>
@@ -1053,5 +1051,4 @@
     <string name="camera_and_microphone_blocked_dream_overlay_content_description" msgid="7891078093416249764">"已禁用摄像头和麦克风"</string>
     <string name="microphone_blocked_dream_overlay_content_description" msgid="5466897982130007033">"已禁用麦克风"</string>
     <string name="priority_mode_dream_overlay_content_description" msgid="6044561000253314632">"已开启优先模式"</string>
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 </resources>

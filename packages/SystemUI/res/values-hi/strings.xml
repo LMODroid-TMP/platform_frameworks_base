@@ -1039,9 +1039,7 @@
     <string name="stylus_battery_low_percentage" msgid="1620068112350141558">"<xliff:g id="PERCENTAGE">%s</xliff:g> बैटरी बची है"</string>
     <string name="stylus_battery_low_subtitle" msgid="3583843128908823273">"अपने स्टाइलस को चार्ज करें"</string>
     <string name="stylus_battery_low" msgid="7134370101603167096">"स्टाइलस की बैटरी कम है"</string>
-<<<<<<< HEAD
     <string name="quick_controls_subtitle" msgid="1667408093326318053">"कनेक्ट किए गए डिवाइस के लिए कंट्रोल जोड़ें"</string>
-=======
     <string name="video_camera" msgid="7654002575156149298">"वीडियो कैमरा"</string>
     <string name="call_from_work_profile_title" msgid="6991157106804289643">"यह प्रोफ़ाइल होने पर कॉल नहीं की जा सकती"</string>
     <string name="call_from_work_profile_text" msgid="3458704745640229638">"ऑफ़िस की नीति के तहत, वर्क प्रोफ़ाइल होने पर ही फ़ोन कॉल किए जा सकते हैं"</string>
@@ -1053,5 +1051,4 @@
     <string name="camera_and_microphone_blocked_dream_overlay_content_description" msgid="7891078093416249764">"कैमरे और माइक्रोफ़ोन का ऐक्सेस नहीं है"</string>
     <string name="microphone_blocked_dream_overlay_content_description" msgid="5466897982130007033">"माइक्रोफ़ोन का ऐक्सेस नहीं है"</string>
     <string name="priority_mode_dream_overlay_content_description" msgid="6044561000253314632">"प्राथमिकता मोड चालू है"</string>
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 </resources>

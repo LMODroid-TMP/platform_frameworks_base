@@ -1039,9 +1039,7 @@
     <string name="stylus_battery_low_percentage" msgid="1620068112350141558">"<xliff:g id="PERCENTAGE">%s</xliff:g> ባትሪ ይቀራል"</string>
     <string name="stylus_battery_low_subtitle" msgid="3583843128908823273">"ብሮስፌዎን ከኃይል መሙያ ጋር ያገናኙ"</string>
     <string name="stylus_battery_low" msgid="7134370101603167096">"የብሮስፌ ባትሪ ዝቅተኛ ነው"</string>
-<<<<<<< HEAD
     <string name="quick_controls_subtitle" msgid="1667408093326318053">"ለእርስዎ የተገናኙ መሣሪያዎች መቆጣጠሪያዎችን ያክሉ"</string>
-=======
     <string name="video_camera" msgid="7654002575156149298">"የቪድዮ ካሜራ"</string>
     <string name="call_from_work_profile_title" msgid="6991157106804289643">"ከዚህ መገለጫ መደወል አይቻልም"</string>
     <string name="call_from_work_profile_text" msgid="3458704745640229638">"የሥራ መመሪያዎ እርስዎ ከሥራ መገለጫው ብቻ ጥሪ እንዲያደርጉ ይፈቅድልዎታል"</string>
@@ -1053,5 +1051,4 @@
     <string name="camera_and_microphone_blocked_dream_overlay_content_description" msgid="7891078093416249764">"ካሜራ እና ማይክሮፎን ታግደዋል"</string>
     <string name="microphone_blocked_dream_overlay_content_description" msgid="5466897982130007033">"ማይክሮፎን ታግዷል"</string>
     <string name="priority_mode_dream_overlay_content_description" msgid="6044561000253314632">"የቅድሚያ ሁነታ በርቷል"</string>
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 </resources>

@@ -1039,9 +1039,7 @@
     <string name="stylus_battery_low_percentage" msgid="1620068112350141558">"Përqindja e mbetur e baterisë: <xliff:g id="PERCENTAGE">%s</xliff:g>"</string>
     <string name="stylus_battery_low_subtitle" msgid="3583843128908823273">"Lidhe stilolapsin me një karikues"</string>
     <string name="stylus_battery_low" msgid="7134370101603167096">"Bateria e stilolapsit në nivel të ulët"</string>
-<<<<<<< HEAD
     <string name="quick_controls_subtitle" msgid="1667408093326318053">"Shto kontrolle për pajisjet e tua të lidhura"</string>
-=======
     <string name="video_camera" msgid="7654002575156149298">"Videokamera"</string>
     <string name="call_from_work_profile_title" msgid="6991157106804289643">"Nuk mund të telefonosh nga ky profil"</string>
     <string name="call_from_work_profile_text" msgid="3458704745640229638">"Politika jote e punës të lejon të bësh telefonata vetëm nga profili i punës"</string>
@@ -1053,5 +1051,4 @@
     <string name="camera_and_microphone_blocked_dream_overlay_content_description" msgid="7891078093416249764">"Kamera dhe mikrofoni u bllokuan"</string>
     <string name="microphone_blocked_dream_overlay_content_description" msgid="5466897982130007033">"Mikrofoni u bllokua"</string>
     <string name="priority_mode_dream_overlay_content_description" msgid="6044561000253314632">"Modaliteti i përparësisë aktiv"</string>
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 </resources>

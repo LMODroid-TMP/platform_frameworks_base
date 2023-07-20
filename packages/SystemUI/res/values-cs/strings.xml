@@ -1039,9 +1039,7 @@
     <string name="stylus_battery_low_percentage" msgid="1620068112350141558">"Zbývá <xliff:g id="PERCENTAGE">%s</xliff:g> baterie"</string>
     <string name="stylus_battery_low_subtitle" msgid="3583843128908823273">"Připojte dotykové pero k nabíječce"</string>
     <string name="stylus_battery_low" msgid="7134370101603167096">"Slabá baterie dotykového pera"</string>
-<<<<<<< HEAD
     <string name="quick_controls_subtitle" msgid="1667408093326318053">"Přidejte ovládací prvky pro připojená zařízení"</string>
-=======
     <string name="video_camera" msgid="7654002575156149298">"Videokamera"</string>
     <string name="call_from_work_profile_title" msgid="6991157106804289643">"Z tohoto profilu nelze volat"</string>
     <string name="call_from_work_profile_text" msgid="3458704745640229638">"Vaše pracovní zásady vám umožňují telefonovat pouze z pracovního profilu"</string>
@@ -1053,5 +1051,4 @@
     <string name="camera_and_microphone_blocked_dream_overlay_content_description" msgid="7891078093416249764">"Kamera a mikrofon jsou blokovány"</string>
     <string name="microphone_blocked_dream_overlay_content_description" msgid="5466897982130007033">"Mikrofon je blokován"</string>
     <string name="priority_mode_dream_overlay_content_description" msgid="6044561000253314632">"Režim priority je zapnutý"</string>
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 </resources>

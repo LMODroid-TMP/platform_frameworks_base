@@ -1039,9 +1039,7 @@
     <string name="stylus_battery_low_percentage" msgid="1620068112350141558">"Pozostało <xliff:g id="PERCENTAGE">%s</xliff:g> baterii"</string>
     <string name="stylus_battery_low_subtitle" msgid="3583843128908823273">"Podłącz rysik do ładowarki"</string>
     <string name="stylus_battery_low" msgid="7134370101603167096">"Słaba bateria w rysiku"</string>
-<<<<<<< HEAD
     <string name="quick_controls_subtitle" msgid="1667408093326318053">"Dodaj elementy sterujące do połączonych urządzeń"</string>
-=======
     <string name="video_camera" msgid="7654002575156149298">"Kamera"</string>
     <string name="call_from_work_profile_title" msgid="6991157106804289643">"Nie można nawiązać połączenia z tego profilu"</string>
     <string name="call_from_work_profile_text" msgid="3458704745640229638">"Zasady obowiązujące w firmie zezwalają na nawiązywanie połączeń telefonicznych tylko w profilu służbowym"</string>
@@ -1053,5 +1051,4 @@
     <string name="camera_and_microphone_blocked_dream_overlay_content_description" msgid="7891078093416249764">"Kamera i mikrofon są zablokowane"</string>
     <string name="microphone_blocked_dream_overlay_content_description" msgid="5466897982130007033">"Mikrofon jest zablokowany"</string>
     <string name="priority_mode_dream_overlay_content_description" msgid="6044561000253314632">"Tryb priorytetowy jest włączony"</string>
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 </resources>

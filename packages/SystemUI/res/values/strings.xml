@@ -2830,9 +2830,8 @@
 
     <!-- Title for notification of low stylus battery. [CHAR_LIMIT=NONE] -->
     <string name="stylus_battery_low">Stylus battery low</string>
-<<<<<<< HEAD
+
     <string name="quick_controls_subtitle">Add controls for your connected devices</string>
-=======
 
     <!-- Label for a lock screen shortcut to start the camera in video mode. [CHAR_LIMIT=16] -->
     <string name="video_camera">Video camera</string>
@@ -2875,5 +2874,4 @@
 
     <!-- Content description for priority mode icon on dream [CHAR LIMIT=NONE] -->
     <string name="priority_mode_dream_overlay_content_description">Priority mode on</string>
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 </resources>

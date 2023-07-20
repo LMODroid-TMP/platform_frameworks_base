@@ -1039,9 +1039,7 @@
     <string name="stylus_battery_low_percentage" msgid="1620068112350141558">"<xliff:g id="PERCENTAGE">%s</xliff:g> బ్యాటరీ మిగిలి ఉంది"</string>
     <string name="stylus_battery_low_subtitle" msgid="3583843128908823273">"మీ స్టైలస్‌ను ఛార్జర్‌కి కనెక్ట్ చేయండి"</string>
     <string name="stylus_battery_low" msgid="7134370101603167096">"తక్కువ స్టైలస్ బ్యాటరీ"</string>
-<<<<<<< HEAD
     <string name="quick_controls_subtitle" msgid="1667408093326318053">"మీ కనెక్ట్ అయిన పరికరాలకు నియంత్రణలను జోడించండి"</string>
-=======
     <string name="video_camera" msgid="7654002575156149298">"వీడియో కెమెరా"</string>
     <string name="call_from_work_profile_title" msgid="6991157106804289643">"ఈ ప్రొఫైల్ నుండి కాల్ చేయడం సాధ్యపడలేదు"</string>
     <string name="call_from_work_profile_text" msgid="3458704745640229638">"మీ వర్క్ పాలసీ, మిమ్మల్ని వర్క్ ప్రొఫైల్ నుండి మాత్రమే ఫోన్ కాల్స్ చేయడానికి అనుమతిస్తుంది"</string>
@@ -1053,5 +1051,4 @@
     <string name="camera_and_microphone_blocked_dream_overlay_content_description" msgid="7891078093416249764">"కెమెరా, మైక్రోఫోన్ బ్లాక్ చేయబడ్డాయి"</string>
     <string name="microphone_blocked_dream_overlay_content_description" msgid="5466897982130007033">"మైక్రోఫోన్ బ్లాక్ చేయబడింది"</string>
     <string name="priority_mode_dream_overlay_content_description" msgid="6044561000253314632">"ప్రయారిటీ మోడ్ ఆన్‌లో ఉంది"</string>
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 </resources>

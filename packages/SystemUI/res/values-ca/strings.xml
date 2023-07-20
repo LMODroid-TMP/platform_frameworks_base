@@ -1039,9 +1039,7 @@
     <string name="stylus_battery_low_percentage" msgid="1620068112350141558">"Queda un <xliff:g id="PERCENTAGE">%s</xliff:g> de bateria"</string>
     <string name="stylus_battery_low_subtitle" msgid="3583843128908823273">"Connecta el llapis òptic a un carregador"</string>
     <string name="stylus_battery_low" msgid="7134370101603167096">"Bateria del llapis òptic baixa"</string>
-<<<<<<< HEAD
     <string name="quick_controls_subtitle" msgid="1667408093326318053">"Afegeix controls per als teus dispositius connectats"</string>
-=======
     <string name="video_camera" msgid="7654002575156149298">"Càmera de vídeo"</string>
     <string name="call_from_work_profile_title" msgid="6991157106804289643">"No es pot trucar des d\'aquest perfil"</string>
     <string name="call_from_work_profile_text" msgid="3458704745640229638">"La teva política de treball et permet fer trucades només des del perfil de treball"</string>
@@ -1053,5 +1051,4 @@
     <string name="camera_and_microphone_blocked_dream_overlay_content_description" msgid="7891078093416249764">"La càmera i el micròfon estan bloquejats"</string>
     <string name="microphone_blocked_dream_overlay_content_description" msgid="5466897982130007033">"El micròfon està bloquejat"</string>
     <string name="priority_mode_dream_overlay_content_description" msgid="6044561000253314632">"El mode Prioritat està activat"</string>
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 </resources>

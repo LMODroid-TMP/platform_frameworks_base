@@ -1039,9 +1039,7 @@
     <string name="stylus_battery_low_percentage" msgid="1620068112350141558">"バッテリー残量 <xliff:g id="PERCENTAGE">%s</xliff:g>"</string>
     <string name="stylus_battery_low_subtitle" msgid="3583843128908823273">"タッチペンを充電器に接続してください"</string>
     <string name="stylus_battery_low" msgid="7134370101603167096">"タッチペンのバッテリー残量が少なくなっています"</string>
-<<<<<<< HEAD
     <string name="quick_controls_subtitle" msgid="1667408093326318053">"接続済みデバイスのコントロールを追加します"</string>
-=======
     <string name="video_camera" msgid="7654002575156149298">"ビデオカメラ"</string>
     <string name="call_from_work_profile_title" msgid="6991157106804289643">"このプロファイルからは通話を発信できません"</string>
     <string name="call_from_work_profile_text" msgid="3458704745640229638">"仕事用ポリシーでは、通話の発信を仕事用プロファイルからのみに制限できます"</string>
@@ -1053,5 +1051,4 @@
     <string name="camera_and_microphone_blocked_dream_overlay_content_description" msgid="7891078093416249764">"カメラとマイクはブロックされています"</string>
     <string name="microphone_blocked_dream_overlay_content_description" msgid="5466897982130007033">"マイクはブロックされています"</string>
     <string name="priority_mode_dream_overlay_content_description" msgid="6044561000253314632">"優先モードは ON です"</string>
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 </resources>

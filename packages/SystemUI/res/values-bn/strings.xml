@@ -1039,9 +1039,7 @@
     <string name="stylus_battery_low_percentage" msgid="1620068112350141558">"<xliff:g id="PERCENTAGE">%s</xliff:g> ব্যাটারির চার্জ বাকি আছে"</string>
     <string name="stylus_battery_low_subtitle" msgid="3583843128908823273">"কোনও চার্জারের সাথে আপনার স্টাইলাস কানেক্ট করুন"</string>
     <string name="stylus_battery_low" msgid="7134370101603167096">"স্টাইলাস ব্যাটারিতে চার্জ কম আছে"</string>
-<<<<<<< HEAD
     <string name="quick_controls_subtitle" msgid="1667408093326318053">"আপনার কানেক্ট করা ডিভাইসের জন্য কন্ট্রোল যোগ করুন"</string>
-=======
     <string name="video_camera" msgid="7654002575156149298">"ভিডিও ক্যামেরা"</string>
     <string name="call_from_work_profile_title" msgid="6991157106804289643">"এই প্রোফাইল থেকে কল করা যাচ্ছে না"</string>
     <string name="call_from_work_profile_text" msgid="3458704745640229638">"কাজ সংক্রান্ত নীতি, আপনাকে শুধুমাত্র অফিস প্রোফাইল থেকে কল করার অনুমতি দেয়"</string>
@@ -1053,5 +1051,4 @@
     <string name="camera_and_microphone_blocked_dream_overlay_content_description" msgid="7891078093416249764">"ক্যামেরা এবং মাইক্রোফোনের অ্যাক্সেস ব্লক করা আছে"</string>
     <string name="microphone_blocked_dream_overlay_content_description" msgid="5466897982130007033">"মাইক্রোফোনের অ্যাক্সেস ব্লক করা আছে"</string>
     <string name="priority_mode_dream_overlay_content_description" msgid="6044561000253314632">"\'প্রায়োরিটি\' মোড চালু করা আছে"</string>
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 </resources>

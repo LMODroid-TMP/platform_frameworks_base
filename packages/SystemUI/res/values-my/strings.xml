@@ -1039,9 +1039,7 @@
     <string name="stylus_battery_low_percentage" msgid="1620068112350141558">"ဘက်ထရီ <xliff:g id="PERCENTAGE">%s</xliff:g> ကျန်သေးသည်"</string>
     <string name="stylus_battery_low_subtitle" msgid="3583843128908823273">"စတိုင်လပ်စ်ကို အားသွင်းကိရိယာနှင့် ချိတ်ဆက်ခြင်း"</string>
     <string name="stylus_battery_low" msgid="7134370101603167096">"စတိုင်လပ်စ် ဘက်ထရီ အားနည်းနေသည်"</string>
-<<<<<<< HEAD
     <string name="quick_controls_subtitle" msgid="1667408093326318053">"သင့်ချိတ်ဆက်ထားသော စက်များအတွက် ထိန်းချုပ်မှုများ ထည့်ပါ"</string>
-=======
     <string name="video_camera" msgid="7654002575156149298">"ဗီဒီယိုကင်မရာ"</string>
     <string name="call_from_work_profile_title" msgid="6991157106804289643">"ဤပရိုဖိုင်မှ ခေါ်ဆို၍ မရပါ"</string>
     <string name="call_from_work_profile_text" msgid="3458704745640229638">"သင့်အလုပ်မူဝါဒသည် သင့်အား အလုပ်ပရိုဖိုင်မှသာ ဖုန်းခေါ်ဆိုခွင့် ပြုသည်"</string>
@@ -1053,5 +1051,4 @@
     <string name="camera_and_microphone_blocked_dream_overlay_content_description" msgid="7891078093416249764">"ကင်မရာနှင့် မိုက်ခရိုဖုန်းကို ပိတ်ထားသည်"</string>
     <string name="microphone_blocked_dream_overlay_content_description" msgid="5466897982130007033">"မိုက်ခရိုဖုန်းကို ပိတ်ထားသည်"</string>
     <string name="priority_mode_dream_overlay_content_description" msgid="6044561000253314632">"ဦးစားပေးမုဒ် ဖွင့်ထားသည်"</string>
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 </resources>

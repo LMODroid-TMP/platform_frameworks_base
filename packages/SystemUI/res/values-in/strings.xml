@@ -1039,9 +1039,7 @@
     <string name="stylus_battery_low_percentage" msgid="1620068112350141558">"Baterai tersisa <xliff:g id="PERCENTAGE">%s</xliff:g>"</string>
     <string name="stylus_battery_low_subtitle" msgid="3583843128908823273">"Hubungkan stilus ke pengisi daya"</string>
     <string name="stylus_battery_low" msgid="7134370101603167096">"Baterai stilus lemah"</string>
-<<<<<<< HEAD
     <string name="quick_controls_subtitle" msgid="1667408093326318053">"Tambahkan kontrol untuk perangkat terhubung"</string>
-=======
     <string name="video_camera" msgid="7654002575156149298">"Kamera video"</string>
     <string name="call_from_work_profile_title" msgid="6991157106804289643">"Tidak dapat melakukan panggilan dari profil ini"</string>
     <string name="call_from_work_profile_text" msgid="3458704745640229638">"Kebijakan kantor mengizinkan Anda melakukan panggilan telepon hanya dari profil kerja"</string>
@@ -1053,5 +1051,4 @@
     <string name="camera_and_microphone_blocked_dream_overlay_content_description" msgid="7891078093416249764">"Kamera dan mikrofon diblokir"</string>
     <string name="microphone_blocked_dream_overlay_content_description" msgid="5466897982130007033">"Mikrofon diblokir"</string>
     <string name="priority_mode_dream_overlay_content_description" msgid="6044561000253314632">"Mode prioritas diaktifkan"</string>
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 </resources>
