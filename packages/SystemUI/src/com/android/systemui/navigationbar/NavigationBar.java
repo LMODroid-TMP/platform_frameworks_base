@@ -660,11 +660,8 @@ public class NavigationBar extends ViewController<NavigationBarView> implements 
 
         mView.setBackgroundExecutor(bgExecutor);
         mView.setEdgeBackGestureHandler(mEdgeBackGestureHandler);
-<<<<<<< HEAD
-        mView.setBoundsChangeListener(this::onBoundsChange);
-=======
         mView.setDisplayTracker(mDisplayTracker);
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
+        mView.setBoundsChangeListener(this::onBoundsChange);
         mNavBarMode = mNavigationModeController.addListener(mModeChangedListener);
     }
 

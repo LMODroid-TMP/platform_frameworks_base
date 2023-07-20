@@ -21,12 +21,9 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static android.view.WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
 import static android.view.WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS;
 import static android.view.WindowManager.ScreenshotSource.SCREENSHOT_GLOBAL_ACTIONS;
-<<<<<<< HEAD
 import static android.view.WindowManager.TAKE_SCREENSHOT_FULLSCREEN;
 import static android.view.WindowManager.TAKE_SCREENSHOT_SELECTED_REGION;
-=======
 import static android.view.WindowManagerPolicyConstants.NAV_BAR_MODE_2BUTTON;
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 
 import android.view.CrossWindowBlurListeners;
 import com.android.systemui.statusbar.BlurUtils;
@@ -1210,12 +1207,8 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-<<<<<<< HEAD
                     mScreenshotHelper.takeScreenshot(type,
                             SCREENSHOT_GLOBAL_ACTIONS, mHandler, null);
-=======
-                    mScreenshotHelper.takeScreenshot(SCREENSHOT_GLOBAL_ACTIONS, mHandler, null);
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
                     mMetricsLogger.action(MetricsEvent.ACTION_SCREENSHOT_POWER_MENU);
                     mUiEventLogger.log(GlobalActionsEvent.GA_SCREENSHOT_PRESS);
                 }

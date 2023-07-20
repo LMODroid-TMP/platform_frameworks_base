@@ -585,20 +585,7 @@ class ControlsUiControllerImpl @Inject constructor (
                             pos: Int,
                             id: Long
                         ) {
-<<<<<<< HEAD
                             if (activityContext == null) /* in global actions menu */ onDismiss.run()
-                            when (pos) {
-                                // 0: Add Control
-                                0 -> {
-                                    if (isPanel) {
-                                        startProviderSelectorActivity()
-                                    } else {
-                                        startFavoritingActivity(selectedStructure)
-                                    }
-                                }
-                                // 1: Edit controls
-                                1 -> startEditingActivity(selectedStructure)
-=======
                             when (id) {
                                 OPEN_APP_ID -> startDefaultActivity()
                                 ADD_APP_ID -> startProviderSelectorActivity()
@@ -607,7 +594,6 @@ class ControlsUiControllerImpl @Inject constructor (
                                 REMOVE_APP_ID -> startRemovingApp(
                                         selectionItem.componentName, selectionItem.appName
                                 )
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
                             }
                             dismiss()
                         }

@@ -264,19 +264,14 @@ class ControlsControllerImpl @Inject constructor (
 
     private fun resetFavorites(shouldLoad: Boolean) {
         Favorites.clear()
-<<<<<<< HEAD
-
         if (shouldLoad) {
-            Favorites.load(persistenceWrapper.readFavorites())
-        }
-=======
         Favorites.load(persistenceWrapper.readFavorites())
         // After loading favorites, add the package names of any apps with favorites to the list
         // of authorized panels. That way, if the user has previously favorited controls for an app,
         // that panel will be authorized.
         authorizedPanelsRepository.addAuthorizedPanels(
                 Favorites.getAllStructures().map { it.componentName.packageName }.toSet())
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
+        }
     }
 
     private fun confirmAvailability(): Boolean {

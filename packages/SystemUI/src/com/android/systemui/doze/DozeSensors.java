@@ -206,13 +206,8 @@ public class DozeSensors {
                         true /* configured */,
                         DozeLog.REASON_SENSOR_DOUBLE_TAP,
                         dozeParameters.doubleTapReportsTouchCoordinates(),
-<<<<<<< HEAD
                         true /* touchscreen */,
                         !dozeParameters.doubleTapNeedsProximityCheck() /* performsProxCheck */),
-=======
-                        true /* touchscreen */
-                ),
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
                 new TriggerSensor(
                         findSensors(config.tapSensorTypeMapping()),
                         Settings.Secure.DOZE_TAP_SCREEN_GESTURE,
@@ -237,14 +232,10 @@ public class DozeSensors {
                         true /* touchscreen */,
                         false /* ignoresSetting */,
                         dozeParameters.longPressUsesProx() /* requiresProx */,
-<<<<<<< HEAD
                         !dozeParameters.longPressNeedsProximityCheck() /* performsProxCheck */,
-                        true /* immediatelyReRegister */),
-=======
                         true /* immediatelyReRegister */,
                         false /* requiresAod */
                 ),
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
                 new TriggerSensor(
                         findSensor(config.udfpsLongPressSensorType()),
                         "doze_pulse_on_auth",
@@ -255,14 +246,10 @@ public class DozeSensors {
                         true /* touchscreen */,
                         false /* ignoresSetting */,
                         dozeParameters.longPressUsesProx(),
-<<<<<<< HEAD
                         !dozeParameters.longPressNeedsProximityCheck() /* performsProxCheck */,
-                        false /* immediatelyReRegister */),
-=======
                         false /* immediatelyReRegister */,
                         true /* requiresAod */
                 ),
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
                 new PluginSensor(
                         new SensorManagerPlugin.Sensor(TYPE_WAKE_DISPLAY),
                         Settings.Secure.DOZE_WAKE_DISPLAY_GESTURE,
@@ -591,12 +578,9 @@ public class DozeSensors {
                     requiresTouchscreen,
                     false /* ignoresSetting */,
                     false /* requiresProx */,
+                    performsProxCheck,
                     true /* immediatelyReRegister */,
-<<<<<<< HEAD
-                    performsProxCheck
-=======
                     false
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
             );
         }
 
@@ -652,13 +636,9 @@ public class DozeSensors {
                     ignoresSetting,
                     requiresProx,
                     immediatelyReRegister,
-<<<<<<< HEAD
                     performsProxCheck,
-                    DevicePostureController.DEVICE_POSTURE_UNKNOWN
-=======
                     DevicePostureController.DEVICE_POSTURE_UNKNOWN,
                     requiresAod
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
             );
         }
 
@@ -715,11 +695,8 @@ public class DozeSensors {
             mRequiresTouchscreen = requiresTouchscreen;
             mIgnoresSetting = ignoresSetting;
             mRequiresProx = requiresProx;
-<<<<<<< HEAD
             mPerformsProxCheck = performsProxCheck;
-=======
             mRequiresAod = requiresAod;
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
             mPosture = posture;
             mImmediatelyReRegister = immediatelyReRegister;
         }
