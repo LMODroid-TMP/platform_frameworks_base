@@ -153,15 +153,9 @@ public class ImageExporter {
      *
      * @return a listenable future result
      */
-<<<<<<< HEAD
-    ListenableFuture<Result> export(Executor executor, UUID requestId, Bitmap bitmap,
+        public ListenableFuture<Result> export(Executor executor, UUID requestId, Bitmap bitmap,
             UserHandle owner, String foregroundAppName) {
         return export(executor, requestId, bitmap, ZonedDateTime.now(), owner, foregroundAppName);
-=======
-    public ListenableFuture<Result> export(Executor executor, UUID requestId, Bitmap bitmap,
-            UserHandle owner) {
-        return export(executor, requestId, bitmap, ZonedDateTime.now(), owner);
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
     }
 
     /**
