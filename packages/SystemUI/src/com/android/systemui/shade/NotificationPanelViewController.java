@@ -364,14 +364,11 @@ public final class NotificationPanelViewController implements Dumpable {
     private final FalsingTapListener mFalsingTapListener = this::falsingAdditionalTapRequired;
     private final AccessibilityDelegate mAccessibilityDelegate = new ShadeAccessibilityDelegate();
     private final NotificationGutsManager mGutsManager;
-<<<<<<< HEAD
-    private final TunerService mTunerService;
-=======
     private final AlternateBouncerInteractor mAlternateBouncerInteractor;
     private final QuickSettingsController mQsController;
     private final InteractionJankMonitor mInteractionJankMonitor;
     private final TouchHandler mTouchHandler = new TouchHandler();
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
+    private final TunerService mTunerService;
 
     private long mDownTime;
     private boolean mTouchSlopExceededBeforeDown;
@@ -759,14 +756,11 @@ public final class NotificationPanelViewController implements Dumpable {
             @Main CoroutineDispatcher mainDispatcher,
             KeyguardTransitionInteractor keyguardTransitionInteractor,
             DumpManager dumpManager,
-<<<<<<< HEAD
+            KeyguardLongPressViewModel keyguardLongPressViewModel,
+            KeyguardInteractor keyguardInteractor,
             TunerService tunerService,
             Context context) {
-=======
-            KeyguardLongPressViewModel keyguardLongPressViewModel,
-            KeyguardInteractor keyguardInteractor) {
         mInteractionJankMonitor = interactionJankMonitor;
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
         keyguardStateController.addCallback(new KeyguardStateController.Callback() {
             @Override
             public void onKeyguardFadingAwayChanged() {
@@ -859,12 +853,8 @@ public final class NotificationPanelViewController implements Dumpable {
         mSplitShadeEnabled =
                 LargeScreenUtils.shouldUseSplitNotificationShade(mResources);
         mView.setWillNotDraw(!DEBUG_DRAWABLE);
-<<<<<<< HEAD
-        mLargeScreenShadeHeaderController = largeScreenShadeHeaderController;
-        mTunerService = tunerService;
-=======
         mShadeHeaderController = shadeHeaderController;
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
+        mTunerService = tunerService;
         mLayoutInflater = layoutInflater;
         mFeatureFlags = featureFlags;
         mFalsingCollector = falsingCollector;
@@ -2158,83 +2148,9 @@ public final class NotificationPanelViewController implements Dumpable {
         return mCentralSurfaces.getDisplayDensity();
     }
 
-<<<<<<< HEAD
-    /** Returns whether split shade is enabled and an x coordinate is outside of the QS frame. */
-    private boolean isSplitShadeAndTouchXOutsideQs(float touchX) {
-        return mSplitShadeEnabled && (touchX < mQsFrame.getX()
-                || touchX > mQsFrame.getX() + mQsFrame.getWidth());
-    }
-
-    private boolean isInQsArea(float x, float y) {
-        if (isSplitShadeAndTouchXOutsideQs(x)) {
-            return false;
-        }
-        // Let's reject anything at the very bottom around the home handle in gesture nav
-        if (mIsGestureNavigation && y > mView.getHeight() - mNavigationBarBottomHeight) {
-            return false;
-        }
-        return y <= mNotificationStackScrollLayoutController.getBottomMostNotificationBottom()
-                || y <= mQs.getView().getY() + mQs.getView().getHeight();
-    }
-
-    private boolean isOpenQsEvent(MotionEvent event) {
-        final int pointerCount = event.getPointerCount();
-        final int action = event.getActionMasked();
-
-        final boolean
-                twoFingerDrag =
-                action == MotionEvent.ACTION_POINTER_DOWN && pointerCount == 2;
-
-        final boolean
-                stylusButtonClickDrag =
-                action == MotionEvent.ACTION_DOWN && (event.isButtonPressed(
-                        MotionEvent.BUTTON_STYLUS_PRIMARY) || event.isButtonPressed(
-                        MotionEvent.BUTTON_STYLUS_SECONDARY));
-
-        final boolean
-                mouseButtonClickDrag =
-                action == MotionEvent.ACTION_DOWN && (event.isButtonPressed(
-                        MotionEvent.BUTTON_SECONDARY) || event.isButtonPressed(
-                        MotionEvent.BUTTON_TERTIARY));
-
-        final float w = mView.getMeasuredWidth();
-        final float x = event.getX();
-        float region = w * 1.f / 4.f; // TODO overlay region fraction?
-        boolean showQsOverride = false;
-
-        switch (mOneFingerQuickSettingsIntercept) {
-            case 1: // Right side pulldown
-                showQsOverride = mView.isLayoutRtl() ? x < region : w - region < x;
-                break;
-            case 2: // Left side pulldown
-                showQsOverride = mView.isLayoutRtl() ? w - region < x : x < region;
-                break;
-        }
-        showQsOverride &= mBarState == StatusBarState.SHADE;
-
-        return twoFingerDrag || showQsOverride || stylusButtonClickDrag || mouseButtonClickDrag;
-    }
-
-    private void handleQsDown(MotionEvent event) {
-        if (event.getActionMasked() == MotionEvent.ACTION_DOWN && shouldQuickSettingsIntercept(
-                event.getX(), event.getY(), -1)) {
-            debugLog("handleQsDown");
-            mFalsingCollector.onQsDown();
-            mShadeLog.logMotionEvent(event, "handleQsDown: down action, QS tracking enabled");
-            mQsTracking = true;
-            onQsExpansionStarted();
-            mInitialHeightOnTouch = mQsExpansionHeight;
-            mInitialTouchY = event.getY();
-            mInitialTouchX = event.getX();
-
-            // If we interrupt an expansion gesture here, make sure to update the state correctly.
-            notifyExpandingFinished();
-        }
-=======
     /** Return whether a touch is near the gesture handle at the bottom of screen */
     public boolean isInGestureNavHomeHandleArea(float x, float y) {
         return mIsGestureNavigation && y > mView.getHeight() - mNavigationBarBottomHeight;
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
     }
 
     /** Input focus transfer is about to happen. */

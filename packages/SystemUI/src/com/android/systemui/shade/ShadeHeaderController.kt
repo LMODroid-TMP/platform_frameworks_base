@@ -46,12 +46,7 @@ import com.android.systemui.battery.BatteryMeterViewController
 import com.android.systemui.demomode.DemoMode
 import com.android.systemui.demomode.DemoModeController
 import com.android.systemui.dump.DumpManager
-<<<<<<< HEAD:packages/SystemUI/src/com/android/systemui/shade/LargeScreenShadeHeaderController.kt
-import com.android.systemui.flags.FeatureFlags
-import com.android.systemui.flags.Flags
 import com.android.systemui.plugins.ActivityStarter
-=======
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1:packages/SystemUI/src/com/android/systemui/shade/ShadeHeaderController.kt
 import com.android.systemui.qs.ChipVisibilityListener
 import com.android.systemui.qs.HeaderPrivacyIconsController
 import com.android.systemui.qs.carrier.QSCarrierGroup
@@ -102,11 +97,8 @@ constructor(
     private val qsCarrierGroupControllerBuilder: QSCarrierGroupController.Builder,
     private val combinedShadeHeadersConstraintManager: CombinedShadeHeadersConstraintManager,
     private val demoModeController: DemoModeController,
-<<<<<<< HEAD:packages/SystemUI/src/com/android/systemui/shade/LargeScreenShadeHeaderController.kt
-    private val activityStarter: ActivityStarter
-=======
     private val qsBatteryModeController: QsBatteryModeController,
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1:packages/SystemUI/src/com/android/systemui/shade/ShadeHeaderController.kt
+    private val activityStarter: ActivityStarter
 ) : ViewController<View>(header), Dumpable {
 
     companion object {
@@ -268,14 +260,11 @@ constructor(
                 updateResources()
             }
         }
-<<<<<<< HEAD:packages/SystemUI/src/com/android/systemui/shade/LargeScreenShadeHeaderController.kt
 
         override fun onUiModeChanged() {
             updateResources()
         }
     }
-=======
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1:packages/SystemUI/src/com/android/systemui/shade/ShadeHeaderController.kt
 
     override fun onInit() {
         variableDateViewControllerFactory.create(date as VariableDateView).init()
@@ -294,10 +283,7 @@ constructor(
         qsCarrierGroupController =
             qsCarrierGroupControllerBuilder.setQSCarrierGroup(qsCarrierGroup).build()
 
-<<<<<<< HEAD:packages/SystemUI/src/com/android/systemui/shade/LargeScreenShadeHeaderController.kt
-        if (combinedHeaders) {
-            privacyIconsController.onParentVisible()
-        }
+        privacyIconsController.onParentVisible()
 
         clock.setOnClickListener {
             activityStarter.postStartActivityDismissingKeyguard(
@@ -310,9 +296,6 @@ constructor(
                 Intent(Intent.ACTION_POWER_USAGE_SUMMARY), 0
             )
         }
-=======
-        privacyIconsController.onParentVisible()
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1:packages/SystemUI/src/com/android/systemui/shade/ShadeHeaderController.kt
     }
 
     override fun onViewAttached() {
@@ -333,14 +316,8 @@ constructor(
         dumpManager.registerDumpable(this)
         configurationController.addCallback(configurationControllerListener)
         demoModeController.addCallback(demoModeReceiver)
-<<<<<<< HEAD:packages/SystemUI/src/com/android/systemui/shade/LargeScreenShadeHeaderController.kt
-
-        updateVisibility()
-        updateTransition()
-        updateResources()
-=======
         statusBarIconController.addIconGroup(iconManager)
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1:packages/SystemUI/src/com/android/systemui/shade/ShadeHeaderController.kt
+        updateResources()
     }
 
     override fun onViewDetached() {
@@ -511,7 +488,7 @@ constructor(
         val padding = resources.getDimensionPixelSize(R.dimen.qs_panel_padding)
         header.setPadding(padding, header.paddingTop, padding, header.paddingBottom)
         updateQQSPaddings()
-<<<<<<< HEAD:packages/SystemUI/src/com/android/systemui/shade/LargeScreenShadeHeaderController.kt
+        qsBatteryModeController.updateResources()
 
         val fillColor = Utils.getColorAttrDefaultColor(context, android.R.attr.textColorPrimary)
         iconManager.setTint(fillColor)
@@ -529,9 +506,6 @@ constructor(
             qsCarrierGroup.updateColors(textColorPrimary, colorStateList)
             batteryIcon.updateColors(textColorPrimary, textColorSecondary, textColorPrimary)
         }
-=======
-        qsBatteryModeController.updateResources()
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1:packages/SystemUI/src/com/android/systemui/shade/ShadeHeaderController.kt
     }
 
     private fun updateQQSPaddings() {

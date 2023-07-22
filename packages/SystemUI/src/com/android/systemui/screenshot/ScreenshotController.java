@@ -105,12 +105,8 @@ import com.android.systemui.flags.FeatureFlags;
 import com.android.systemui.flags.Flags;
 import com.android.systemui.screenshot.ScreenshotController.SavedImageData.ActionTransition;
 import com.android.systemui.screenshot.TakeScreenshotService.RequestCallback;
-<<<<<<< HEAD
 import com.android.systemui.shared.system.TaskStackChangeListener;
 import com.android.systemui.shared.system.TaskStackChangeListeners;
-=======
-import com.android.systemui.settings.DisplayTracker;
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 import com.android.systemui.util.Assert;
 
 import com.google.common.util.concurrent.ListenableFuture;
@@ -953,9 +949,9 @@ public class ScreenshotController {
         mLongScreenshotHolder.setLongScreenshot(longScreenshot);
         mLongScreenshotHolder.setTransitionDestinationCallback(
                 (transitionDestination, onTransitionEnd) -> {
-                        mScreenshotView.startLongScreenshotTransition(
-                                transitionDestination, onTransitionEnd,
-                                longScreenshot);
+                    mScreenshotView.startLongScreenshotTransition(
+                            transitionDestination, onTransitionEnd,
+                            longScreenshot);
                     // TODO: Do this via ActionIntentExecutor instead.
                     mContext.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
                 }
@@ -974,7 +970,8 @@ public class ScreenshotController {
                 SCREENSHOT_REMOTE_RUNNER, 0, 0);
         try {
             WindowManagerGlobal.getWindowManagerService()
-                    .overridePendingAppTransitionRemote(runner, DEFAULT_DISPLAY);
+                    .overridePendingAppTransitionRemote(runner,
+                            mDisplayTracker.getDefaultDisplayId());
         } catch (Exception e) {
             Log.e(TAG, "Error overriding screenshot app transition", e);
         }
@@ -983,6 +980,7 @@ public class ScreenshotController {
             mStatusBarService.collapsePanels();
         } catch (RemoteException e) {
             Log.e(TAG, "Error during collapsing panels", e);
+
         }
     }
 
@@ -1063,40 +1061,8 @@ public class ScreenshotController {
                 return;
             }
 
-<<<<<<< HEAD
-            mLongScreenshotHolder.setForegroundAppName(getForegroundAppLabel());
             mLongScreenshotHolder.setNeedsMagnification(true);
             startLongScreenshotActivity(longScreenshot, owner);
-=======
-            mLongScreenshotHolder.setLongScreenshot(longScreenshot);
-            mLongScreenshotHolder.setTransitionDestinationCallback(
-                    (transitionDestination, onTransitionEnd) -> {
-                        mScreenshotView.startLongScreenshotTransition(
-                                transitionDestination, onTransitionEnd,
-                                longScreenshot);
-                        // TODO: Do this via ActionIntentExecutor instead.
-                        mContext.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
-                    }
-            );
-
-            final Intent intent = new Intent(mContext, LongScreenshotActivity.class);
-            intent.putExtra(LongScreenshotActivity.EXTRA_SCREENSHOT_USER_HANDLE,
-                    owner);
-            intent.setFlags(
-                    Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-            mContext.startActivity(intent,
-                    ActivityOptions.makeCustomAnimation(mContext, 0, 0).toBundle());
-            RemoteAnimationAdapter runner = new RemoteAnimationAdapter(
-                    SCREENSHOT_REMOTE_RUNNER, 0, 0);
-            try {
-                WindowManagerGlobal.getWindowManagerService()
-                        .overridePendingAppTransitionRemote(runner,
-                                mDisplayTracker.getDefaultDisplayId());
-            } catch (Exception e) {
-                Log.e(TAG, "Error overriding screenshot app transition", e);
-            }
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
         }, mMainExecutor);
     }
 

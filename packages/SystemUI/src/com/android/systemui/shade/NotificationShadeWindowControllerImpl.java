@@ -306,18 +306,11 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
         mNotificationShadeView.setSystemUiVisibility(vis);
     }
 
-<<<<<<< HEAD
-    private void applyKeyguardFlags(State state) {
-        final boolean keyguardOrAod = state.mKeyguardShowing
-                || (state.mDozing && mDozeParameters.getAlwaysOn());
-        boolean wasKeyguardRateSet = false;
-        if ((keyguardOrAod && !state.mBackdropShowing && !state.mLightRevealScrimOpaque)
-=======
     private void applyKeyguardFlags(NotificationShadeWindowState state) {
         final boolean keyguardOrAod = state.keyguardShowing
                 || (state.dozing && mDozeParameters.getAlwaysOn());
+        boolean wasKeyguardRateSet = false;
         if ((keyguardOrAod && !state.mediaBackdropShowing && !state.lightRevealScrimOpaque)
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
                 || mKeyguardViewMediator.isAnimatingBetweenKeyguardAndSurfaceBehind()) {
             // Show the wallpaper if we're on keyguard/AOD and the wallpaper is not occluded by a
             // solid backdrop. Also, show it if we are currently animating between the
@@ -341,11 +334,8 @@ public class NotificationShadeWindowControllerImpl implements NotificationShadeW
                     && mAuthController.isUdfpsEnrolled(KeyguardUpdateMonitor.getCurrentUser())) {
                 // both max and min display refresh rate must be set to take effect:
                 mLpChanged.preferredMaxDisplayRefreshRate = mKeyguardPreferredRefreshRate;
-<<<<<<< HEAD
-                wasKeyguardRateSet = true;
-=======
                 mLpChanged.preferredMinDisplayRefreshRate = mKeyguardPreferredRefreshRate;
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
+                wasKeyguardRateSet = true;
             } else {
                 mLpChanged.preferredMaxDisplayRefreshRate = 0;
                 mLpChanged.preferredMinDisplayRefreshRate = 0;

@@ -55,11 +55,8 @@ class PulsingGestureListener @Inject constructor(
         private val ambientDisplayConfiguration: AmbientDisplayConfiguration,
         private val statusBarStateController: StatusBarStateController,
         private val shadeLogger: ShadeLogger,
-<<<<<<< HEAD
         private val powerManager: PowerManager,
-=======
         userTracker: UserTracker,
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
         tunerService: TunerService,
         dumpManager: DumpManager,
         context: Context
@@ -85,13 +82,9 @@ class PulsingGestureListener @Inject constructor(
                             userTracker.userId)
                 Settings.Secure.DOZE_TAP_SCREEN_GESTURE ->
                     singleTapEnabled = ambientDisplayConfiguration.tapGestureEnabled(
-<<<<<<< HEAD
-                            UserHandle.USER_CURRENT)
+                            userTracker.userId)
                 DOUBLE_TAP_SLEEP_GESTURE ->
                     doubleTapToSleepEnabled = TunerService.parseIntegerSwitch(value, true)
-=======
-                            userTracker.userId)
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
             }
         }
         tunerService.addTunable(tunable,
