@@ -26,6 +26,7 @@ import junit.framework.Assert.assertNull
 import junit.framework.Assert.assertTrue
 import org.junit.After
 import org.junit.Assert.assertNotEquals
+import org.junit.Assert.assertThrows
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -261,6 +262,16 @@ class DialogLaunchAnimatorTest : SysuiTestCase() {
     }
 
     @Test
+<<<<<<< HEAD
+=======
+    fun creatingControllerFromNormalViewThrows() {
+        assertThrows(IllegalArgumentException::class.java) {
+            DialogLaunchAnimator.Controller.fromView(FrameLayout(mContext))
+        }
+    }
+
+    @Test
+>>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
     fun showFromDialogDoesNotCrashWhenShownFromRandomDialog() {
         val dialog = createDialogAndShowFromDialog(animateFrom = TestDialog(context))
         dialog.dismiss()

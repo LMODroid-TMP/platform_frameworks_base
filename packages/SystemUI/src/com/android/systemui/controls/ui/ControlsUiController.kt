@@ -33,8 +33,19 @@ interface ControlsUiController {
 	    public const val BACK_TO_GLOBAL_ACTIONS = "back_to_global_actions"
     }
 
+<<<<<<< HEAD
     fun show(parent: ViewGroup, onDismiss: Runnable, activityContext: Context?)
     fun hide()
+=======
+    fun show(parent: ViewGroup, onDismiss: Runnable, activityContext: Context)
+
+    /**
+     * Hide the controls content if it's attached to this parent.
+     */
+    fun hide(parent: ViewGroup)
+
+    val isShowing: Boolean
+>>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 
     /**
      * Returns the preferred activity to start, depending on if the user has favorited any
@@ -61,6 +72,8 @@ interface ControlsUiController {
      * This element will be the one that appears when the user first opens the controls activity.
      */
     fun getPreferredSelectedItem(structures: List<StructureInfo>): SelectedItem
+
+    fun onSizeChange()
 }
 
 sealed class SelectedItem {

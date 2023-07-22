@@ -16,9 +16,13 @@
 
 package com.android.systemui.recents;
 
+<<<<<<< HEAD
 import static android.view.Display.DEFAULT_DISPLAY;
 
 import static com.android.systemui.shared.recents.utilities.Utilities.isTablet;
+=======
+import static com.android.systemui.shared.recents.utilities.Utilities.isLargeScreen;
+>>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 import static com.android.systemui.util.leak.RotationUtils.ROTATION_LANDSCAPE;
 import static com.android.systemui.util.leak.RotationUtils.ROTATION_NONE;
 import static com.android.systemui.util.leak.RotationUtils.ROTATION_SEASCAPE;
@@ -270,8 +274,12 @@ public class ScreenPinningRequest implements View.OnClickListener,
                     .setLayoutDirection(View.LAYOUT_DIRECTION_LOCALE);
             View buttons = mLayout.findViewById(R.id.screen_pinning_buttons);
             if (!QuickStepContract.isGesturalMode(mNavBarMode)
+<<<<<<< HEAD
                     && hasSoftNavigationBar(mContext, mContext.getDisplayId())
                     && !isTablet(mContext)) {
+=======
+            	    && hasSoftNavigationBar(mContext.getDisplayId()) && !isLargeScreen(mContext)) {
+>>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
                 buttons.setLayoutDirection(View.LAYOUT_DIRECTION_LOCALE);
                 swapChildrenIfRtlAndVertical(buttons);
             } else {

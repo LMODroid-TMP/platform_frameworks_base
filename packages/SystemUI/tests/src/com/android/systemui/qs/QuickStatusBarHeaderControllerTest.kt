@@ -18,10 +18,9 @@ package com.android.systemui.qs
 
 import android.content.Context
 import android.testing.AndroidTestingRunner
-import android.view.View
 import androidx.test.filters.SmallTest
-import com.android.systemui.R
 import com.android.systemui.SysuiTestCase
+<<<<<<< HEAD
 import com.android.systemui.battery.BatteryMeterViewController
 import com.android.systemui.demomode.DemoModeController
 import com.android.systemui.flags.FeatureFlags
@@ -37,17 +36,16 @@ import com.android.systemui.util.mockito.any
 import com.android.systemui.util.mockito.argumentCaptor
 import com.android.systemui.util.mockito.capture
 import com.google.common.truth.Truth.assertThat
+=======
+>>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Answers
-import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.Mock
-import org.mockito.Mockito.anyBoolean
-import org.mockito.Mockito.reset
-import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 
 @SmallTest
@@ -57,13 +55,8 @@ class QuickStatusBarHeaderControllerTest : SysuiTestCase() {
     @Mock
     private lateinit var view: QuickStatusBarHeader
     @Mock
-    private lateinit var privacyIconsController: HeaderPrivacyIconsController
-    @Mock
-    private lateinit var statusBarIconController: StatusBarIconController
-    @Mock
-    private lateinit var demoModeController: DemoModeController
-    @Mock
     private lateinit var quickQSPanelController: QuickQSPanelController
+<<<<<<< HEAD
     @Mock(answer = Answers.RETURNS_SELF)
     private lateinit var qsCarrierGroupControllerBuilder: QSCarrierGroupController.Builder
     @Mock
@@ -84,34 +77,22 @@ class QuickStatusBarHeaderControllerTest : SysuiTestCase() {
     private lateinit var variableDateView: VariableDateView
     @Mock
     private lateinit var mockView: View
+=======
+
+>>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
     @Mock(answer = Answers.RETURNS_DEEP_STUBS)
     private lateinit var context: Context
-    @Mock
-    private lateinit var featureFlags: FeatureFlags
-    @Mock
-    private lateinit var insetsProvider: StatusBarContentInsetsProvider
-    @Mock
-    private lateinit var iconManagerFactory: StatusBarIconController.TintedIconManager.Factory
-    @Mock
-    private lateinit var iconManager: StatusBarIconController.TintedIconManager
-
-    private val qsExpansionPathInterpolator = QSExpansionPathInterpolator()
 
     private lateinit var controller: QuickStatusBarHeaderController
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        stubViews()
-        `when`(iconContainer.context).thenReturn(context)
-        `when`(qsCarrierGroupControllerBuilder.build()).thenReturn(qsCarrierGroupController)
-        `when`(variableDateViewControllerFactory.create(any()))
-                .thenReturn(variableDateViewController)
-        `when`(iconManagerFactory.create(any(), any())).thenReturn(iconManager)
         `when`(view.resources).thenReturn(mContext.resources)
         `when`(view.isAttachedToWindow).thenReturn(true)
         `when`(view.context).thenReturn(context)
 
+<<<<<<< HEAD
         controller = QuickStatusBarHeaderController(
                 view,
                 privacyIconsController,
@@ -126,6 +107,9 @@ class QuickStatusBarHeaderControllerTest : SysuiTestCase() {
                 insetsProvider,
                 iconManagerFactory,
         )
+=======
+        controller = QuickStatusBarHeaderController(view, quickQSPanelController)
+>>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
     }
 
     @After
@@ -134,74 +118,11 @@ class QuickStatusBarHeaderControllerTest : SysuiTestCase() {
     }
 
     @Test
-    fun testClockNotClickable() {
-        assertThat(clock.isClickable).isFalse()
-    }
+    fun testListeningStatus() {
+        controller.setListening(true)
+        verify(quickQSPanelController).setListening(true)
 
-    @Test
-    fun testSingleCarrierListenerAttachedOnInit() {
-        controller.init()
-
-        verify(qsCarrierGroupController).setOnSingleCarrierChangedListener(any())
-    }
-
-    @Test
-    fun testSingleCarrierSetOnViewOnInit_false() {
-        `when`(qsCarrierGroupController.isSingleCarrier).thenReturn(false)
-        controller.init()
-
-        verify(view).setIsSingleCarrier(false)
-    }
-
-    @Test
-    fun testSingleCarrierSetOnViewOnInit_true() {
-        `when`(qsCarrierGroupController.isSingleCarrier).thenReturn(true)
-        controller.init()
-
-        verify(view).setIsSingleCarrier(true)
-    }
-
-    @Test
-    fun testRSSISlot_notCombined() {
-        controller.init()
-
-        val captor = argumentCaptor<List<String>>()
-        verify(view).onAttach(any(), any(), capture(captor), any(), anyBoolean())
-
-        assertThat(captor.value).containsExactly(
-            mContext.getString(com.android.internal.R.string.status_bar_mobile)
-        )
-    }
-
-    @Test
-    fun testSingleCarrierCallback() {
-        controller.init()
-        reset(view)
-
-        val captor = argumentCaptor<QSCarrierGroupController.OnSingleCarrierChangedListener>()
-        verify(qsCarrierGroupController).setOnSingleCarrierChangedListener(capture(captor))
-
-        captor.value.onSingleCarrierChanged(true)
-        verify(view).setIsSingleCarrier(true)
-
-        captor.value.onSingleCarrierChanged(false)
-        verify(view).setIsSingleCarrier(false)
-    }
-
-    @Test
-    fun testAlarmIconIgnored() {
-        controller.init()
-
-        verify(iconContainer).addIgnoredSlot(
-                mContext.getString(com.android.internal.R.string.status_bar_alarm_clock))
-    }
-
-    private fun stubViews() {
-        `when`(view.findViewById<View>(anyInt())).thenReturn(mockView)
-        `when`(view.findViewById<QSCarrierGroup>(R.id.carrier_group)).thenReturn(qsCarrierGroup)
-        `when`(view.findViewById<StatusIconContainer>(R.id.statusIcons)).thenReturn(iconContainer)
-        `when`(view.findViewById<Clock>(R.id.clock)).thenReturn(clock)
-        `when`(view.requireViewById<VariableDateView>(R.id.date)).thenReturn(variableDateView)
-        `when`(view.requireViewById<VariableDateView>(R.id.date_clock)).thenReturn(variableDateView)
+        controller.setListening(false)
+        verify(quickQSPanelController).setListening(false)
     }
 }

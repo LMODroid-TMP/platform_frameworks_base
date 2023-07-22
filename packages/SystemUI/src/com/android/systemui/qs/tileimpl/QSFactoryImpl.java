@@ -28,6 +28,7 @@ import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.plugins.qs.QSTileView;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.external.CustomTile;
+<<<<<<< HEAD
 import com.android.systemui.qs.tiles.AirplaneModeTile;
 import com.android.systemui.qs.tiles.AlarmTile;
 import com.android.systemui.qs.tiles.AmbientDisplayTile;
@@ -67,18 +68,34 @@ import com.android.systemui.qs.tiles.VpnTile;
 import com.android.systemui.qs.tiles.VPNTetheringTile;
 import com.android.systemui.qs.tiles.WifiTile;
 import com.android.systemui.qs.tiles.WorkModeTile;
+=======
+>>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 import com.android.systemui.util.leak.GarbageMonitor;
+
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
 
 import dagger.Lazy;
 
+/**
+ * A factory that creates Quick Settings tiles based on a tileSpec
+ *
+ * To create a new tile within SystemUI, the tile class should extend {@link QSTileImpl} and have
+ * a public static final TILE_SPEC field which serves as a unique key for this tile. (e.g. {@link
+ * com.android.systemui.qs.tiles.DreamTile#TILE_SPEC})
+ *
+ * After, create or find an existing Module class to house the tile's binding method (e.g. {@link
+ * com.android.systemui.accessibility.AccessibilityModule}). If creating a new module, add your
+ * module to the SystemUI dagger graph by including it in an appropriate module.
+ */
 @SysUISingleton
 public class QSFactoryImpl implements QSFactory {
 
     private static final String TAG = "QSFactory";
 
+<<<<<<< HEAD
     private final Provider<WifiTile> mWifiTileProvider;
     private final Provider<InternetTile> mInternetTileProvider;
     private final Provider<BluetoothTile> mBluetoothTileProvider;
@@ -120,6 +137,9 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<VPNTetheringTile> mVPNTetheringTileProvider;
     private final Provider<DataSwitchTile> mDataSwitchTileProvider;
 
+=======
+    protected final Map<String, Provider<QSTileImpl<?>>> mTileMap;
+>>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
     private final Lazy<QSHost> mQsHostLazy;
     private final Provider<CustomTile.Builder> mCustomTileBuilderProvider;
 
@@ -127,6 +147,7 @@ public class QSFactoryImpl implements QSFactory {
     public QSFactoryImpl(
             Lazy<QSHost> qsHostLazy,
             Provider<CustomTile.Builder> customTileBuilderProvider,
+<<<<<<< HEAD
             Provider<WifiTile> wifiTileProvider,
             Provider<InternetTile> internetTileProvider,
             Provider<BluetoothTile> bluetoothTileProvider,
@@ -210,6 +231,12 @@ public class QSFactoryImpl implements QSFactory {
         mVpnTileProvider = vpnTileProvider;
         mVPNTetheringTileProvider = vpnTetheringTileProvider;
         mDataSwitchTileProvider = dataSwitchTileProvider;
+=======
+            Map<String, Provider<QSTileImpl<?>>> tileMap) {
+        mQsHostLazy = qsHostLazy;
+        mCustomTileBuilderProvider = customTileBuilderProvider;
+        mTileMap = tileMap;
+>>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
     }
 
     /** Creates a tile with a type based on {@code tileSpec} */
@@ -225,6 +252,7 @@ public class QSFactoryImpl implements QSFactory {
 
     @Nullable
     protected QSTileImpl createTileInternal(String tileSpec) {
+<<<<<<< HEAD
         switch (tileSpec) {
             // Stock tiles.
             case "wifi":
@@ -306,6 +334,13 @@ public class QSFactoryImpl implements QSFactory {
                 return mVPNTetheringTileProvider.get();
             case "dataswitch":
                 return mDataSwitchTileProvider.get();
+=======
+        // Stock tiles.
+        if (mTileMap.containsKey(tileSpec)
+                // We should not return a Garbage Monitory Tile if the build is not Debuggable
+                && (!tileSpec.equals(GarbageMonitor.MemoryTile.TILE_SPEC) || Build.IS_DEBUGGABLE)) {
+            return mTileMap.get(tileSpec).get();
+>>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
         }
 
         // Custom tiles
@@ -314,6 +349,7 @@ public class QSFactoryImpl implements QSFactory {
                     mCustomTileBuilderProvider.get(), tileSpec, mQsHostLazy.get().getUserContext());
         }
 
+<<<<<<< HEAD
         // Debug tiles.
         /*if (Build.IS_DEBUGGABLE) {
             if (tileSpec.equals(GarbageMonitor.MemoryTile.TILE_SPEC)) {
@@ -321,6 +357,8 @@ public class QSFactoryImpl implements QSFactory {
             }
         }*/
 
+=======
+>>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
         // Broken tiles.
         Log.w(TAG, "No stock tile spec: " + tileSpec);
         return null;

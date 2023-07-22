@@ -16,6 +16,7 @@
 
 package com.android.systemui.qs;
 
+<<<<<<< HEAD
 import android.os.Bundle;
 
 import com.android.systemui.R;
@@ -25,16 +26,10 @@ import com.android.systemui.demomode.DemoModeController;
 import com.android.systemui.flags.FeatureFlags;
 import com.android.systemui.flags.Flags;
 import com.android.systemui.qs.carrier.QSCarrierGroupController;
+=======
+>>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 import com.android.systemui.qs.dagger.QSScope;
-import com.android.systemui.statusbar.phone.StatusBarContentInsetsProvider;
-import com.android.systemui.statusbar.phone.StatusBarIconController;
-import com.android.systemui.statusbar.phone.StatusBarLocation;
-import com.android.systemui.statusbar.phone.StatusIconContainer;
-import com.android.systemui.statusbar.policy.Clock;
-import com.android.systemui.statusbar.policy.VariableDateViewController;
 import com.android.systemui.util.ViewController;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -42,30 +37,14 @@ import javax.inject.Inject;
  * Controller for {@link QuickStatusBarHeader}.
  */
 @QSScope
-class QuickStatusBarHeaderController extends ViewController<QuickStatusBarHeader> implements
-        ChipVisibilityListener {
+class QuickStatusBarHeaderController extends ViewController<QuickStatusBarHeader> {
 
-    private final QSCarrierGroupController mQSCarrierGroupController;
     private final QuickQSPanelController mQuickQSPanelController;
-    private final Clock mClockView;
-    private final StatusBarIconController mStatusBarIconController;
-    private final DemoModeController mDemoModeController;
-    private final StatusIconContainer mIconContainer;
-    private final StatusBarIconController.TintedIconManager mIconManager;
-    private final DemoMode mDemoModeReceiver;
-    private final QSExpansionPathInterpolator mQSExpansionPathInterpolator;
-    private final FeatureFlags mFeatureFlags;
-    private final BatteryMeterViewController mBatteryMeterViewController;
-    private final StatusBarContentInsetsProvider mInsetsProvider;
-
-    private final VariableDateViewController mVariableDateViewControllerDateView;
-    private final VariableDateViewController mVariableDateViewControllerClockDateView;
-    private final HeaderPrivacyIconsController mPrivacyIconsController;
-
     private boolean mListening;
 
     @Inject
     QuickStatusBarHeaderController(QuickStatusBarHeader view,
+<<<<<<< HEAD
             HeaderPrivacyIconsController headerPrivacyIconsController,
             StatusBarIconController statusBarIconController,
             DemoModeController demoModeController,
@@ -77,11 +56,13 @@ class QuickStatusBarHeaderController extends ViewController<QuickStatusBarHeader
             BatteryMeterViewController batteryMeterViewController,
             StatusBarContentInsetsProvider statusBarContentInsetsProvider,
             StatusBarIconController.TintedIconManager.Factory tintedIconManagerFactory) {
+=======
+            QuickQSPanelController quickQSPanelController
+    ) {
+>>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
         super(view);
-        mPrivacyIconsController = headerPrivacyIconsController;
-        mStatusBarIconController = statusBarIconController;
-        mDemoModeController = demoModeController;
         mQuickQSPanelController = quickQSPanelController;
+<<<<<<< HEAD
         mQSExpansionPathInterpolator = qsExpansionPathInterpolator;
         mFeatureFlags = featureFlags;
         mBatteryMeterViewController = batteryMeterViewController;
@@ -109,10 +90,13 @@ class QuickStatusBarHeaderController extends ViewController<QuickStatusBarHeader
     @Override
     protected void onInit() {
         mBatteryMeterViewController.init();
+=======
+>>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
     }
 
     @Override
     protected void onViewAttached() {
+<<<<<<< HEAD
         mPrivacyIconsController.onParentVisible();
         mPrivacyIconsController.setChipVisibilityListener(this);
         mIconContainer.addIgnoredSlot(
@@ -135,20 +119,23 @@ class QuickStatusBarHeaderController extends ViewController<QuickStatusBarHeader
 
         mVariableDateViewControllerDateView.init();
         mVariableDateViewControllerClockDateView.init();
+=======
+>>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
     }
 
     @Override
     protected void onViewDetached() {
+<<<<<<< HEAD
         mPrivacyIconsController.onParentInvisible();
         mStatusBarIconController.removeIconGroup(mIconManager);
         mQSCarrierGroupController.setOnSingleCarrierChangedListener(null);
         mDemoModeController.removeCallback(mDemoModeReceiver);
+=======
+>>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
         setListening(false);
     }
 
     public void setListening(boolean listening) {
-        mQSCarrierGroupController.setListening(listening);
-
         if (listening == mListening) {
             return;
         }
@@ -159,48 +146,9 @@ class QuickStatusBarHeaderController extends ViewController<QuickStatusBarHeader
         if (mQuickQSPanelController.switchTileLayout(false)) {
             mView.updateResources();
         }
-
-        if (listening) {
-            mPrivacyIconsController.startListening();
-        } else {
-            mPrivacyIconsController.stopListening();
-        }
-    }
-
-    @Override
-    public void onChipVisibilityRefreshed(boolean visible) {
-        mView.setChipVisibility(visible);
     }
 
     public void setContentMargins(int marginStart, int marginEnd) {
         mQuickQSPanelController.setContentMargins(marginStart, marginEnd);
-    }
-
-    private static class ClockDemoModeReceiver implements DemoMode {
-        private Clock mClockView;
-
-        @Override
-        public List<String> demoCommands() {
-            return List.of(COMMAND_CLOCK);
-        }
-
-        ClockDemoModeReceiver(Clock clockView) {
-            mClockView = clockView;
-        }
-
-        @Override
-        public void dispatchDemoCommand(String command, Bundle args) {
-            mClockView.dispatchDemoCommand(command, args);
-        }
-
-        @Override
-        public void onDemoModeStarted() {
-            mClockView.onDemoModeStarted();
-        }
-
-        @Override
-        public void onDemoModeFinished() {
-            mClockView.onDemoModeFinished();
-        }
     }
 }

@@ -56,7 +56,14 @@ import javax.inject.Inject;
 
 /** Quick settings tile: Bluetooth **/
 public class BluetoothTile extends QSTileImpl<BooleanState> {
+<<<<<<< HEAD
     private static final Intent BLUETOOTH_SETTINGS = new Intent(Settings.Panel.ACTION_BLUETOOTH);
+=======
+
+    public static final String TILE_SPEC = "bt";
+
+    private static final Intent BLUETOOTH_SETTINGS = new Intent(Settings.ACTION_BLUETOOTH_SETTINGS);
+>>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 
     private final Handler mHandler;
     private final BluetoothController mController;
