@@ -69,8 +69,6 @@ public interface QSHost {
     void removeCallback(Callback callback);
     void removeTile(String tileSpec);
     void removeTiles(Collection<String> specs);
-<<<<<<< HEAD
-=======
 
     List<String> getSpecs();
     /**
@@ -109,7 +107,6 @@ public interface QSHost {
 
     boolean isTileAdded(ComponentName componentName, int userId);
     void setTileAdded(ComponentName componentName, int userId, boolean added);
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 
     int indexOf(String tileSpec);
 

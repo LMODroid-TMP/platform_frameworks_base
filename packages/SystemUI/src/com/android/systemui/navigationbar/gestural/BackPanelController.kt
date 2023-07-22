@@ -614,42 +614,9 @@ class BackPanelController internal constructor(
         return flingDistance > minDistanceConsideredForFling && isPastFlingVelocity
     }
 
-<<<<<<< HEAD
-    private fun playCommitBackAnimation() {
-        // Check if we should vibrate again
-        if (previousState != GestureState.FLUNG) {
-            velocityTracker!!.computeCurrentVelocity(1000)
-            val isSlow = abs(velocityTracker!!.xVelocity) < 500
-            val hasNotVibratedRecently =
-                SystemClock.uptimeMillis() - vibrationTime >= GESTURE_DURATION_FOR_CLICK_MS
-            if (isSlow || hasNotVibratedRecently) {
-                vibratorHelper.vibrate(VibrationEffect.EFFECT_CLICK)
-            }
-        }
-        // Dispatch the actual back trigger
-        if (DEBUG) Log.d(TAG, "playCommitBackAnimation() invoked triggerBack() on backCallback")
-        backCallback.triggerBack(false)
-
-        playAnimation(setGoneEndListener)
-    }
-
-    private fun playCancelBackAnimation() {
-        backCallback.cancelBack()
-        playAnimation(setGoneEndListener)
-    }
-
-    /**
-     * @return true if the animation is running, false otherwise. Some transitions don't animate
-     */
-    private fun playAnimation(endListener: DelayedOnAnimationEndListener) {
-        updateRestingArrowDimens(animated = true, currentState)
-
-        if (!mView.addEndListener(endListener)) {
-=======
     private fun playHorizontalAnimationThen(onEnd: DelayedOnAnimationEndListener) {
         updateRestingArrowDimens()
         if (!mView.addAnimationEndListener(mView.horizontalTranslation, onEnd)) {
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
             scheduleFailsafe()
         }
     }

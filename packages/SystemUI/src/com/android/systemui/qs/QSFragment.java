@@ -186,12 +186,9 @@ public class QSFragment extends LifecycleFragment implements QS, CommandQueue.Ca
             DumpManager dumpManager, QSLogger qsLogger,
             FooterActionsController footerActionsController,
             FooterActionsViewModel.Factory footerActionsViewModelFactory,
-<<<<<<< HEAD
-            TunerService tunerService) {
-=======
             LargeScreenShadeInterpolator largeScreenShadeInterpolator,
-            FeatureFlags featureFlags) {
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
+            FeatureFlags featureFlags,
+            TunerService tunerService) {
         mRemoteInputQuickSettingsDisabler = remoteInputQsDisabler;
         mQsMediaHost = qsMediaHost;
         mQqsMediaHost = qqsMediaHost;
