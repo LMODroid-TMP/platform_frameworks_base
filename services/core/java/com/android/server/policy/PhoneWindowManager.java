@@ -712,7 +712,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     private boolean mLockNowPending = false;
 
-<<<<<<< HEAD
+    // Timeout for showing the keyguard after the screen is on, in case no "ready" is received.
+    private int mKeyguardDrawnTimeout = 1000;
+
     private final List<DeviceKeyHandler> mDeviceKeyHandlers = new ArrayList<>();
 
     private VolumeKeyHandler mVolumeKeyHandler;
@@ -740,10 +742,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
 
     };
-=======
-    // Timeout for showing the keyguard after the screen is on, in case no "ready" is received.
-    private int mKeyguardDrawnTimeout = 1000;
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 
     private static final int MSG_DISPATCH_MEDIA_KEY_WITH_WAKE_LOCK = 3;
     private static final int MSG_DISPATCH_MEDIA_KEY_REPEAT_WITH_WAKE_LOCK = 4;
@@ -1869,16 +1867,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
     };
 
-<<<<<<< HEAD
     private void handleScreenShot(@WindowManager.ScreenshotType int type,
             @WindowManager.ScreenshotSource int source) {
         if (!mPocketLockShowing) {
-            mDefaultDisplayPolicy.takeScreenshot(type, source);
+            mDefaultDisplayPolicy.takeScreenshot(TAKE_SCREENSHOT_FULLSCREEN, source);
         }
-=======
-    private void handleScreenShot(@WindowManager.ScreenshotSource int source) {
-        mDefaultDisplayPolicy.takeScreenshot(TAKE_SCREENSHOT_FULLSCREEN, source);
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
     }
 
     @Override
@@ -3495,13 +3488,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 break;
             case KeyEvent.KEYCODE_S:
                 if (down && event.isMetaPressed() && event.isCtrlPressed() && repeatCount == 0) {
-<<<<<<< HEAD
                     int type = event.isShiftPressed() ? TAKE_SCREENSHOT_SELECTED_REGION
                             : TAKE_SCREENSHOT_FULLSCREEN;
                     interceptScreenshotChord(type, SCREENSHOT_KEY_OTHER, 0 /*pressDelay*/);
-=======
-                    interceptScreenshotChord(SCREENSHOT_KEY_OTHER, 0 /*pressDelay*/);
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
                     return key_consumed;
                 }
                 break;

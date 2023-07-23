@@ -514,10 +514,7 @@ public class AutoTileManagerTest extends SysuiTestCase {
     @Test
     public void managedProfileAdded_tileAdded() {
         when(mAutoAddTracker.isAdded(eq("work"))).thenReturn(false);
-<<<<<<< HEAD
-=======
         when(mAutoAddTracker.getRestoredTilePosition(eq("work"))).thenReturn(2);
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
         mAutoTileManager = createAutoTileManager(mContext);
         Mockito.doAnswer((Answer<Object>) invocation -> {
             mManagedProfileCallback = invocation.getArgument(0);
@@ -528,11 +525,7 @@ public class AutoTileManagerTest extends SysuiTestCase {
 
         mManagedProfileCallback.onManagedProfileChanged();
 
-<<<<<<< HEAD
-        verify(mQsTileHost, times(1)).addTile(eq("work"));
-=======
         verify(mQsHost, times(1)).addTile(eq("work"), eq(2));
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
         verify(mAutoAddTracker, times(1)).setTileAdded(eq("work"));
     }
 
@@ -549,17 +542,11 @@ public class AutoTileManagerTest extends SysuiTestCase {
 
         mManagedProfileCallback.onManagedProfileChanged();
 
-<<<<<<< HEAD
-        verify(mQsTileHost, times(1)).removeTile(eq("work"));
-=======
         verify(mQsHost, times(1)).removeTile(eq("work"));
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
         verify(mAutoAddTracker, times(1)).setTileRemoved(eq("work"));
     }
 
     @Test
-<<<<<<< HEAD
-=======
     public void testAddControlsTileIfNotPresent() {
         String spec = DEVICE_CONTROLS;
         when(mAutoAddTracker.isAdded(eq(spec))).thenReturn(false);
@@ -615,7 +602,6 @@ public class AutoTileManagerTest extends SysuiTestCase {
 
 
     @Test
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
     public void testEmptyArray_doesNotCrash() {
         mContext.getOrCreateTestableResources().addOverride(
                 R.array.config_quickSettingsAutoAdd, new String[0]);

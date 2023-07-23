@@ -4536,7 +4536,6 @@ class DisplayContent extends RootDisplayArea implements WindowManagerPolicy.Disp
                 ? mImeWindowsContainer.getParent().getSurfaceControl() : null;
     }
 
-<<<<<<< HEAD
     boolean getNeedsMenu(WindowState top, WindowManagerPolicy.WindowState bottom) {
         if (top.mAttrs.needsMenuKey != NEEDS_MENU_UNSET) {
             return top.mAttrs.needsMenuKey == NEEDS_MENU_SET_TRUE;
@@ -4567,7 +4566,8 @@ class DisplayContent extends RootDisplayArea implements WindowManagerPolicy.Disp
         });
 
         return candidate != null && candidate.mAttrs.needsMenuKey == NEEDS_MENU_SET_TRUE;
-=======
+    }
+
     private static boolean canComputeImeParent(@Nullable WindowState imeLayeringTarget,
             @Nullable InputTarget imeInputTarget) {
         if (imeLayeringTarget == null) {
@@ -4636,7 +4636,6 @@ class DisplayContent extends RootDisplayArea implements WindowManagerPolicy.Disp
             return false;
         }
         return imeLayeringTarget.compareTo(inputTargetWindow) > 0;
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
     }
 
     void setLayoutNeeded() {

@@ -956,16 +956,13 @@ public class UsbDeviceManager implements ActivityTaskManagerInternal.ScreenObser
                 case MSG_UPDATE_STATE:
                     mConnected = (msg.arg1 == 1);
                     mConfigured = (msg.arg2 == 1);
-<<<<<<< HEAD
-
-                    setTrustRestrictUsb();
-
-=======
                     if (DEBUG) {
                         Slog.i(TAG, "handleMessage MSG_UPDATE_STATE " + "mConnected:" + mConnected
                                + " mConfigured:" + mConfigured);
                     }
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
+
+                    setTrustRestrictUsb();
+
                     updateUsbNotification(false);
                     updateAdbNotification(false);
                     if (mBootCompleted) {

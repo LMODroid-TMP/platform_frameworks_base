@@ -866,23 +866,14 @@ public class ScrimController implements ViewTreeObserver.OnPreDrawListener, Dump
             if (!mScreenOffAnimationController.shouldExpandNotifications()
                     && !mAnimatingPanelExpansionOnUnlock
                     && !occluding) {
-<<<<<<< HEAD
-                float behindFraction = getInterpolatedFraction();
-                behindFraction = (float) Math.pow(behindFraction, 0.8f);
-                if (mClipsQsScrim) {
-                    mBehindAlpha = mTransparentScrimBackground ? 0 : mCustomScrimAlpha;
-                    mNotificationsAlpha =
-                            mTransparentScrimBackground ? 0 : behindFraction * mCustomScrimAlpha;
-=======
                 if (mTransparentScrimBackground) {
                     mBehindAlpha = 0;
                     mNotificationsAlpha = 0;
                 } else if (mClipsQsScrim) {
                     float behindFraction = getInterpolatedFraction();
                     behindFraction = (float) Math.pow(behindFraction, 0.8f);
-                    mBehindAlpha = 1;
-                    mNotificationsAlpha = behindFraction * mDefaultScrimAlpha;
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
+                    mBehindAlpha = mCustomScrimAlpha;
+                    mNotificationsAlpha = behindFraction * mCustomScrimAlpha;
                 } else {
                     if (mFeatureFlags.isEnabled(Flags.LARGE_SHADE_GRANULAR_ALPHA_INTERPOLATION)) {
                         mBehindAlpha = mLargeScreenShadeInterpolator.getBehindScrimAlpha(

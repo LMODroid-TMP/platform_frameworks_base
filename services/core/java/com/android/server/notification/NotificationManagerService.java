@@ -8715,102 +8715,6 @@ public class NotificationManagerService extends SystemService {
         }
     }
 
-<<<<<<< HEAD
-    static class NotificationRecordExtractorData {
-        // Class that stores any field in a NotificationRecord that can change via an extractor.
-        // Used to cache previous data used in a sort.
-        int mPosition;
-        int mVisibility;
-        boolean mShowBadge;
-        boolean mAllowBubble;
-        boolean mIsBubble;
-        NotificationChannel mChannel;
-        String mGroupKey;
-        ArrayList<String> mOverridePeople;
-        ArrayList<SnoozeCriterion> mSnoozeCriteria;
-        Integer mUserSentiment;
-        Integer mSuppressVisually;
-        ArrayList<Notification.Action> mSystemSmartActions;
-        ArrayList<CharSequence> mSmartReplies;
-        int mImportance;
-
-        // These fields may not trigger a reranking but diffs here may be logged.
-        float mRankingScore;
-        boolean mIsConversation;
-
-        boolean mIsBubbleUpSuppressedByAppLock;
-
-        NotificationRecordExtractorData(int position, int visibility, boolean showBadge,
-                boolean allowBubble, boolean isBubble, NotificationChannel channel, String groupKey,
-                ArrayList<String> overridePeople, ArrayList<SnoozeCriterion> snoozeCriteria,
-                Integer userSentiment, Integer suppressVisually,
-                ArrayList<Notification.Action> systemSmartActions,
-                ArrayList<CharSequence> smartReplies, int importance, float rankingScore,
-                boolean isConversation, boolean isBubbleUpSuppressedByAppLock) {
-            mPosition = position;
-            mVisibility = visibility;
-            mShowBadge = showBadge;
-            mAllowBubble = allowBubble;
-            mIsBubble = isBubble;
-            mChannel = channel;
-            mGroupKey = groupKey;
-            mOverridePeople = overridePeople;
-            mSnoozeCriteria = snoozeCriteria;
-            mUserSentiment = userSentiment;
-            mSuppressVisually = suppressVisually;
-            mSystemSmartActions = systemSmartActions;
-            mSmartReplies = smartReplies;
-            mImportance = importance;
-            mRankingScore = rankingScore;
-            mIsConversation = isConversation;
-            mIsBubbleUpSuppressedByAppLock = isBubbleUpSuppressedByAppLock;
-        }
-
-        // Returns whether the provided NotificationRecord differs from the cached data in any way.
-        // Should be guarded by mNotificationLock; not annotated here as this class is static.
-        boolean hasDiffForRankingLocked(NotificationRecord r, int newPosition) {
-            return mPosition != newPosition
-                    || mVisibility != r.getPackageVisibilityOverride()
-                    || mShowBadge != r.canShowBadge()
-                    || mAllowBubble != r.canBubble()
-                    || mIsBubble != r.getNotification().isBubbleNotification()
-                    || !Objects.equals(mChannel, r.getChannel())
-                    || !Objects.equals(mGroupKey, r.getGroupKey())
-                    || !Objects.equals(mOverridePeople, r.getPeopleOverride())
-                    || !Objects.equals(mSnoozeCriteria, r.getSnoozeCriteria())
-                    || !Objects.equals(mUserSentiment, r.getUserSentiment())
-                    || !Objects.equals(mSuppressVisually, r.getSuppressedVisualEffects())
-                    || !Objects.equals(mSystemSmartActions, r.getSystemGeneratedSmartActions())
-                    || !Objects.equals(mSmartReplies, r.getSmartReplies())
-                    || mImportance != r.getImportance()
-                    || mIsBubbleUpSuppressedByAppLock != r.isBubbleUpSuppressedByAppLock();
-        }
-
-        // Returns whether the NotificationRecord has a change from this data for which we should
-        // log an update. This method specifically targets fields that may be changed via
-        // adjustments from the assistant.
-        //
-        // Fields here are the union of things in NotificationRecordLogger.shouldLogReported
-        // and NotificationRecord.applyAdjustments.
-        //
-        // Should be guarded by mNotificationLock; not annotated here as this class is static.
-        boolean hasDiffForLoggingLocked(NotificationRecord r, int newPosition) {
-            return mPosition != newPosition
-                    || !Objects.equals(mChannel, r.getChannel())
-                    || !Objects.equals(mGroupKey, r.getGroupKey())
-                    || !Objects.equals(mOverridePeople, r.getPeopleOverride())
-                    || !Objects.equals(mSnoozeCriteria, r.getSnoozeCriteria())
-                    || !Objects.equals(mUserSentiment, r.getUserSentiment())
-                    || !Objects.equals(mSystemSmartActions, r.getSystemGeneratedSmartActions())
-                    || !Objects.equals(mSmartReplies, r.getSmartReplies())
-                    || mImportance != r.getImportance()
-                    || !r.rankingScoreMatches(mRankingScore)
-                    || mIsConversation != r.isConversation();
-        }
-    }
-
-=======
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
     void handleRankingSort() {
         if (mRankingHelper == null) return;
         synchronized (mNotificationLock) {
@@ -8837,11 +8741,8 @@ public class NotificationManagerService extends SystemService {
                         r.getImportance(),
                         r.getRankingScore(),
                         r.isConversation(),
-<<<<<<< HEAD
+                        r.getProposedImportance(),
                         r.isBubbleUpSuppressedByAppLock());
-=======
-                        r.getProposedImportance());
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
                 extractorDataBefore.put(r.getKey(), extractorData);
                 mRankingHelper.extractSignals(r);
             }

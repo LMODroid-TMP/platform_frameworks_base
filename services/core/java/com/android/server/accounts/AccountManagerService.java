@@ -4938,9 +4938,6 @@ public class AccountManagerService
             if (intent == null) {
                 return (simulateIntent == null);
             }
-<<<<<<< HEAD
-            return intent.filterEquals(simulateIntent);
-=======
             if (!intent.filterEquals(simulateIntent)) {
                 return false;
             }
@@ -4954,7 +4951,6 @@ public class AccountManagerService
                     | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
                     | Intent.FLAG_GRANT_PREFIX_URI_PERMISSION;
             return (simulateIntent.getFlags() & prohibitedFlags) == 0;
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
         }
 
         private boolean isExportedSystemActivity(ActivityInfo activityInfo) {
