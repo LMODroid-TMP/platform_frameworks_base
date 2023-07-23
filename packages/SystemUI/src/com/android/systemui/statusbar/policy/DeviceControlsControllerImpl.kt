@@ -28,11 +28,6 @@ import com.android.systemui.dagger.SysUISingleton
 import com.android.systemui.settings.UserContextProvider
 import com.android.systemui.statusbar.phone.AutoTileManager
 import com.android.systemui.statusbar.policy.DeviceControlsController.Callback
-<<<<<<< HEAD
-
-=======
-import com.android.systemui.util.settings.SecureSettings
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 import javax.inject.Inject
 
 /**

@@ -27,14 +27,7 @@ import android.view.WindowManager.ScreenshotSource.SCREENSHOT_KEY_OTHER
 import android.view.WindowManager.ScreenshotSource.SCREENSHOT_OTHER
 import android.view.WindowManager.TAKE_SCREENSHOT_FULLSCREEN
 import android.view.WindowManager.TAKE_SCREENSHOT_PROVIDED_IMAGE
-<<<<<<< HEAD
-import android.view.WindowManager.TAKE_SCREENSHOT_SELECTED_REGION
-import com.android.internal.util.ScreenshotHelper.HardwareBitmapBundler
-import com.android.internal.util.ScreenshotHelper.HardwareBitmapBundler.bundleToHardwareBitmap
-import com.android.internal.util.ScreenshotHelper.ScreenshotRequest
-=======
 import com.android.internal.util.ScreenshotRequest
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 import com.android.systemui.flags.FakeFeatureFlags
 import com.android.systemui.flags.Flags
 import com.android.systemui.screenshot.ScreenshotPolicy.DisplayContentInfo

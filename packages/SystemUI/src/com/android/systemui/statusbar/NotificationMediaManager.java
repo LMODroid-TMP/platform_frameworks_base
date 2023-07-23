@@ -204,11 +204,8 @@ public class NotificationMediaManager implements Dumpable, TunerService.Tunable 
             SysuiColorExtractor colorExtractor,
             KeyguardStateController keyguardStateController,
             DumpManager dumpManager,
-<<<<<<< HEAD
+            DisplayManager displayManager,
             TunerService tunerService) {
-=======
-            DisplayManager displayManager) {
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
         mContext = context;
         mMediaArtworkProcessor = mediaArtworkProcessor;
         mKeyguardBypassController = keyguardBypassController;

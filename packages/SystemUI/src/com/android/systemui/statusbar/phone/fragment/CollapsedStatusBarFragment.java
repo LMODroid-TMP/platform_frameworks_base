@@ -47,11 +47,8 @@ import android.widget.LinearLayout;
 import androidx.annotation.VisibleForTesting;
 import androidx.core.animation.Animator;
 
-<<<<<<< HEAD
-import com.android.systemui.Dependency;
-=======
 import com.android.keyguard.KeyguardUpdateMonitor;
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
+import com.android.systemui.Dependency;
 import com.android.systemui.Dumpable;
 import com.android.systemui.R;
 import com.android.systemui.animation.Interpolators;
@@ -140,13 +137,10 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     private final SecureSettings mSecureSettings;
     private final Executor mMainExecutor;
     private final DumpManager mDumpManager;
-<<<<<<< HEAD
-    private ClockController mClockController;
-    private boolean mIsClockBlacklisted;
-=======
     private final StatusBarWindowStateController mStatusBarWindowStateController;
     private final KeyguardUpdateMonitor mKeyguardUpdateMonitor;
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
+    private ClockController mClockController;
+    private boolean mIsClockBlacklisted;
 
     private List<String> mBlockedIcons = new ArrayList<>();
     private Map<Startable, Startable.State> mStartableStates = new ArrayMap<>();
@@ -482,16 +476,6 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     protected int adjustDisableFlags(int state) {
         boolean headsUpVisible =
                 mStatusBarFragmentComponent.getHeadsUpAppearanceController().shouldBeVisible();
-<<<<<<< HEAD
-        if (headsUpVisible) {
-            View clockView = mClockController.getClock();
-            boolean isRightClock = clockView.getId() == R.id.clock_right;
-            if (!isRightClock) {
-                state |= DISABLE_CLOCK;
-            }
-        }
-=======
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 
         if (!mKeyguardStateController.isLaunchTransitionFadingAway()
                 && !mKeyguardStateController.isKeyguardFadingAway()
@@ -500,7 +484,11 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
                         && headsUpVisible)) {
             state |= DISABLE_NOTIFICATION_ICONS;
             state |= DISABLE_SYSTEM_INFO;
-            state |= DISABLE_CLOCK;
+            View clockView = mClockController.getClock();
+            boolean isRightClock = clockView.getId() == R.id.clock_right;
+            if (!isRightClock) {
+                state |= DISABLE_CLOCK;
+            }
         }
 
         if (mOngoingCallController.hasOngoingCall()) {

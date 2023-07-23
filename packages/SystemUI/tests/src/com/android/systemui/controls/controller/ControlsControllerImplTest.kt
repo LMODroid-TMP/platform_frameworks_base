@@ -151,15 +151,12 @@ class ControlsControllerImplTest : SysuiTestCase() {
     fun setUp() {
         MockitoAnnotations.initMocks(this)
 
-<<<<<<< HEAD
         Settings.Secure.putInt(mContext.contentResolver,
                 ControlsControllerImpl.CONTROLS_AVAILABLE, 1)
         Settings.Secure.putIntForUser(mContext.contentResolver,
                 ControlsControllerImpl.CONTROLS_AVAILABLE, 1, otherUser)
 
-=======
         whenever(authorizedPanelsRepository.getAuthorizedPanels()).thenReturn(setOf())
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
         `when`(userTracker.userHandle).thenReturn(UserHandle.of(user))
 
         delayableExecutor = FakeExecutor(FakeSystemClock())
@@ -191,14 +188,8 @@ class ControlsControllerImplTest : SysuiTestCase() {
         )
         controller.auxiliaryPersistenceWrapper = auxiliaryPersistenceWrapper
 
-<<<<<<< HEAD
         assertTrue(controller.available)
-        verify(userTracker).addCallback(
-            capture(userTrackerCallbackCaptor), any()
-        )
 
-=======
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
         verify(listingController).addCallback(capture(listingCallbackCaptor))
     }
 

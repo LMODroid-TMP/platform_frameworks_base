@@ -348,13 +348,10 @@ public class ScrimController implements ViewTreeObserver.OnPreDrawListener, Dump
             }
         });
         mColors = new GradientColors();
-<<<<<<< HEAD
         mBehindColors = new GradientColors();
-=======
         mPrimaryBouncerToGoneTransitionViewModel = primaryBouncerToGoneTransitionViewModel;
         mKeyguardTransitionInteractor = keyguardTransitionInteractor;
         mMainDispatcher = mainDispatcher;
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
     }
 
     /**

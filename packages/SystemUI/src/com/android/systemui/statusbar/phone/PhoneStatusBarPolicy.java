@@ -22,12 +22,7 @@ import android.annotation.Nullable;
 import android.app.ActivityTaskManager;
 import android.app.AlarmManager;
 import android.app.AlarmManager.AlarmClockInfo;
-<<<<<<< HEAD
 import android.app.AppGlobals;
-import android.app.IActivityManager;
-import android.app.SynchronousUserSwitchObserver;
-=======
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -43,11 +38,7 @@ import android.net.NetworkPolicyManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.RemoteException;
-<<<<<<< HEAD
 import android.os.ServiceManager;
-import android.os.UserHandle;
-=======
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 import android.os.UserManager;
 import android.provider.Settings.Global;
 import android.service.notification.ZenModeConfig;
@@ -601,7 +592,6 @@ public class PhoneStatusBarPolicy
         });
     }
 
-<<<<<<< HEAD
     private void updateFirewall() {
         mUiBgExecutor.execute(() -> {
             try {
@@ -669,12 +659,8 @@ public class PhoneStatusBarPolicy
         }
     };
 
-    private final SynchronousUserSwitchObserver mUserSwitchListener =
-            new SynchronousUserSwitchObserver() {
-=======
     private final UserTracker.Callback mUserSwitchListener =
             new UserTracker.Callback() {
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
                 @Override
                 public void onUserChanging(int newUser, Context userContext) {
                     mHandler.post(() -> mUserInfoController.reloadUserInfo());

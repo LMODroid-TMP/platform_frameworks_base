@@ -133,12 +133,7 @@ class UserTrackerImplTest : SysuiTestCase() {
         verify(context).registerReceiverForAllUsers(
                 eq(tracker), capture(captor), isNull(), eq(handler))
         with(captor.value) {
-<<<<<<< HEAD
-            assertThat(countActions()).isEqualTo(7)
-            assertThat(hasAction(Intent.ACTION_USER_SWITCHED)).isTrue()
-=======
             assertThat(countActions()).isEqualTo(6)
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
             assertThat(hasAction(Intent.ACTION_USER_INFO_CHANGED)).isTrue()
             assertThat(hasAction(Intent.ACTION_MANAGED_PROFILE_AVAILABLE)).isTrue()
             assertThat(hasAction(Intent.ACTION_MANAGED_PROFILE_UNAVAILABLE)).isTrue()

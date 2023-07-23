@@ -33,11 +33,7 @@ import com.android.systemui.biometrics.AuthRippleView;
 import com.android.systemui.dagger.qualifiers.Main;
 import com.android.systemui.dump.DumpManager;
 import com.android.systemui.flags.FeatureFlags;
-<<<<<<< HEAD
 import com.android.systemui.flags.Flags;
-import com.android.systemui.plugins.ActivityStarter;
-=======
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 import com.android.systemui.plugins.statusbar.StatusBarStateController;
 import com.android.systemui.privacy.OngoingPrivacyChip;
 import com.android.systemui.settings.UserTracker;

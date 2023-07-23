@@ -353,35 +353,8 @@ public class PhoneStatusBarView extends FrameLayout implements Callbacks {
         centeredAreaParams.rightMargin =
                 winRotation == Surface.ROTATION_0 ? -insets.second : 0;
     }
-<<<<<<< HEAD
-
-    /**
-     * A handler responsible for all touch event handling on the status bar.
-     *
-     * Touches that occur on the status bar view may have ramifications for the notification
-     * panel (e.g. a touch that pulls down the shade could start on the status bar), so this
-     * interface provides a way to notify the panel controller when these touches occur.
-     *
-     * The handler will be notified each time {@link PhoneStatusBarView#onTouchEvent} and
-     * {@link PhoneStatusBarView#onInterceptTouchEvent} are called.
-     **/
-    public interface TouchEventHandler {
-        /** Called each time {@link PhoneStatusBarView#onInterceptTouchEvent} is called. */
-        void onInterceptTouchEvent(MotionEvent event);
-
-        /**
-         * Called each time {@link PhoneStatusBarView#onTouchEvent} is called.
-         *
-         * Should return true if the touch was handled by this handler and false otherwise. The
-         * return value from the handler will be returned from
-         * {@link PhoneStatusBarView#onTouchEvent}.
-         */
-        boolean handleTouchEvent(MotionEvent event);
-    }
 
     public ClockController getClockController() {
         return mClockController;
     }
-=======
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 }

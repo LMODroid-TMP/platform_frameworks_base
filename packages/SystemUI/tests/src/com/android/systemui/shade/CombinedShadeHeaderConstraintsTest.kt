@@ -342,10 +342,6 @@ class CombinedShadeHeaderConstraintsTest : SysuiTestCase() {
                 R.id.clock to "clock",
                 R.id.date to "date",
                 R.id.privacy_container to "privacy",
-<<<<<<< HEAD
-                R.id.carrier_group to "carriers",
-=======
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
         )
         views.forEach { (id, name) ->
             assertWithMessage("$name has 0 height in qqs")
@@ -364,10 +360,6 @@ class CombinedShadeHeaderConstraintsTest : SysuiTestCase() {
         val views = mapOf(
                 R.id.clock to "clock",
                 R.id.privacy_container to "privacy",
-<<<<<<< HEAD
-                R.id.carrier_group to "carriers",
-=======
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
         )
         views.forEach { (id, name) ->
             expect.withMessage("$name changes height")

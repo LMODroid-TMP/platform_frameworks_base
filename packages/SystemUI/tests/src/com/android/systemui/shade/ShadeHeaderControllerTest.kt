@@ -40,12 +40,7 @@ import com.android.systemui.battery.BatteryMeterViewController
 import com.android.systemui.demomode.DemoMode
 import com.android.systemui.demomode.DemoModeController
 import com.android.systemui.dump.DumpManager
-<<<<<<< HEAD:packages/SystemUI/tests/src/com/android/systemui/shade/LargeScreenShadeHeaderControllerCombinedTest.kt
-import com.android.systemui.flags.FeatureFlags
-import com.android.systemui.flags.Flags
 import com.android.systemui.plugins.ActivityStarter
-=======
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1:packages/SystemUI/tests/src/com/android/systemui/shade/ShadeHeaderControllerTest.kt
 import com.android.systemui.qs.ChipVisibilityListener
 import com.android.systemui.qs.HeaderPrivacyIconsController
 import com.android.systemui.qs.carrier.QSCarrierGroup
@@ -118,11 +113,8 @@ class ShadeHeaderControllerTest : SysuiTestCase() {
     @Mock private lateinit var largeScreenConstraints: ConstraintSet
 
     @Mock private lateinit var demoModeController: DemoModeController
-<<<<<<< HEAD:packages/SystemUI/tests/src/com/android/systemui/shade/LargeScreenShadeHeaderControllerCombinedTest.kt
-    @Mock private lateinit var activityStarter: ActivityStarter
-=======
     @Mock private lateinit var qsBatteryModeController: QsBatteryModeController
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1:packages/SystemUI/tests/src/com/android/systemui/shade/ShadeHeaderControllerTest.kt
+    @Mock private lateinit var activityStarter: ActivityStarter
 
     @JvmField @Rule val mockitoRule = MockitoJUnit.rule()
     var viewVisibility = View.GONE
@@ -174,24 +166,6 @@ class ShadeHeaderControllerTest : SysuiTestCase() {
         setUpDefaultInsets()
         setUpMotionLayout(view)
 
-<<<<<<< HEAD:packages/SystemUI/tests/src/com/android/systemui/shade/LargeScreenShadeHeaderControllerCombinedTest.kt
-        controller = LargeScreenShadeHeaderController(
-            view,
-            statusBarIconController,
-            iconManagerFactory,
-            privacyIconsController,
-            insetsProvider,
-            configurationController,
-            variableDateViewControllerFactory,
-            batteryMeterViewController,
-            dumpManager,
-            featureFlags,
-            qsCarrierGroupControllerBuilder,
-            combinedShadeHeadersConstraintManager,
-            demoModeController,
-            activityStarter
-        )
-=======
         shadeHeaderController =
             ShadeHeaderController(
                 view,
@@ -207,8 +181,8 @@ class ShadeHeaderControllerTest : SysuiTestCase() {
                 combinedShadeHeadersConstraintManager,
                 demoModeController,
                 qsBatteryModeController,
+                activityStarter
             )
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1:packages/SystemUI/tests/src/com/android/systemui/shade/ShadeHeaderControllerTest.kt
         whenever(view.isAttachedToWindow).thenReturn(true)
         shadeHeaderController.init()
         carrierIconSlots =

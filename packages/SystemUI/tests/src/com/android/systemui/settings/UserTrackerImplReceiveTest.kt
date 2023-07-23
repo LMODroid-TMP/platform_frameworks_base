@@ -1,9 +1,6 @@
 package com.android.systemui.settings
 
-<<<<<<< HEAD
-=======
 import android.app.IActivityManager
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 import android.content.Context
 import android.content.Intent
 import android.content.pm.UserInfo
@@ -55,10 +52,7 @@ class UserTrackerImplReceiveTest : SysuiTestCase() {
 
     @Mock private lateinit var context: Context
     @Mock private lateinit var userManager: UserManager
-<<<<<<< HEAD
-=======
     @Mock private lateinit var iActivityManager: IActivityManager
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
     @Mock(stubOnly = true) private lateinit var dumpManager: DumpManager
     @Mock(stubOnly = true) private lateinit var handler: Handler
 
@@ -75,11 +69,7 @@ class UserTrackerImplReceiveTest : SysuiTestCase() {
         `when`(context.user).thenReturn(UserHandle.SYSTEM)
         `when`(context.createContextAsUser(ArgumentMatchers.any(), anyInt())).thenReturn(context)
 
-<<<<<<< HEAD
-        tracker = UserTrackerImpl(context, userManager, dumpManager, handler)
-=======
         tracker = UserTrackerImpl(context, userManager, iActivityManager, dumpManager, handler)
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
     }
 
     @Test

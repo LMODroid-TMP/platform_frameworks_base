@@ -143,11 +143,8 @@ public interface CentralSurfacesDependenciesModule {
             SysuiColorExtractor colorExtractor,
             KeyguardStateController keyguardStateController,
             DumpManager dumpManager,
-<<<<<<< HEAD
+            DisplayManager displayManager,
             TunerService tunerService) {
-=======
-            DisplayManager displayManager) {
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
         return new NotificationMediaManager(
                 context,
                 centralSurfacesOptionalLazy,
@@ -163,11 +160,8 @@ public interface CentralSurfacesDependenciesModule {
                 colorExtractor,
                 keyguardStateController,
                 dumpManager,
-<<<<<<< HEAD
+                displayManager,
                 tunerService);
-=======
-                displayManager);
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
     }
 
     /** */

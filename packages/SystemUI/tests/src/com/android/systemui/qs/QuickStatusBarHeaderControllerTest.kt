@@ -20,24 +20,6 @@ import android.content.Context
 import android.testing.AndroidTestingRunner
 import androidx.test.filters.SmallTest
 import com.android.systemui.SysuiTestCase
-<<<<<<< HEAD
-import com.android.systemui.battery.BatteryMeterViewController
-import com.android.systemui.demomode.DemoModeController
-import com.android.systemui.flags.FeatureFlags
-import com.android.systemui.qs.carrier.QSCarrierGroup
-import com.android.systemui.qs.carrier.QSCarrierGroupController
-import com.android.systemui.statusbar.phone.StatusBarContentInsetsProvider
-import com.android.systemui.statusbar.phone.StatusBarIconController
-import com.android.systemui.statusbar.phone.StatusIconContainer
-import com.android.systemui.statusbar.policy.Clock
-import com.android.systemui.statusbar.policy.VariableDateView
-import com.android.systemui.statusbar.policy.VariableDateViewController
-import com.android.systemui.util.mockito.any
-import com.android.systemui.util.mockito.argumentCaptor
-import com.android.systemui.util.mockito.capture
-import com.google.common.truth.Truth.assertThat
-=======
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -56,30 +38,6 @@ class QuickStatusBarHeaderControllerTest : SysuiTestCase() {
     private lateinit var view: QuickStatusBarHeader
     @Mock
     private lateinit var quickQSPanelController: QuickQSPanelController
-<<<<<<< HEAD
-    @Mock(answer = Answers.RETURNS_SELF)
-    private lateinit var qsCarrierGroupControllerBuilder: QSCarrierGroupController.Builder
-    @Mock
-    private lateinit var qsCarrierGroupController: QSCarrierGroupController
-    @Mock
-    private lateinit var iconContainer: StatusIconContainer
-    @Mock
-    private lateinit var qsCarrierGroup: QSCarrierGroup
-    @Mock
-    private lateinit var variableDateViewControllerFactory: VariableDateViewController.Factory
-    @Mock
-    private lateinit var variableDateViewController: VariableDateViewController
-    @Mock
-    private lateinit var batteryMeterViewController: BatteryMeterViewController
-    @Mock
-    private lateinit var clock: Clock
-    @Mock
-    private lateinit var variableDateView: VariableDateView
-    @Mock
-    private lateinit var mockView: View
-=======
-
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
     @Mock(answer = Answers.RETURNS_DEEP_STUBS)
     private lateinit var context: Context
 
@@ -92,24 +50,7 @@ class QuickStatusBarHeaderControllerTest : SysuiTestCase() {
         `when`(view.isAttachedToWindow).thenReturn(true)
         `when`(view.context).thenReturn(context)
 
-<<<<<<< HEAD
-        controller = QuickStatusBarHeaderController(
-                view,
-                privacyIconsController,
-                statusBarIconController,
-                demoModeController,
-                quickQSPanelController,
-                qsCarrierGroupControllerBuilder,
-                qsExpansionPathInterpolator,
-                featureFlags,
-                variableDateViewControllerFactory,
-                batteryMeterViewController,
-                insetsProvider,
-                iconManagerFactory,
-        )
-=======
         controller = QuickStatusBarHeaderController(view, quickQSPanelController)
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
     }
 
     @After

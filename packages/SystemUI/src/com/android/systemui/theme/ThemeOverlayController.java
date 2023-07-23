@@ -383,17 +383,6 @@ public class ThemeOverlayController implements CoreStartable, Dumpable {
     };
 
     @Inject
-<<<<<<< HEAD
-    public ThemeOverlayController(Context context, BroadcastDispatcher broadcastDispatcher,
-            @Background Handler bgHandler, @Main Executor mainExecutor,
-            @Background Executor bgExecutor, ThemeOverlayApplier themeOverlayApplier,
-            SecureSettings secureSettings, SystemSettings systemSettings,
-            WallpaperManager wallpaperManager,
-            UserManager userManager, DeviceProvisionedController deviceProvisionedController,
-            UserTracker userTracker, DumpManager dumpManager, FeatureFlags featureFlags,
-            @Main Resources resources, WakefulnessLifecycle wakefulnessLifecycle,
-            ConfigurationController configurationController) {
-=======
     public ThemeOverlayController(
             Context context,
             BroadcastDispatcher broadcastDispatcher,
@@ -402,6 +391,7 @@ public class ThemeOverlayController implements CoreStartable, Dumpable {
             @Background Executor bgExecutor,
             ThemeOverlayApplier themeOverlayApplier,
             SecureSettings secureSettings,
+            SystemSettings systemSettings,
             WallpaperManager wallpaperManager,
             UserManager userManager,
             DeviceProvisionedController deviceProvisionedController,
@@ -410,7 +400,6 @@ public class ThemeOverlayController implements CoreStartable, Dumpable {
             FeatureFlags featureFlags,
             @Main Resources resources,
             WakefulnessLifecycle wakefulnessLifecycle) {
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
         mContext = context;
         mIsMonochromaticEnabled = featureFlags.isEnabled(Flags.MONOCHROMATIC_THEME);
         mIsMonetEnabled = featureFlags.isEnabled(Flags.MONET);
@@ -612,18 +601,8 @@ public class ThemeOverlayController implements CoreStartable, Dumpable {
     /**
      * Given a color candidate, return an overlay definition.
      */
-<<<<<<< HEAD
-    protected @Nullable FabricatedOverlay getOverlay(int color, int type, Style style) {
-        mColorScheme = new ColorScheme(color, isNightMode(), style);
-        List<Integer> colorShades = type == ACCENT
-                ? mColorScheme.getAllAccentColors() : mColorScheme.getAllNeutralColors();
-=======
     protected FabricatedOverlay getOverlay(int color, int type, Style style) {
-        boolean nightMode = (mResources.getConfiguration().uiMode
-                & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
-
-        mColorScheme = new ColorScheme(color, nightMode, style);
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
+        mColorScheme = new ColorScheme(color, isNightMode(), style);
         String name = type == ACCENT ? "accent" : "neutral";
 
         FabricatedOverlay.Builder overlay =

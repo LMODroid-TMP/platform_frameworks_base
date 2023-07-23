@@ -779,14 +779,11 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces, Tune
             IDreamManager dreamManager,
             Lazy<CameraLauncher> cameraLauncherLazy,
             Lazy<LightRevealScrimViewModel> lightRevealScrimViewModelLazy,
-<<<<<<< HEAD
-            TunerService tunerService) {
-=======
             AlternateBouncerInteractor alternateBouncerInteractor,
             UserTracker userTracker,
-            Provider<FingerprintManager> fingerprintManager
+            Provider<FingerprintManager> fingerprintManager,
+            TunerService tunerService
     ) {
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
         mContext = context;
         mNotificationsController = notificationsController;
         mFragmentService = fragmentService;

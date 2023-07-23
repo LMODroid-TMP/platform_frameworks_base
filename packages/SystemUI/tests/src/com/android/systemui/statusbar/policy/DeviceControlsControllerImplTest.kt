@@ -37,11 +37,7 @@ import com.android.systemui.statusbar.policy.DeviceControlsControllerImpl.Compan
 import com.android.systemui.statusbar.policy.DeviceControlsControllerImpl.Companion.PREFS_CONTROLS_SEEDING_COMPLETED
 import com.android.systemui.statusbar.policy.DeviceControlsControllerImpl.Companion.QS_DEFAULT_POSITION
 import com.android.systemui.statusbar.policy.DeviceControlsControllerImpl.Companion.QS_PRIORITY_POSITION
-<<<<<<< HEAD
-=======
 import com.android.systemui.util.mockito.mock
-import com.android.systemui.util.settings.SecureSettings
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
 
 import java.util.Optional
 import java.util.function.Consumer
@@ -102,20 +98,9 @@ class DeviceControlsControllerImplTest : SysuiTestCase() {
         `when`(controlsComponent.getControlsListingController())
                 .thenReturn(Optional.of(controlsListingController))
 
-<<<<<<< HEAD
-        controller = DeviceControlsControllerImpl(mContext, controlsComponent, userContextProvider)
-=======
         `when`(controlsComponent.isEnabled()).thenReturn(true)
 
-        controller = DeviceControlsControllerImpl(
-            mContext,
-            controlsComponent,
-            userContextProvider,
-            secureSettings
-        )
-
-        `when`(secureSettings.getInt(Settings.Secure.CONTROLS_ENABLED, 1)).thenReturn(1)
->>>>>>> a8b38901158de0bdf294c4814c60b8f4ee359cb1
+        controller = DeviceControlsControllerImpl(mContext, controlsComponent, userContextProvider)
 
         `when`(serviceInfo.componentName).thenReturn(TEST_COMPONENT)
         controlsServiceInfo = ControlsServiceInfo(mContext, serviceInfo)
