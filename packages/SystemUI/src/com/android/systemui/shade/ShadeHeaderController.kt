@@ -259,12 +259,11 @@ constructor(
                 lastInsets?.let { updateConstraintsForInsets(header, it) }
                 updateResources()
             }
-        }
 
-        override fun onUiModeChanged() {
-            updateResources()
+            override fun onUiModeChanged() {
+                updateResources()
+            }
         }
-    }
 
     override fun onInit() {
         variableDateViewControllerFactory.create(date as VariableDateView).init()
