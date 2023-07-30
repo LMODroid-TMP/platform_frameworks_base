@@ -105,6 +105,7 @@ import com.android.systemui.flags.FeatureFlags;
 import com.android.systemui.flags.Flags;
 import com.android.systemui.screenshot.ScreenshotController.SavedImageData.ActionTransition;
 import com.android.systemui.screenshot.TakeScreenshotService.RequestCallback;
+import com.android.systemui.settings.DisplayTracker;
 import com.android.systemui.shared.system.TaskStackChangeListener;
 import com.android.systemui.shared.system.TaskStackChangeListeners;
 import com.android.systemui.util.Assert;
@@ -956,6 +957,7 @@ public class ScreenshotController {
                     mContext.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
                 }
         );
+
         mLongScreenshotHolder.setForegroundAppName(getForegroundAppLabel());
 
         final Intent intent = new Intent(mContext, LongScreenshotActivity.class);
@@ -980,8 +982,8 @@ public class ScreenshotController {
             mStatusBarService.collapsePanels();
         } catch (RemoteException e) {
             Log.e(TAG, "Error during collapsing panels", e);
-
         }
+
     }
 
     private void startPartialScreenshotActivity(UserHandle owner) {
