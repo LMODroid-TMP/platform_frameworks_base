@@ -310,6 +310,7 @@ public class InternetTile extends QSTileImpl<SignalState> {
             }
             if (!indicators.isDefault) {
                 return;
+            }
             synchronized (mWifiInfo) {
                 mWifiInfo.mEnabled = indicators.enabled;
                 mWifiInfo.mSsid = indicators.description;

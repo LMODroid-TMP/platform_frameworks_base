@@ -2969,7 +2969,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
                 && (!mSecureCameraLaunched || mAlternateBouncerShowing)
                 && faceAndFpNotAuthenticated
                 && !mGoingToSleep
-                && isPostureAllowedForFaceAuth;
+                && isPostureAllowedForFaceAuth
                 && !mIsDeviceInPocket;
 
         // Aggregate relevant fields for debug logging.
