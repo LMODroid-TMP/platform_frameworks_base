@@ -142,6 +142,7 @@ public class NavigationBarController implements
                 navBarHelper, navigationModeController, sysUiFlagsContainer,
                 dumpManager, autoHideController, lightBarController, pipOptional,
                 backAnimation.orElse(null), taskStackChangeListeners);
+        overviewProxyService.addCallback(this);
         dumpManager.registerDumpable(this);
     }
 
