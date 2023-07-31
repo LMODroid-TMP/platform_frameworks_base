@@ -81,11 +81,11 @@ public class QSFactoryImpl implements QSFactory {
     @Nullable
     protected QSTileImpl createTileInternal(String tileSpec) {
         // Stock tiles.
-        /*if (mTileMap.containsKey(tileSpec)
+        if (mTileMap.containsKey(tileSpec)
                 // We should not return a Garbage Monitory Tile if the build is not Debuggable
                 && (!tileSpec.equals(GarbageMonitor.MemoryTile.TILE_SPEC) || Build.IS_DEBUGGABLE)) {
             return mTileMap.get(tileSpec).get();
-        }*/
+        }
 
         // Custom tiles
         if (tileSpec.startsWith(CustomTile.PREFIX)) {
