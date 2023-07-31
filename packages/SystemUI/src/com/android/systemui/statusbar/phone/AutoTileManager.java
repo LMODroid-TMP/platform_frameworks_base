@@ -325,10 +325,8 @@ public class AutoTileManager implements UserAwareController {
         @Override
         public void onControlsAvailable(int position) {
             if (mAutoTracker.isAdded(DEVICE_CONTROLS)) return;
-            if (position != null && !hasTile(DEVICE_CONTROLS)) {
-                mHost.addTile(DEVICE_CONTROLS, position);
-                mAutoTracker.setTileAdded(DEVICE_CONTROLS);
-            }
+            mHost.addTile(DEVICE_CONTROLS, position);
+            mAutoTracker.setTileAdded(DEVICE_CONTROLS);
             mHandler.post(() -> mDeviceControlsController.removeCallback());
         }
 
