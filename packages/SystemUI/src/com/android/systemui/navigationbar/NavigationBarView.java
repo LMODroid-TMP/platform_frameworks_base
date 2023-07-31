@@ -90,7 +90,6 @@ import com.android.systemui.shade.NotificationPanelViewController;
 import com.android.systemui.shared.rotation.FloatingRotationButton;
 import com.android.systemui.shared.rotation.RotationButton.RotationButtonUpdatesCallback;
 import com.android.systemui.shared.rotation.RotationButtonController;
-import com.android.systemui.shared.system.ActivityManagerWrapper;
 import com.android.systemui.shared.system.QuickStepContract;
 import com.android.systemui.statusbar.phone.AutoHideController;
 import com.android.systemui.statusbar.phone.CentralSurfaces;
