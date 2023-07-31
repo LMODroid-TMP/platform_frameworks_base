@@ -889,7 +889,7 @@ public class NavigationBarView extends FrameLayout implements TunerService.Tunab
     }
 
     public void setInScreenPinning(boolean active) {
-        mScreenPinningActive = active;
+        mForceDisableOverview || mScreenPinningActive = active;
     }
 
     private void updatePanelSystemUiStateFlags() {
