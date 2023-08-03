@@ -33,7 +33,7 @@ import com.android.systemui.util.LargeScreenUtils;
  * View that contains the top-most bits of the QS panel (primarily the status bar with date, time,
  * battery, carrier info and privacy icons) and also contains the {@link QuickQSPanel}.
  */
-public class QuickStatusBarHeader extends FrameLayout implements TunerService.Tunable {
+public class QuickStatusBarHeader extends FrameLayout {
 
     private boolean mExpanded;
     private boolean mQsDisabled;
