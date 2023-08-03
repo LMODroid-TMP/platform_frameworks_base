@@ -1890,6 +1890,7 @@ public class NavigationBar extends ViewController<NavigationBarView> implements 
     }
 
     private void onBoundsChange() {
+        if (mFrame == null) return;
         // give wm some time to change fg app
         mHandler.postDelayed(() -> {
             mWindowManager.updateViewLayout(mFrame, getBarLayoutParams(mContext.getResources()
