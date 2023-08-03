@@ -39,7 +39,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.RemoteException;
 import android.os.ServiceManager;
-import android.os.UserHandle;
 import android.os.UserManager;
 import android.provider.Settings;
 import android.provider.Settings.Global;
@@ -51,6 +50,7 @@ import android.view.View;
 
 import androidx.lifecycle.Observer;
 
+import com.android.systemui.Dependency;
 import com.android.systemui.R;
 import com.android.systemui.broadcast.BroadcastDispatcher;
 import com.android.systemui.dagger.qualifiers.DisplayId;
@@ -109,7 +109,8 @@ public class PhoneStatusBarPolicy
                 KeyguardStateController.Callback,
                 PrivacyItemController.Callback,
                 LocationController.LocationChangeCallback,
-                RecordingController.RecordingStateChangeCallback {
+                RecordingController.RecordingStateChangeCallback,
+                TunerService.Tunable {
     private static final String TAG = "PhoneStatusBarPolicy";
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
 
@@ -352,18 +353,12 @@ public class PhoneStatusBarPolicy
         mIconController.setIconVisibility(mSlotScreenRecord, false);
 
         // network traffic
-        mShowNetworkTraffic = Settings.Secure.getIntForUser(mContext.getContentResolver(),
-            NETWORK_TRAFFIC_LOCATION, 0, UserHandle.USER_CURRENT) == 1;
-        updateNetworkTraffic();
-    
+        Dependency.get(TunerService.class).addTunable(this,
+                NETWORK_TRAFFIC_LOCATION);
+
         // firewall
         mIconController.setIcon(mSlotFirewall, R.drawable.stat_sys_firewall, null);
         mIconController.setIconVisibility(mSlotFirewall, mFirewallVisible);
-
-        // network traffic
-        mShowNetworkTraffic = Settings.Secure.getIntForUser(mContext.getContentResolver(),
-            NETWORK_TRAFFIC_LOCATION, 0, UserHandle.USER_CURRENT) == 1;
-        updateNetworkTraffic();
 
         mRotationLockController.addCallback(this);
         mBluetooth.addCallback(this);
@@ -402,6 +397,19 @@ public class PhoneStatusBarPolicy
     @Override
     public void onConfigChanged(ZenModeConfig config) {
         updateVolumeZen();
+    }
+
+    @Override
+    public void onTuningChanged(String key, String newValue) {
+        switch (key) {
+            case NETWORK_TRAFFIC_LOCATION:
+                mShowNetworkTraffic =
+                        TunerService.parseInteger(newValue, 0) == 1;
+                updateNetworkTraffic();
+                break;
+            default:
+                break;
+        }
     }
 
     private void updateAlarm() {
