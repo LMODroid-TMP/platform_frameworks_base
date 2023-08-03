@@ -41,7 +41,7 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.TextView;
 
-import lineageos.providers.LineageSettings;
+import android.provider.Settings;
 
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
@@ -71,19 +71,19 @@ public class NetworkTraffic extends TextView implements TunerService.Tunable {
     private static final int Giga = Mega * Kilo;
 
     private static final String NETWORK_TRAFFIC_LOCATION =
-            "lineagesecure:" + LineageSettings.Secure.NETWORK_TRAFFIC_LOCATION;
+            "customsecure:" + Settings.Secure.NETWORK_TRAFFIC_LOCATION;
     private static final String NETWORK_TRAFFIC_MODE =
-            "lineagesecure:" + LineageSettings.Secure.NETWORK_TRAFFIC_MODE;
+            "customsecure:" + Settings.Secure.NETWORK_TRAFFIC_MODE;
     private static final String NETWORK_TRAFFIC_AUTOHIDE =
-            "lineagesecure:" + LineageSettings.Secure.NETWORK_TRAFFIC_AUTOHIDE;
+            "customsecure:" + Settings.Secure.NETWORK_TRAFFIC_AUTOHIDE;
     private static final String NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD =
-            "lineagesecure:" + LineageSettings.Secure.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD;
+            "customsecure:" + Settings.Secure.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD;
     private static final String NETWORK_TRAFFIC_UNITS =
-            "lineagesecure:" + LineageSettings.Secure.NETWORK_TRAFFIC_UNITS;
+            "customsecure:" + Settings.Secure.NETWORK_TRAFFIC_UNITS;
     private static final String NETWORK_TRAFFIC_REFRESH_INTERVAL =
-            "lineagesecure:" + LineageSettings.Secure.NETWORK_TRAFFIC_REFRESH_INTERVAL;
+            "customsecure:" + Settings.Secure.NETWORK_TRAFFIC_REFRESH_INTERVAL;
     private static final String NETWORK_TRAFFIC_HIDEARROW =
-            "lineagesecure:" + LineageSettings.Secure.NETWORK_TRAFFIC_HIDEARROW;
+            "customsecure:" + Settings.Secure.NETWORK_TRAFFIC_HIDEARROW;
 
     protected int mLocation = LOCATION_DISABLED;
     private int mMode = MODE_UPSTREAM_AND_DOWNSTREAM;
