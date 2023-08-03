@@ -168,7 +168,6 @@ public class NavigationBarView extends FrameLayout implements TunerService.Tunab
     private boolean mInCarMode = false;
     private boolean mDockedStackExists;
     private boolean mScreenOn = true;
-    private boolean mForceDisableOverview = false;
     private DragDropSurfaceCallback mForceDisableOverviewCallback = null;
 
     private final SparseArray<ButtonDispatcher> mButtonDispatchers = new SparseArray<>();
@@ -429,7 +428,6 @@ public class NavigationBarView extends FrameLayout implements TunerService.Tunab
 
     @Override
     public void setForceDisableOverview(boolean forceDisableOverview) {
-        mForceDisableOverview = forceDisableOverview;
         if (mForceDisableOverviewCallback != null) {
             mForceDisableOverviewCallback.setForceDisableOverview(forceDisableOverview);
         }
@@ -889,7 +887,7 @@ public class NavigationBarView extends FrameLayout implements TunerService.Tunab
     }
 
     public void setInScreenPinning(boolean active) {
-        mForceDisableOverview || mScreenPinningActive = active;
+        mScreenPinningActive = active;
     }
 
     private void updatePanelSystemUiStateFlags() {

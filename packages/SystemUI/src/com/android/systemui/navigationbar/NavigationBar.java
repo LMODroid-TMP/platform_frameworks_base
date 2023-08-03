@@ -516,7 +516,8 @@ public class NavigationBar extends ViewController<NavigationBarView> implements 
         @Override
         public void onLockTaskModeChanged(int mode) {
             mScreenPinningActive = (mode == LOCK_TASK_MODE_PINNED);
-            mSysUiFlagsContainer.setFlag(SYSUI_STATE_SCREEN_PINNING, mScreenPinningActive)
+            mSysUiFlagsContainer.setFlag(SYSUI_STATE_SCREEN_PINNING,
+                    mForceDisableOverview || mScreenPinningActive)
                     .commitUpdate(mDisplayId);
             mView.setInScreenPinning(mScreenPinningActive);
             updateScreenPinningGestures();
@@ -1116,7 +1117,9 @@ public class NavigationBar extends ViewController<NavigationBarView> implements 
     public void setForceDisableOverview(boolean forceDisableOverview) {
         if (mForceDisableOverview != forceDisableOverview) {
             mForceDisableOverview = forceDisableOverview;
-            mView.updateDisabledSystemUiStateFlags(mSysUiFlagsContainer);
+            mSysUiFlagsContainer.setFlag(SYSUI_STATE_SCREEN_PINNING,
+                     mForceDisableOverview || mScreenPinningActive)
+                    .commitUpdate(mDisplayId);
         }
     }
 
