@@ -44,6 +44,8 @@ import android.hardware.fingerprint.IUdfpsOverlayController;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.IHwBinder;
+import android.os.PowerManagerInternal;
+import android.os.PowerManagerInternal.PowerExtBoosts;
 import android.os.RemoteException;
 import android.os.UserHandle;
 import android.os.UserManager;
@@ -82,6 +84,7 @@ import com.android.server.biometrics.sensors.fingerprint.FingerprintUtils;
 import com.android.server.biometrics.sensors.fingerprint.GestureAvailabilityDispatcher;
 import com.android.server.biometrics.sensors.fingerprint.ServiceProvider;
 import com.android.server.biometrics.sensors.fingerprint.Udfps;
+import com.android.server.LocalServices;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -119,6 +122,7 @@ public class Fingerprint21 implements IHwBinder.DeathRecipient, ServiceProvider 
     private final BiometricTaskStackListener mTaskStackListener;
     private final Supplier<IBiometricsFingerprint> mLazyDaemon;
     private final Map<Integer, Long> mAuthenticatorIds;
+    private final PowerManagerInternal mPowerManagerInternal;
 
     @Nullable private IBiometricsFingerprint mDaemon;
     @NonNull private final HalResultController mHalResultController;
@@ -350,6 +354,7 @@ public class Fingerprint21 implements IHwBinder.DeathRecipient, ServiceProvider 
         mLazyDaemon = Fingerprint21.this::getDaemon;
         mLockoutResetDispatcher = lockoutResetDispatcher;
         mLockoutTracker = new LockoutFrameworkImpl(context, mLockoutResetCallback);
+        mPowerManagerInternal = LocalServices.getService(PowerManagerInternal.class);
         mHalResultController = controller;
         mHalResultController.setCallback(() -> {
             mDaemon = null;
@@ -825,6 +830,9 @@ public class Fingerprint21 implements IHwBinder.DeathRecipient, ServiceProvider 
     @Override
     public void onPointerDown(long requestId, int sensorId, PointerContext pc) {
         mScheduler.getCurrentClientIfMatches(requestId, (client) -> {
+            if (mPowerManagerInternal != null) {
+                mPowerManagerInternal.setPowerExtBoost(PowerExtBoosts.FP_BOOST.name(), 1500);
+            }
             if (!(client instanceof Udfps)) {
                 Slog.w(TAG, "onFingerDown received during client: " + client);
                 return;
