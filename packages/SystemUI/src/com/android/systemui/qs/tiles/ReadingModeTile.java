@@ -39,10 +39,8 @@ import com.android.systemui.qs.QsEventLogger;
 import com.android.systemui.qs.logging.QSLogger;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
 
-import org.lineageos.internal.util.PackageManagerUtils;
-
-import lineageos.hardware.LineageHardwareManager;
-import lineageos.providers.LineageSettings;
+import com.android.internal.libremobileos.hardware.LineageHardwareManager;
+import com.android.internal.util.libremobileos.PackageManagerUtils;
 
 import javax.inject.Inject;
 
