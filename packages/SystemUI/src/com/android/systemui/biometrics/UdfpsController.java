@@ -90,7 +90,6 @@ import com.android.systemui.keyguard.domain.interactor.PrimaryBouncerInteractor;
 import com.android.systemui.log.SessionTracker;
 import com.android.systemui.plugins.FalsingManager;
 import com.android.systemui.plugins.statusbar.StatusBarStateController;
-import com.android.systemui.R;
 import com.android.systemui.shade.ShadeExpansionStateManager;
 import com.android.systemui.shared.system.SysUiStatsLog;
 import com.android.systemui.statusbar.LockscreenShadeTransitionController;
@@ -1113,8 +1112,10 @@ public class UdfpsController implements DozeReceiver, Dumpable {
         int brightness = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.SCREEN_BRIGHTNESS, 100);
         // Since the brightness is taken from the system settings, we need to interpolate it
-        final int brightnessMin = mContext.getResources().getInteger(R.integer.config_udfpsDimmingBrightnessMin);
-        final int brightnessMax = mContext.getResources().getInteger(R.integer.config_udfpsDimmingBrightnessMax);
+        final int brightnessMin = mContext.getResources()
+                .getInteger(com.android.systemui.R.integer.config_udfpsDimmingBrightnessMin);
+        final int brightnessMax = mContext.getResources()
+                .getInteger(com.android.systemui.R.integer.config_udfpsDimmingBrightnessMax);
         if (brightnessMax > 0) {
             brightness = interpolate(brightness, 0, 255, brightnessMin, brightnessMax);
         }
@@ -1148,10 +1149,11 @@ public class UdfpsController implements DozeReceiver, Dumpable {
     }
 
     private void parseBrightnessAlphaArray() {
-        mFrameworkDimming = mContext.getResources().getBoolean(R.bool.config_udfpsFrameworkDimming);
+        mFrameworkDimming = mContext.getResources()
+                .getBoolean(com.android.systemui.R.bool.config_udfpsFrameworkDimming);
         if (mFrameworkDimming) {
             String[] array = mContext.getResources().getStringArray(
-                    R.array.config_udfpsDimmingBrightnessAlphaArray);
+                    com.android.systemui.R.array.config_udfpsDimmingBrightnessAlphaArray);
             mBrightnessAlphaArray = new int[array.length][2];
             for (int i = 0; i < array.length; i++) {
                 String[] s = array[i].split(",");
@@ -1333,7 +1335,7 @@ public class UdfpsController implements DozeReceiver, Dumpable {
         // The delay, in ms is stored in config_udfpsDimmingDisableDelay.
         // If the delay is 0, the dim amount will be updated immediately.
         final int delay = mContext.getResources().getInteger(
-                R.integer.config_udfpsDimmingDisableDelay);
+                com.android.systemui.R.integer.config_udfpsDimmingDisableDelay);
         if (delay > 0) {
             mFgExecutor.executeDelayed(() -> {
                 // A race condition exists where the overlay is destroyed before the the dim amount is updated.
