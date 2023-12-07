@@ -18,7 +18,6 @@ package com.android.systemui.navigationbar.buttons;
 
 import static android.view.Display.INVALID_DISPLAY;
 import static android.view.KeyEvent.KEYCODE_UNKNOWN;
-import static android.view.WindowManagerPolicyConstants.NAV_BAR_MODE_3BUTTON;
 import static android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK;
 import static android.view.accessibility.AccessibilityNodeInfo.ACTION_LONG_CLICK;
 
@@ -58,16 +57,14 @@ import com.android.internal.logging.UiEventLoggerImpl;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
-import com.android.systemui.navigationbar.NavigationModeController;
+import com.android.systemui.recents.OverviewProxyService;
 import com.android.systemui.shared.system.QuickStepContract;
 
-public class KeyButtonView extends ImageView implements ButtonInterface,
-        NavigationModeController.ModeChangedListener {
+public class KeyButtonView extends ImageView implements ButtonInterface {
     private static final String TAG = KeyButtonView.class.getSimpleName();
     private static final int CURSOR_REPEAT_FLAGS = KeyEvent.FLAG_SOFT_KEYBOARD
             | KeyEvent.FLAG_KEEP_TOUCH_MODE;
 
-    private int mNavBarMode = NAV_BAR_MODE_3BUTTON;
     private final boolean mPlaySounds;
     private final UiEventLogger mUiEventLogger;
     private int mContentDescriptionRes;
@@ -81,6 +78,7 @@ public class KeyButtonView extends ImageView implements ButtonInterface,
     @VisibleForTesting boolean mLongClicked;
     private OnClickListener mOnClickListener;
     private final KeyButtonRipple mRipple;
+    private final OverviewProxyService mOverviewProxyService;
     private final MetricsLogger mMetricsLogger = Dependency.get(MetricsLogger.class);
     private final InputManagerGlobal mInputManagerGlobal;
     private final Paint mOvalBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
@@ -181,27 +179,11 @@ public class KeyButtonView extends ImageView implements ButtonInterface,
         mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 
         mRipple = new KeyButtonRipple(context, this, R.dimen.key_button_ripple_max_width);
+        mOverviewProxyService = Dependency.get(OverviewProxyService.class);
         mInputManagerGlobal = manager;
         setBackground(mRipple);
         setWillNotDraw(false);
         forceHasOverlappingRendering(false);
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        mNavBarMode = Dependency.get(NavigationModeController.class).addListener(this);
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        Dependency.get(NavigationModeController.class).removeListener(this);
-        super.onDetachedFromWindow();
-    }
-
-    @Override
-    public void onNavigationModeChanged(int mode) {
-        mNavBarMode = mode;
     }
 
     @Override
@@ -267,7 +249,7 @@ public class KeyButtonView extends ImageView implements ButtonInterface,
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        final boolean showSwipeUI = !QuickStepContract.isLegacyMode(mNavBarMode);
+        final boolean showSwipeUI = mOverviewProxyService.shouldShowSwipeUpUI();
         final int action = ev.getAction();
         int x, y;
         if (action == MotionEvent.ACTION_DOWN) {
