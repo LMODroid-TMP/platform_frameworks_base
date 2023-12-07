@@ -3976,13 +3976,13 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
             return true;
         }
 
-        // change in charging status
-        return current.chargingStatus != old.chargingStatus;
-
         // change in oem fast charging while plugged in
         if (nowPluggedIn && current.oemFastCharging != old.oemFastCharging) {
             return true;
         }
+
+        // change in charging status
+        return current.chargingStatus != old.chargingStatus;
     }
 
     /**
