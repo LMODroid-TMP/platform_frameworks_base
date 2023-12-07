@@ -34,7 +34,7 @@ public class ButtonDispatcher {
     private static final int FADE_DURATION_IN = 150;
     private static final int FADE_DURATION_OUT = 250;
 
-    protected final ArrayList<View> mViews = new ArrayList<>();
+    private final ArrayList<View> mViews = new ArrayList<>();
 
     private final int mId;
 
@@ -48,7 +48,7 @@ public class ButtonDispatcher {
     private Integer mVisibility = View.VISIBLE;
     private Boolean mDelayTouchFeedback;
     private KeyButtonDrawable mImageDrawable;
-    protected View mCurrentView;
+    private View mCurrentView;
     private boolean mVertical;
     private ValueAnimator mFadeAnimator;
     private AccessibilityDelegate mAccessibilityDelegate;
