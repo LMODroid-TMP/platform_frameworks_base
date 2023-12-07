@@ -176,7 +176,7 @@ import javax.inject.Named;
             GarbageMonitorModule.class,
             KeyboardModule.class,
             LetterboxModule.class,
-            LineageModule.class,
+            LMODroidModule.class,
             LogModule.class,
             MediaProjectionModule.class,
             MotionToolModule.class,
