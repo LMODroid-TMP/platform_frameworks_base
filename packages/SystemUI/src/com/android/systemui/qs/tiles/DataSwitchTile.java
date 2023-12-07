@@ -71,7 +71,6 @@ public class DataSwitchTile extends QSTileImpl<BooleanState> {
     private final MyCallStateListener mPhoneStateListener;
     private final SubscriptionManager mSubscriptionManager;
     private final TelephonyManager mTelephonyManager;
-    private String mInactiveSlotName;
 
     class MyCallStateListener extends PhoneStateListener {
         MyCallStateListener() {
@@ -163,7 +162,6 @@ public class DataSwitchTile extends QSTileImpl<BooleanState> {
                 toggleMobileDataEnabled();
                 refreshState();
             });
-            mHost.collapsePanels();
         }
     }
 
@@ -195,14 +193,14 @@ public class DataSwitchTile extends QSTileImpl<BooleanState> {
                 break;
             case 1:
                 state.icon = ResourceIcon.get(activeSIMZero
-                        ? R.drawable.ic_qs_data_switch_2
-                        : R.drawable.ic_qs_data_switch_1);
+                        ? R.drawable.ic_qs_data_switch_1
+                        : R.drawable.ic_qs_data_switch_2);
                 state.value = false;
                 break;
             case 2:
                 state.icon = ResourceIcon.get(activeSIMZero
-                        ? R.drawable.ic_qs_data_switch_2
-                        : R.drawable.ic_qs_data_switch_1);
+                        ? R.drawable.ic_qs_data_switch_1
+                        : R.drawable.ic_qs_data_switch_2);
                 state.value = true;
                 break;
             default:
@@ -219,10 +217,25 @@ public class DataSwitchTile extends QSTileImpl<BooleanState> {
             state.state = state.value ? 2 : 1;
         }
 
-        state.label = mContext.getString(R.string.qs_data_switch_label);
-        if (mInactiveSlotName != null) {
-            state.secondaryLabel = mInactiveSlotName;
+        state.label = mContext.getString(R.string.qs_data_switch_label) +
+                      " " + getOppositeSlotCarrierName();
+    }
+
+    private String getOppositeSlotCarrierName() {
+        CharSequence result = "";
+        // Get opposite slot 2 ^ 3 = 1, 1 ^ 3 = 2
+        int subId = mSubscriptionManager.getDefaultDataSubscriptionId() ^ 3;
+        List<SubscriptionInfo> subInfoList =
+                mSubscriptionManager.getActiveSubscriptionInfoList(true);
+        if (subInfoList != null) {
+            for (SubscriptionInfo subInfo : subInfoList) {
+                if (subId == subInfo.getSubscriptionId()) {
+                    result = subInfo.getDisplayName();
+                    break;
+                }
+            }
         }
+        return result.toString();
     }
 
     @Override
@@ -235,25 +248,24 @@ public class DataSwitchTile extends QSTileImpl<BooleanState> {
      * subscription
      */
     private void toggleMobileDataEnabled() {
-        TelephonyManager telephonyManager;
-        boolean dataEnabled = false;
-        boolean foundActive = false;
+        // Get opposite slot 2 ^ 3 = 1, 1 ^ 3 = 2
+        int subId = SubscriptionManager.getDefaultDataSubscriptionId() ^ 3;
+        final TelephonyManager telephonyManager =
+                mTelephonyManager.createForSubscriptionId(subId);
+        telephonyManager.setDataEnabled(true);
+        mSubscriptionManager.setDefaultDataSubId(subId);
+        Log.d(TAG, "Enabled subID: " + subId);
+
         List<SubscriptionInfo> subInfoList =
                 mSubscriptionManager.getActiveSubscriptionInfoList(true);
         if (subInfoList != null) {
             for (SubscriptionInfo subInfo : subInfoList) {
-                telephonyManager =
-                    mTelephonyManager.createForSubscriptionId(subInfo.getSubscriptionId());
-                dataEnabled = telephonyManager.getDataEnabled();
-                if (!subInfo.isOpportunistic() || !dataEnabled) {
-                    telephonyManager.setDataEnabled(!dataEnabled && !foundActive);
-                    // Indicate we found sim with active data, disable data on remaining sim.
-                    if (!foundActive) foundActive = !dataEnabled;
+                // We never disable mobile data for opportunistic subscriptions.
+                if (subInfo.getSubscriptionId() != subId && !subInfo.isOpportunistic()) {
+                    mTelephonyManager.createForSubscriptionId(
+                            subInfo.getSubscriptionId()).setDataEnabled(false);
+                    Log.d(TAG, "Disabled subID: " + subInfo.getSubscriptionId());
                 }
-                // Store carrier label of inactive/opposite sim slot.
-                if (!foundActive) mInactiveSlotName = subInfo.getDisplayName().toString();
-                Log.d(TAG, "Changed subID " + subInfo.getSubscriptionId() + " to "
-                    + !dataEnabled);
             }
         }
     }
