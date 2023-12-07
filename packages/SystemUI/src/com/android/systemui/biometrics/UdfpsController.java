@@ -959,7 +959,8 @@ public class UdfpsController implements DozeReceiver, Dumpable {
 
     private void showUdfpsOverlay(@NonNull UdfpsControllerOverlay overlay) {
         mExecution.assertIsMainThread();
-        mFrameworkDimming = mContext.getResources().getBoolean(R.bool.config_udfpsFrameworkDimming);
+        mFrameworkDimming = mContext.getResources()
+                .getBoolean(com.android.systemui.R.bool.config_udfpsFrameworkDimming);
         parseBrightnessAlphaArray();
 
         mOverlay = overlay;
