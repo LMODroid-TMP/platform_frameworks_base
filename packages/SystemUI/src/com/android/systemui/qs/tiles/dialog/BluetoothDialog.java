@@ -178,19 +178,17 @@ public class BluetoothDialog extends SystemUIDialog implements Window.Callback {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void start() {
         if (DEBUG) {
-            Log.d(TAG, "onStart");
+            Log.d(TAG, "start");
         }
         mBluetoothController.addCallback(mCallback);
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void stop() {
         if (DEBUG) {
-            Log.d(TAG, "onStop");
+            Log.d(TAG, "stop");
         }
         mBluetoothController.removeCallback(mCallback);
         mSeeAllLayout.setOnClickListener(null);
@@ -249,7 +247,7 @@ public class BluetoothDialog extends SystemUIDialog implements Window.Callback {
 
         // devices
         final Collection<CachedBluetoothDevice> devices = mBluetoothController.getDevices();
-        if (!enabled || devices == null) {
+        if (!enabled || devices.isEmpty()) {
             mBluetoothRecyclerView.setVisibility(View.GONE);
             mSeeAllLayout.setVisibility(View.GONE);
             updateTurnOnLayout(true);
