@@ -1807,8 +1807,7 @@ public class KeyguardViewMediator implements CoreStartable, Dumpable,
         doKeyguardLaterForChildProfilesLocked();
     }
 
-    private void doKeyguardLaterForChildProfileLocked(
-            UserManager um, int profileId, long timeout) {
+    private void doKeyguardLaterForChildProfileLocked(int profileId, long timeout) {
         long userWhen = SystemClock.elapsedRealtime() + timeout;
         Intent lockIntent = new Intent(DELAYED_LOCK_PROFILE_ACTION);
         lockIntent.setPackage(mContext.getPackageName());
@@ -1831,7 +1830,7 @@ public class KeyguardViewMediator implements CoreStartable, Dumpable,
                 if (userTimeout == 0) {
                     lockProfile(profileId);
                 } else {
-                    doKeyguardLaterForChildProfileLocked(um, profileId, userTimeout);
+                    doKeyguardLaterForChildProfileLocked(profileId, userTimeout);
                 }
             }
         }
@@ -1850,7 +1849,7 @@ public class KeyguardViewMediator implements CoreStartable, Dumpable,
                     lockProfile(profileId);
                 } else {
                     final long userTimeout = getLockTimeout(profileId);
-                    doKeyguardLaterForChildProfileLocked(um, profileId, userTimeout);
+                    doKeyguardLaterForChildProfileLocked(profileId, userTimeout);
                 }
             }
         }
