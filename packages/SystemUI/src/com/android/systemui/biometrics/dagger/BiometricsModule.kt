@@ -93,11 +93,11 @@ interface BiometricsModule {
 
         @Provides
         fun providesUdfpsUtils(): UdfpsUtils = UdfpsUtils()
-    }
 
-    @Provides
-    fun providesFingerprintInteractiveToAuth(ctx: Context): FingerprintInteractiveToAuthProvider =
-        FingerprintInteractiveToAuthProviderImpl(ctx)
+        @Provides
+        fun providesFingerprintInteractiveToAuth(ctx: Context): FingerprintInteractiveToAuthProvider =
+            FingerprintInteractiveToAuthProviderImpl(ctx)
+    }
 }
 
 /**
