@@ -432,7 +432,7 @@ public class DefaultTransitionHandler implements Transitions.TransitionHandler {
             if (!TransitionInfo.isIndependent(change, info)) continue;
 
             Animation a = loadAnimation(info, change, wallpaperTransit, isDreamTransition,
-                    change.getTaskInfo().configuration.windowConfiguration
+                    isTask && change.getTaskInfo().configuration.windowConfiguration
                     .getWindowingMode() == WINDOWING_MODE_FREEFORM);
             if (a != null) {
                 if (isTask) {
