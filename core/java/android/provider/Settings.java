@@ -6442,6 +6442,13 @@ public final class Settings {
         public static final String THREE_FINGER_GESTURE = "three_finger_gesture";
 
         /**
+         * Action to perform when the screen edge is long-swiped. (Default is 0)
+         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
+         * @hide
+         */
+        public static final String KEY_EDGE_LONG_SWIPE_ACTION = "key_edge_long_swipe_action";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
@@ -12474,6 +12481,43 @@ public final class Settings {
          * @hide
          */
         public static final String LOCK_PASS_TO_SECURITY_VIEW = "lock_screen_pass_to_security_view";
+
+        /**
+         * Network traffic indicator mode
+         * 0 = Don't show network traffic indicator
+         * 1 = Display up-stream traffic only
+         * 2 = Display down-stream traffic only
+         * 3 = Display both up- and down-stream traffic
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_MODE = "network_traffic_mode";
+
+        /**
+         * Network traffic indicator position
+         * 0 = Start side
+         * 1 = Center
+         * 2 = End side
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_POSITION = "network_traffic_position";
+
+        /**
+         * Whether or not to hide the network traffic indicator when there is no activity
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_AUTOHIDE = "network_traffic_autohide";
+
+        /**
+         * Measurement unit preference for network traffic
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_UNITS = "network_traffic_units";
+
+        /**
+         * Whether or not to show measurement units in the network traffic indiciator
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_SHOW_UNITS = "network_traffic_show_units";
 
         /**
          * These entries are considered common between the personal and the managed profile,
