@@ -185,4 +185,7 @@
     <!-- Parallel space max count. -->
     <java-symbol type="integer" name="config_parallelSpaceMaxCount" />
 
+   <!-- Default value for QS_TRANSPARENCY -->
+   <java-symbol type="integer" name="config_qs_transparency" />
+
 </resources>
