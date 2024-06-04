@@ -192,7 +192,7 @@ public class GlobalActionsDialogTest extends SysuiTestCase {
                 mSysUiState,
                 mHandler,
                 mControlsComponent,
-                mUserContextProvider
+                mUserContextProvider,
                 mPackageManager,
                 Optional.of(mStatusBar),
                 mKeyguardUpdateMonitor
