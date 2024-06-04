@@ -71,7 +71,6 @@ import com.android.systemui.plugins.GlobalActionsPanelPlugin;
 import com.android.systemui.settings.UserContextProvider;
 import com.android.systemui.settings.UserTracker;
 import com.android.systemui.statusbar.NotificationShadeWindowController;
-import com.android.systemui.statusbar.phone.StatusBar;
 import com.android.systemui.statusbar.policy.ConfigurationController;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.telephony.TelephonyListenerManager;
@@ -136,7 +135,6 @@ public class GlobalActionsDialogTest extends SysuiTestCase {
     @Mock private UserTracker mUserTracker;
     @Mock private PackageManager mPackageManager;
     @Mock private SecureSettings mSecureSettings;
-    @Mock private StatusBar mStatusBar;
     @Mock private KeyguardUpdateMonitor mKeyguardUpdateMonitor;
     private ControlsComponent mControlsComponent;
 
