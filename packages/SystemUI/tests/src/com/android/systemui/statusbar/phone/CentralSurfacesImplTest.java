@@ -127,6 +127,7 @@ import com.android.systemui.shade.ShadeController;
 import com.android.systemui.shade.ShadeControllerImpl;
 import com.android.systemui.shade.ShadeExpansionStateManager;
 import com.android.systemui.shade.ShadeLogger;
+import com.android.systemui.shade.ShadeSurface;
 import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.KeyguardIndicationController;
 import com.android.systemui.statusbar.LightRevealScrim;
@@ -316,6 +317,7 @@ public class CentralSurfacesImplTest extends SysuiTestCase {
     @Mock IPowerManager mPowerManagerService;
     @Mock ActivityStarter mActivityStarter;
     @Mock private WindowRootViewVisibilityInteractor mWindowRootViewVisibilityInteractor;
+    @Mock private ShadeSurface mShadeSurface;
 
     private ShadeController mShadeController;
     private final FakeSystemClock mFakeSystemClock = new FakeSystemClock();
@@ -485,6 +487,7 @@ public class CentralSurfacesImplTest extends SysuiTestCase {
                 mShadeLogger,
                 new JavaAdapter(TestScopeProvider.getTestScope()),
                 mUiBgExecutor,
+                mShadeSurface,
                 mNotificationMediaManager,
                 mLockscreenUserManager,
                 mRemoteInputManager,
