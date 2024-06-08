@@ -485,7 +485,6 @@ public class CentralSurfacesImplTest extends SysuiTestCase {
                 mShadeLogger,
                 new JavaAdapter(TestScopeProvider.getTestScope()),
                 mUiBgExecutor,
-                mNotificationPanelViewController,
                 mNotificationMediaManager,
                 mLockscreenUserManager,
                 mRemoteInputManager,
@@ -560,7 +559,8 @@ public class CentralSurfacesImplTest extends SysuiTestCase {
                 mUserTracker,
                 () -> mFingerprintManager,
                 mActivityStarter,
-                mSceneContainerFlags
+                mSceneContainerFlags,
+                mNotificationPanelViewController
         );
         mScreenLifecycle.addObserver(mCentralSurfaces.mScreenObserver);
         mCentralSurfaces.initShadeVisibilityListener();
