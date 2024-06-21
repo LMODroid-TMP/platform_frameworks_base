@@ -755,8 +755,8 @@ public class RecordingService extends Service implements ScreenMediaRecorderList
         return getShareIntent(context, path, mNotificationId);
     }
 
-    private static Intent getShareIntent(Context context, String path, int id) {
-        return new Intent(context, RecordingService.class).setAction(ACTION_SHARE)
+    private Intent getShareIntent(Context context, String path, int id) {
+        return new Intent(context, this.getClass()).setAction(ACTION_SHARE)
                 .putExtra(EXTRA_PATH, path)
                 .putExtra(EXTRA_ID, id);
     }
@@ -765,8 +765,8 @@ public class RecordingService extends Service implements ScreenMediaRecorderList
         return getDeleteIntent(context, path, mNotificationId);
     }
 
-    private static Intent getDeleteIntent(Context context, String path, int id) {
-        return new Intent(context, RecordingService.class).setAction(ACTION_DELETE)
+    private Intent getDeleteIntent(Context context, String path, int id) {
+        return new Intent(context, this.getClass()).setAction(ACTION_DELETE)
                 .putExtra(EXTRA_PATH, path)
                 .putExtra(EXTRA_ID, id);
     }
