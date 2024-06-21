@@ -268,11 +268,11 @@ public enum ScrimState {
 
             if (mDisplayRequiresBlanking && previousState == ScrimState.AOD) {
                 // Set all scrims black, before they fade transparent.
-                updateScrimColor(mScrimInFront, 1f /* alpha */, Color.BLACK /* tint */);
+                updateScrimColor(mScrimInFront, 1f /* alpha */, mBackgroundColor /* tint */);
                 updateScrimColor(mScrimBehind, 1f /* alpha */, Color.TRANSPARENT /* tint */);
 
                 // Scrims should still be black at the end of the transition.
-                mFrontTint = Color.BLACK;
+                mFrontTint = mBackgroundColor;
                 mBehindTint = Color.TRANSPARENT;
                 mBlankScreen = true;
             }
