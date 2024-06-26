@@ -1898,6 +1898,8 @@ public class InputManagerService extends IInputManager.Stub
             mPointerIconType = icon.getType();
             mPointerIcon = mPointerIconType == PointerIcon.TYPE_CUSTOM ? icon : null;
 
+            deliverCursorChanged(mPointerIconType, mPointerIcon);
+
             return mNative.setPointerIcon(icon, displayId, deviceId, pointerId, inputToken);
         }
     }
